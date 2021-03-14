@@ -1,0 +1,88 @@
+/* HEADER */
+.header {
+    background-color: mediumslateblue;
+}
+
+/* Top banner */
+.banner {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    padding-top: 2%;
+}
+
+.title-wrapper {
+    padding-left: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-image {
+    height: 100px;
+}
+
+.title-text {
+    font-size: 50px;
+}
+
+/* Nav bar */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    text-decoration: underline;
+  }
+
+/* HOME PAGE */
+.page-content-wrapper {
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+
+/* Main content */
+/* Featured article*/
+.featured-article {
+    height: 750px;
+    background-color: blue;
+}
+
+.featured-image {
+    height: 400px;
+}
+
+/* List article */
+.list-article {
+    height: 250px;
+    background-color: red;
+}
+
+.list-image {
+    height: 200px;
+}
+
+/* Most viewed article */
+.most-viewed-article {
+    background-color: lime;
+}
+
+.most-viewed-image {
+    height: 225px;
+}
