@@ -1,17 +1,16 @@
 /* HEADER */
 .header {
-    background-color: mediumslateblue;
 }
 
 /* Top banner */
 .banner {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 75% 25%;
     padding-top: 2%;
 }
 
 .title-wrapper {
-    padding-left: 5%;
+    padding-left: 10%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,20 +19,44 @@
 
 .logo-image {
     height: 100px;
+    margin-right: 1%;
 }
 
 .title-text {
-    font-size: 50px;
+    font-size: 48px;
+}
+
+/* Extras section */
+.extras-text {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin: 2%;
+}
+
+.extras-text:hover {
+    font-weight: bolder;
+}
+
+.search {
+    margin: 2%;
+}
+
+.search-box {
+    width: 185px;
+}
+
+.email {
+    margin: 2%;
 }
 
 /* Nav bar */
 .navbar {
     display: flex;
     justify-content: center;
-    background-color: white;
 }
 
-ul {
+.navlist {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -41,11 +64,11 @@ ul {
     background-color: white;
   }
   
-  li {
+  .navitem {
     float: left;
   }
   
-  li a {
+  .navitem a {
     display: block;
     color: black;
     text-align: center;
@@ -59,6 +82,7 @@ ul {
 
 /* HOME PAGE */
 .page-content-wrapper {
+    margin: 2%;
     display: grid;
     grid-template-columns: 75% 25%;
 }
@@ -66,29 +90,88 @@ ul {
 /* Main content */
 /* Featured article*/
 .featured-article {
-    height: 750px;
-    background-color: blue;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 2%;
+}
+
+.featured-image-wrapper{
+    display: flex;
+    justify-content: center;
 }
 
 .featured-image {
     height: 400px;
+    width: 100%;
+}
+
+.featured-text-wrapper {
+    line-height: 2;
+}
+
+.featured-title-wrapper {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.featured-category {
+    font-size: 20px;
+}
+
+.featured-blurb {
+    font-size: 18px;
+}
+
+.read-more-wrapper {
+    text-align: right;
+}
+
+.read-more {
+    text-decoration: none;
+    color: brown;
 }
 
 /* List article */
+.list-article-wrapper {
+    margin: 4%;
+}
+
 .list-article {
-    height: 250px;
-    background-color: red;
+    display: grid;
+    grid-template-columns: 40% 60%;
 }
 
 .list-image {
-    height: 200px;
+    width: 100%;
+}
+
+.list-text-wrapper {
+    margin-left: 2%;
+    line-height: 2;
+}
+
+.list-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.list-blurb {
+    font-size: 14px;
 }
 
 /* Most viewed article */
+.most-viewed-wrapper {
+    margin-top: 6%;
+}
 .most-viewed-article {
-    background-color: lime;
+    margin-bottom: 4%;
 }
 
 .most-viewed-image {
-    height: 225px;
+    max-height: 225px;
+    max-width: 100%;
+}
+
+.most-viewed-text-wrapper {
+    line-height: 1.5;
 }
