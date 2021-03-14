@@ -1,5 +1,45 @@
+/* Fonts */
+@font-face {
+    font-family: road-race;
+    src: url(road-race/Road\ Race\ Rough.otf);
+}
+
+@font-face {
+    font-family: pt-serif;
+    src: url(PT_Serif/PTSerif-Regular.ttf)
+}
+
+@font-face {
+    font-family: pt-serif-bold;
+    src: url(PT_Serif/PTSerif-Bold.ttf);
+}
+
+@font-face {
+    font-family: roboto-bold;
+    src: url(Roboto/Roboto-Bold.ttf)
+}
+
+@font-face {
+    font-family: roboto;
+    src: url(Roboto/Roboto-Regular.ttf)
+}
+
+/* Colors */
+.brown {
+    color: #573B03;
+}
+
+.light-grey {
+    color: #959595;
+}
+
+.bold {
+    font-weight: 900;
+}
+
 /* HEADER */
 .header {
+    font-family: pt-serif;
 }
 
 /* Top banner */
@@ -24,6 +64,8 @@
 
 .title-text {
     font-size: 48px;
+    font-family: road-race;
+    color: rgb(57,37,32);
 }
 
 /* Extras section */
@@ -43,11 +85,57 @@
 }
 
 .search-box {
-    width: 185px;
+    width: 250px;
+}
+
+.search-input {
+    border-radius: 6px 6px 6px 6px;
+    border-width: 1px;
+    border-color: #D4D4D4;
+    border-style: solid;
+    height: 100%;
+    font-family: roboto;
+    font-size: 14px;
+    padding: 2%;
+    margin-right: 0;
 }
 
 .email {
     margin: 2%;
+}
+
+.email-form {
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+.email-input {
+    border-radius: 6px 0px 0px 6px;
+    border-width: 1px;
+    border-color: #D4D4D4;
+    border-style: solid;
+    height: 100%;
+    font-family: roboto;
+    font-size: 14px;
+    padding: 2%;
+    margin-right: 0;
+}
+
+.subscribe-button {
+    border-radius: 0px 6px 6px 0px;
+    border-width: 1px;
+    border-color: #3A0803;
+    border-style: solid;
+    background-color: #3A0803;
+    color: white;
+    font-family: roboto;
+    font-size: 12px;
+    font-weight: medium;
+    margin-left: 0;
+    height: 20px;
+    padding-top: 4%;
+    padding-bottom: 7.5%;
 }
 
 /* Nav bar */
@@ -66,6 +154,7 @@
   
   .navitem {
     float: left;
+    color: #333333;
   }
   
   .navitem a {
@@ -80,8 +169,25 @@
     text-decoration: underline;
   }
 
+/* FOOTER */
+.footer {
+    background-color: #3A2B03;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    width: 100%;
+}
+
+.footer-text {
+    font-family: pt-serif-bold;
+    font-size: 16px;
+    color: white;
+}
+
 /* HOME PAGE */
 .page-content-wrapper {
+    font-family: pt-serif;
     margin: 2%;
     display: grid;
     grid-template-columns: 75% 25%;
@@ -127,8 +233,8 @@
 }
 
 .read-more {
-    text-decoration: none;
-    color: brown;
+    text-decoration: underline;
+    font-family: roboto-bold;
 }
 
 /* List article */
@@ -175,3 +281,5 @@
 .most-viewed-text-wrapper {
     line-height: 1.5;
 }
+
+/* Media Queries */
