@@ -27,6 +27,12 @@
 }
 
 /* Nav bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
