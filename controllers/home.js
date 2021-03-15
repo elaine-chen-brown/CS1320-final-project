@@ -6,7 +6,7 @@ const { response } = require("express");
 function getHome(request, response){
   // do any work you need to do, then
   response.render('home', {
-    title: 'home'
+    title: 'Home'
   });
 }
 

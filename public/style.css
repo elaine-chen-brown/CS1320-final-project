@@ -37,6 +37,11 @@
     font-weight: 900;
 }
 
+/* Interactions */
+.hover:hover {
+    text-decoration: underline;
+}
+
 /* HEADER */
 .header {
     font-family: pt-serif;
@@ -163,10 +168,6 @@
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
-  
-  li a:hover {
-    text-decoration: underline;
   }
 
 /* FOOTER */
@@ -315,7 +316,7 @@
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 850px) {
     .page-content-wrapper {
         grid-template-columns: 100%;
     }
