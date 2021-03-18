@@ -6,6 +6,8 @@ const path = require('path');
 
 // import handlers
 const homeHandler = require('./controllers/home.js');
+const searchHandler = require('./controllers/search.js');
+const articleHandler = require('./controllers/article.js');
 
 // set up express app
 const app = express();
@@ -27,6 +29,8 @@ app.set('view engine', 'hbs');
 
 // handle requests at each endpoint
 app.get('/', homeHandler.getHome);
+app.get('/search', searchHandler.getSearch);
+app.get('/article', articleHandler.getArticle);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

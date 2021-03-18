@@ -29,12 +29,16 @@
     color: #573B03;
 }
 
-.light-grey {
+.search-light-grey {
     color: #959595;
 }
 
 .bold {
     font-weight: 900;
+}
+
+.line-light-grey {
+    color: #C4C4C4;
 }
 
 /* Interactions */
@@ -195,6 +199,11 @@
 }
 
 /* Main content */
+.main-content-wrapper {
+    border-right: solid  1px;
+    margin-right: 3%;
+}
+
 /* Featured article*/
 .featured-article {
     margin-left: 4%;
@@ -266,20 +275,24 @@
     font-size: 14px;
 }
 
-/* Most viewed article */
-.most-viewed-wrapper {
+/* Sidebar */
+.side-bar-wrapper {
     margin-top: 6%;
 }
-.most-viewed-article {
+.sidebar-title {
+    font-size: 30px;
+}
+
+.sidebar-article {
     margin-bottom: 4%;
 }
 
-.most-viewed-image {
+.sidebar-image {
     max-height: 225px;
     max-width: 100%;
 }
 
-.most-viewed-text-wrapper {
+.sidebar-text-wrapper {
     line-height: 1.5;
 }
 
@@ -321,7 +334,62 @@
         grid-template-columns: 100%;
     }
 
-    .most-viewed-wrapper {
+    .side-bar-wrapper {
         display: none;
     }
+
+    .search-box {
+        width: 150px;
+    }
+
+    .email-input {
+        width: 110px;
+    }
+    
+    .subscribe-button {
+        font-size: 10px;
+    }
+}
+
+/* SEARCH PAGE */
+/* Search Bar */
+.large-search-wrapper {
+    margin: 4%;
+    height: 50px;
+    border-bottom: solid black 3px;
+    line-height: 1.5;
+}
+
+.large-search-input {
+    width: 85%;
+    font-family: roboto;
+    font-size: 24px;
+    border: none;
+    padding-top: 2%;
+}
+
+.large-search-button {
+    width: 10%;
+    background: none;
+    color: #626262;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Side Bar */
+.popular-searches {
+    text-align: center;
+    padding-right: 8%;
+}
+
+.popular-search-link {
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+}
+
+.popular-search-link:hover {
+    text-decoration: underline;
 }
