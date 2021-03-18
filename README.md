@@ -7,7 +7,7 @@
 4. Open a browser window and go to "localhost:8080" to see the site
 
 ## Current Progress
-- Home page hardcoded
+- Home page, search page, and article page hardcoded
 
 ## Design Decisions
 ### Title font
@@ -26,6 +26,9 @@
 ### Accessibility
 - ARIA roles
 - Keyboard navigation
+### Interactivity
+- Need to make clickable things links
 
 ## Known Bugs
 - Subscribe button resizes weirdly
+- Featured article and individual article images could scale better

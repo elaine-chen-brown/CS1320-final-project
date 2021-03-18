@@ -440,6 +440,11 @@
     line-height: 2;
 }
 
+.article-caption {
+    color: #626262;
+    text-align: center;
+}
+
 /* Suggested Articles Sidebar */
 .suggested-wrapper {
     padding: 2%;
