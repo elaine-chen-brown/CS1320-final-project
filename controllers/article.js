@@ -6,7 +6,7 @@ const { response } = require("express");
 function getArticle(request, response){
   // do any work you need to do, then
   response.render('article', {
-    title: 'ArticleName'
+    title: 'Article'
   });
 }
 

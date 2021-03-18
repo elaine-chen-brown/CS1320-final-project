@@ -262,7 +262,7 @@
 }
 
 .list-text-wrapper {
-    margin-left: 2%;
+    margin-left: 4%;
     line-height: 2;
 }
 
@@ -276,7 +276,7 @@
 }
 
 /* Sidebar */
-.side-bar-wrapper {
+.sidebar-wrapper {
     margin-top: 6%;
 }
 .sidebar-title {
@@ -384,6 +384,10 @@
     padding-right: 8%;
 }
 
+.popular-title {
+    text-align: center;
+}
+
 .popular-search-link {
     text-decoration: none;
     font-size: 20px;
@@ -392,4 +396,105 @@
 
 .popular-search-link:hover {
     text-decoration: underline;
+}
+
+/* ARTICLE PAGE */
+/* Breadcrumbs */
+.breadcrumbs-wrapper {
+    font-family: roboto;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Article */
+.article-wrapper {
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-top: 2%;
+}
+
+.article-title {
+    font-size: 34px;
+    font-weight: bold;
+}
+
+.top-text-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.article-date {
+    color: #626262;
+    font-size: 25px;
+}
+
+.article-byline {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.article-text {
+    font-family: 'pt-serif';
+    font-size: 18px;
+    line-height: 2;
+}
+
+/* Suggested Articles Sidebar */
+.suggested-wrapper {
+    padding: 2%;
+    border: solid black 2px;
+}
+
+.suggested-article {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-top: 4%;
+    margin-bottom: 8%;
+}
+
+.suggested-image {
+    max-width: 100%;
+}
+
+.suggested-text {
+    margin-left: 2%;
+}
+
+.suggested-title {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.suggested-date {
+    color: #626262;
+    font-size: 13px;
+    margin-top: 2%;
+}
+
+.link {
+    color: black;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.smaller-sidebar-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Social Media Icons */
+.btn {
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 5px;
+  color: black;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
 }
