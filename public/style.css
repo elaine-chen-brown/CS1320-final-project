@@ -93,10 +93,6 @@
     margin: 2%;
 }
 
-.search-box {
-    width: 250px;
-}
-
 .search-input {
     border-radius: 6px 6px 6px 6px;
     border-width: 1px;
@@ -107,16 +103,17 @@
     font-size: 14px;
     padding: 2%;
     margin-right: 0;
+    width: 235px;
 }
 
 .email {
     margin: 2%;
+    width: 250px;
 }
 
 .email-form {
     display: flex;
     flex-direction: row;
-    height: 20px;
 }
 
 .email-input {
@@ -124,11 +121,11 @@
     border-width: 1px;
     border-color: #D4D4D4;
     border-style: solid;
-    height: 100%;
     font-family: roboto;
     font-size: 14px;
     padding: 2%;
     margin-right: 0;
+    width: 250px;
 }
 
 .subscribe-button {
@@ -142,7 +139,7 @@
     font-size: 12px;
     font-weight: medium;
     margin-left: 0;
-    height: 100%;
+    height: 10px;
     padding-top: 4%;
     padding-bottom: 7.5%;
 }
@@ -296,61 +293,6 @@
     line-height: 1.5;
 }
 
-/* Media Queries */
-@media screen and (min-width: 1225px) {
-    .subscribe-button {
-        padding-bottom: 4%;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    .subscribe-button {
-        padding-bottom: 6%;
-    }
-}
-
-@media screen and (min-width: 1100px) {
-    .subscribe-button {
-        padding-bottom: 7%;
-    }
-}
-
-@media screen and (max-width: 1025px) {
-    .search-box {
-        width: 200px;
-    }
-
-    .email-input {
-        width: 132px;
-    }
-    
-    .subscribe-button {
-        padding-bottom: 10%;
-    }
-}
-
-@media screen and (max-width: 850px) {
-    .page-content-wrapper {
-        grid-template-columns: 100%;
-    }
-
-    .side-bar-wrapper {
-        display: none;
-    }
-
-    .search-box {
-        width: 150px;
-    }
-
-    .email-input {
-        width: 110px;
-    }
-    
-    .subscribe-button {
-        font-size: 10px;
-    }
-}
-
 /* SEARCH PAGE */
 /* Search Bar */
 .large-search-wrapper {
@@ -502,4 +444,36 @@
 /* Darker background on mouse-over */
 .btn:hover {
   background-color: RoyalBlue;
+}
+
+/* MEDIA QUERIES */
+/* Media Queries */
+@media screen and (max-width: 1025px) {
+    .search-input {
+        width: 218px;
+    }
+
+    .email-input {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 910px) {
+    .search-input {
+        width: 168px;
+    }
+
+    .email-input {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .page-content-wrapper {
+        grid-template-columns: 100%;
+    }
+
+    .side-bar-wrapper {
+        display: none;
+    }
 }

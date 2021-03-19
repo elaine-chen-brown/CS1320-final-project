@@ -8,6 +8,7 @@
 
 ## Current Progress
 - Home page, search page, and article page hardcoded
+- Subscribe button resizing fixed
 
 ## Design Decisions
 ### Title font
@@ -30,5 +31,4 @@
 - Need to make clickable things links
 
 ## Known Bugs
-- Subscribe button resizes weirdly
 - Featured article and individual article images could scale better
