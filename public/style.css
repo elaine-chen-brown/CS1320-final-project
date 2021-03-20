@@ -46,6 +46,10 @@
     text-decoration: underline;
 }
 
+.underline {
+    text-decoration: underline;
+}
+
 /* HEADER */
 .header {
     font-family: pt-serif;
@@ -448,6 +452,11 @@
 }
 
 /* ABOUT US PAGE */
+.bread-margin {
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
 .sub-banner {
     font-size: 40px;
     padding: 2%;
@@ -455,10 +464,13 @@
     font-weight: bolder;
 }
 
-.about-wrapper {
-    background-image: url("images/red.png");
-    height: 400px;
+.splash-wrapper {
+    height: 445px;
     margin: 4%;
+}
+
+.about-image {
+    background-image: url("images/red.png");
 }
 
 .about-text {
@@ -517,6 +529,20 @@
 
 .staff-blurb {
     font-size: 14px;
+}
+
+/* JOIN US PAGE */
+.join-image {
+    background-image: url("images/join.png");
+}
+
+.join-text {
+    font-size: 22px;
+    text-align: center;
+}
+
+.join-list {
+    align-self: center;
 }
 
 /* MEDIA QUERIES */

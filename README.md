@@ -7,7 +7,7 @@
 4. Open a browser window and go to "localhost:8080" to see the site
 
 ## Current Progress
-- Home, search, article, and about us pages hardcoded
+- Home, search, article, about us, and join us pages hardcoded
 - Subscribe button fixed
 - Responsive text and elements
 
