@@ -36,7 +36,7 @@ app.get('/search', searchHandler.getSearch);
 app.get('/article', articleHandler.getArticle);
 app.get('/about', aboutHandler.getAbout);
 app.get('/join', joinHandler.getJoin);
-app.get('/author', authorHandler.getAuthor);
+app.get('/:authorName', authorHandler.getAuthor);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

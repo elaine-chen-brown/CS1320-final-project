@@ -551,7 +551,8 @@
 .author-banner {
     font-size: 40px;
     padding: 2%;
-    font-family: 'pt-serif-bold';
+    font-family: 'pt-serif';
+    font-weight: bold;
     margin-left: 4%;
 }
 
@@ -720,12 +721,25 @@
         font-size: 16px;
     }
 
+    .sub-banner {
+        font-size: 36px;
+    }
+
     .join-text {
         font-size: 20px;
     }
 
     .join-bullet {
         font-size: 20px;
+    }
+
+    .about-text {
+        font-size: 22px;
+    }
+
+    .author-banner {
+        font-size: 36px;
+        text-align: center;
     }
 }
 

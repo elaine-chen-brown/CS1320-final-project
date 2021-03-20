@@ -8,8 +8,7 @@
 
 ## Current Progress
 - Home, search, article, about us, join us, and author pages hardcoded
-- Subscribe button fixed
-- Responsive text and elements
+- All pages responsive to screen resizing
 
 ## Design Decisions
 ### Title font
