@@ -83,6 +83,7 @@
     color: black;
     font-weight: bold;
     margin: 2%;
+    font-size: 16px;
 }
 
 .extras-text:hover {
@@ -197,7 +198,7 @@
 
 /* Main content */
 .main-content-wrapper {
-    border-right: solid  1px;
+    border-right: solid 1px;
     margin-right: 3%;
 }
 
@@ -446,6 +447,78 @@
   background-color: RoyalBlue;
 }
 
+/* ABOUT US PAGE */
+.sub-banner {
+    font-size: 40px;
+    padding: 2%;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.about-wrapper {
+    background-image: url("images/red.png");
+    height: 400px;
+    margin: 4%;
+}
+
+.about-text {
+    color: white;
+    font-family: 'pt-serif';
+    font-size: 24px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10%;
+}
+
+/* Staff Section */
+.bottom-title {
+    font-size: 36px;
+    color: 392520;
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+.bottom-wrapper {
+    margin: 4%;
+}
+
+.staff-cols-wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.staff-member-wrapper {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    margin: 5%;
+}
+
+.staff-image {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.staff-text-wrapper {
+    margin-left: 8%;
+    font-family: 'pt-serif';
+}
+
+.staff-name {
+    font-size: 22px;
+    color: #392520;
+    font-weight: bolder;
+}
+
+.staff-role {
+    font-size: 18px;
+    font-style: italic;
+    color: #525252;
+}
+
+.staff-blurb {
+    font-size: 14px;
+}
+
 /* MEDIA QUERIES */
 /* Media Queries */
 @media screen and (max-width: 1025px) {
@@ -469,11 +542,101 @@
 }
 
 @media screen and (max-width: 850px) {
+    /* Don't display sidebar */
     .page-content-wrapper {
         grid-template-columns: 100%;
     }
 
     .side-bar-wrapper {
         display: none;
+    }
+
+    .sidebar-title {
+        display: none;
+    }
+
+    .sidebar-article {
+        display: none;
+    }
+
+    .suggested-wrapper {
+        display: none;
+    }
+
+    .popular-searches {
+        display: none;
+    }
+
+    .popular-title {
+        display: none;
+    }
+
+    .main-content-wrapper {
+        border-right: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Make staff section single column */
+    .staff-cols-wrapper {
+        grid-template-columns: auto;
+    }
+
+    /* Text resizing */
+    .extras-text {
+        font-size: 14px;
+    }
+
+    .featured-title {
+        font-size: 30px;
+    }
+
+    .article-title {
+        font-size: 30px;
+    }
+
+    .featured-category {
+        font-size: 18px;
+    }
+
+    .article-byline {
+        font-size: 18px;
+    }
+
+    .article-date {
+        font-size: 18px;
+    }
+
+    .featured-blurb {
+        font-size: 16px;
+    }
+
+    .article-text {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    .banner {
+        grid-template-columns: 70% 30%;
+    }
+    
+    /* More text resizing */
+    .featured-title {
+        font-size: 28px;
+    }
+
+    .list-title {
+        font-size: 16px;
+    }
+    
+    .list-blurb {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .banner {
+        grid-template-columns: 65% 35%;
     }
 }

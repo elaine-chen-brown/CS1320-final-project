@@ -7,8 +7,9 @@
 4. Open a browser window and go to "localhost:8080" to see the site
 
 ## Current Progress
-- Home page, search page, and article page hardcoded
-- Subscribe button resizing fixed
+- Home, search, article, and about us pages hardcoded
+- Subscribe button fixed
+- Responsive text and elements
 
 ## Design Decisions
 ### Title font
@@ -23,12 +24,13 @@
 
 ## Works In Progress
 ### Responsiveness
-- Text resizing
+- Could change navigation bar to dropdown menu
 ### Accessibility
 - ARIA roles
 - Keyboard navigation
 ### Interactivity
 - Need to make clickable things links
+- Need to handle form submits
 
 ## Known Bugs
 - Featured article and individual article images could scale better

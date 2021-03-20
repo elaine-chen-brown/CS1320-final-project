@@ -8,6 +8,7 @@ const path = require('path');
 const homeHandler = require('./controllers/home.js');
 const searchHandler = require('./controllers/search.js');
 const articleHandler = require('./controllers/article.js');
+const aboutHandler = require('./controllers/about.js');
 
 // set up express app
 const app = express();
@@ -31,6 +32,7 @@ app.set('view engine', 'hbs');
 app.get('/', homeHandler.getHome);
 app.get('/search', searchHandler.getSearch);
 app.get('/article', articleHandler.getArticle);
+app.get('/about', aboutHandler.getAbout);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
