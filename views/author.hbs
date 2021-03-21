@@ -41,7 +41,7 @@
 
  <!--Sub-banner-->
 <div class="author-banner">
-    {{ name }}
+    {{ aName }}
 </div>
 <hr>
 
@@ -50,7 +50,7 @@
     <!--Author Articles Section-->
     <div class="author-articles-wrapper">
         <div class="author-articles-title">
-            ARTICLES BY AUTHOR
+            ARTICLES BY {{ aName }}
         </div>
          <!--Listed articles-->
         <div class="list-articles-wrapper">
@@ -68,32 +68,6 @@
                 <hr>
             </div>
             <!---->
-            <!--One article-->
-            <div class="list-article-wrapper">
-            <div class="list-article">
-                <div>
-                    <img src="/images/list-test.png" alt="Article picture" class="list-image">
-                </div>
-                <div class="list-text-wrapper">
-                    <div class="list-title bold">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                    <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
-                </div>
-            </div>
-            </div>
-            <!---->
-            <!--One article-->
-            <div class="list-article-wrapper">
-            <div class="list-article">
-                <div>
-                    <img src="/images/list-test.png" alt="Article picture" class="list-image">
-                </div>
-                <div class="list-text-wrapper">
-                    <div class="list-title bold">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                    <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
-                </div>
-            </div>
-            </div>
-            <!---->
         </div>
     </div>
     <!--Author Info-->
@@ -103,14 +77,14 @@
         </div>
         <div class="author-text-wrapper">
             <div class="author-info-name">
-                AUTHOR NAME
+                {{ aName }}
             </div>
             <div class="author-blurb">
-                Diam justo  pulvinar viverra sed pulvinar proin quisque non vitae congue.  Porta lorem mollis. In hendrerit gravida rutrum quisque non tellus orci.
+                {{ aBlurb }}
             </div>
             <div class="author-socials-wrapper">
-                <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;">@author</span></i></div>
-                <div class="author-social"><i class="fa fa-twitter-square"><span style="font-size: 18px; margin-left: 2%;">@author</span></i></div>
+                <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;">{{ instaHandle}}</span></i></div>
+                <div class="author-social"><i class="fa fa-twitter-square"><span style="font-size: 18px; margin-left: 2%;">{{ twitterHandle }}</span></i></div>
             </div>
         </div>
     </div>
