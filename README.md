@@ -28,8 +28,12 @@
 - ARIA roles
 - Keyboard navigation
 ### Interactivity
-- Need to make clickable things links
+- Need to make pages link together
 - Need to handle form submits
+### Templating
+- Need to populate looped over items
+### Routing
+- Need to handle requests with parameters
 
 ## Known Bugs
 - Featured article and individual article images could scale better

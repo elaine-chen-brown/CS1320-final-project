@@ -4,9 +4,16 @@ const { response } = require("express");
 
 // handle a get request at '/' endpoint.
 function getArticle(request, response){
-  // do any work you need to do, then
+  let articleTitle = "This is the title of the article";
+  let articleByline = "AUTHOR BYLINE";
+  let articleDate = "2nd March 2021";
+  let photoCaption = "Photo caption";
   response.render('article', {
-    title: 'Article'
+    title: 'Article',
+    articleTitle: articleTitle,
+    articleByline: articleByline,
+    articleDate: articleDate, 
+    photoCaption: photoCaption
   });
 }
 

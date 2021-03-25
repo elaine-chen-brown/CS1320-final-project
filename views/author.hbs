@@ -41,7 +41,7 @@
 
  <!--Sub-banner-->
 <div class="author-banner">
-    {{ aName }}
+    {{ authorName }}
 </div>
 <hr>
 
@@ -50,7 +50,7 @@
     <!--Author Articles Section-->
     <div class="author-articles-wrapper">
         <div class="author-articles-title">
-            ARTICLES BY {{ aName }}
+            ARTICLES BY {{ authorName }}
         </div>
          <!--Listed articles-->
         <div class="list-articles-wrapper">
@@ -73,14 +73,14 @@
     <!--Author Info-->
     <div class="author-info-wrapper">
         <div class="author-image-wrapper">
-            <img src="images/red.png" alt="Author image" class="author-image">
+            <img src={{ authorPicture }} alt="Author image" class="author-image">
         </div>
         <div class="author-text-wrapper">
             <div class="author-info-name">
-                {{ aName }}
+                {{ authorName }}
             </div>
             <div class="author-blurb">
-                {{ aBlurb }}
+                {{ authorBlurb }}
             </div>
             <div class="author-socials-wrapper">
                 <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;">{{ instaHandle}}</span></i></div>

@@ -46,22 +46,22 @@
         <!--Featured article-->
         <div class="featured-article">
             <div class="featured-image-wrapper">
-                <img src="images/featured.png" alt="Featured article picture" class="featured-image">
+                <img src={{ featuredPic }} alt="Featured article picture" class="featured-image">
             </div>
 
             <div class="featured-text-wrapper">
                 <div class="featured-title-wrapper">
-                    <div class="featured-title bold hover">Lorem ipsum sit consectetur adipiscing elit sed do </div>
+                    <div class="featured-title bold hover"> {{ featuredTitle }} </div>
                 </div>
                 <div class="featured-category brown">
-                    CATEGORY
+                    {{ featuredCategory }}
                 </div>
                 <div class="featured-blurb">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urna cursus eget nunc. Iaculis nunc sed augue lacus viverra vitae congue eu consequat. Porta lorem mollis aliquam...
+                    {{ featuredBlurb }}
                 </div>
             </div>
             <div class="read-more-wrapper">
-                <a href="#" class="read-more brown">Read more</a>
+                <a href={{ featuredLink }} class="read-more brown">Read more</a>
             </div>
             <hr>
         </div>
