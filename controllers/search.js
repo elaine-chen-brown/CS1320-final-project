@@ -18,13 +18,13 @@ let searchResults = [
     articleImage: "/images/list-test.png",
     articleTitle: "This is the title of the first search result!",
     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "#",
+    articleLink: "/article",
   },
   {
     articleImage: "/images/list-test.png",
     articleTitle: "This is the title of the second search result!",
     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "#",
+    articleLink: "/article",
   },
 ]
 

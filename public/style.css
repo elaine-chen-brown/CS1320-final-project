@@ -230,6 +230,7 @@
 .featured-title-wrapper {
     font-size: 34px;
     font-weight: bold;
+    color: black;
 }
 
 .featured-category {
@@ -238,6 +239,7 @@
 
 .featured-blurb {
     font-size: 18px;
+    color: black;
 }
 
 .read-more-wrapper {
@@ -337,7 +339,6 @@
 
 .unstyled-link {
     text-decoration: none;
-    font-size: 20px;
     color: black;
 }
 
@@ -376,7 +377,7 @@
     font-size: 25px;
 }
 
-.article-byline {
+.article-author {
     font-size: 25px;
     font-weight: bold;
 }
@@ -707,7 +708,7 @@
         font-size: 18px;
     }
 
-    .article-byline {
+    .article-author {
         font-size: 18px;
     }
 

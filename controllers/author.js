@@ -30,12 +30,14 @@ let authorArticles = [
   {
     articleImage: "/images/list-test.png",
     articleTitle: "This is the title of the author's first article",
-    articleBlurb: "This is the blurb of the author's first article. What a cool article! I'm so into it!!!"
+    articleBlurb: "This is the blurb of the author's first article. What a cool article! I'm so into it!!!",
+    articleLink: "/article"
   },
   {
     articleImage: "/images/list-test.png",
     articleTitle: "This is the title of the author's second article",
-    articleBlurb: "This is the blurb of the author's second article. What a cool article! I'm so into it!!!"
+    articleBlurb: "This is the blurb of the author's second article. What a cool article! I'm so into it!!!",
+    articleLink: "/article"
   }
 ]
 

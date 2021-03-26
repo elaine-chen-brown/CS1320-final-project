@@ -9,7 +9,7 @@ function getHome(request, response){
   let featuredTitle = "Lorem ipsum sit consectetur adipiscing elit sed do";
   let featuredCategory = "FEATURED CATEGORY";
   let featuredBlurb = "This is the featured blurb and what the featured article is about. It's so cool please read it."
-  let featuredLink = "#";
+  let featuredLink = "/article";
   
   response.render('home', {
     title: 'Home',
@@ -29,13 +29,13 @@ let listArticles = [
     articleImage: "/images/list-test.png",
     articleTitle: "This is the title of the first article shown!",
     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "#",
+    articleLink: "/article",
   },
   {
     articleImage: "/images/list-test.png",
     articleTitle: "This is the title of the second article shown!",
     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "#",
+    articleLink: "/article",
   },
 ]
 
@@ -45,12 +45,14 @@ let mostViewedArticles = [
   {
     articleImage: "/images/sidebar.png",
     articleCategory: "COOL CATEGORY",
-    articleTitle: "This is the title of a most viewed article"
+    articleTitle: "This is the title of a most viewed article",
+    articleLink: "/article"
   },
   {
     articleImage: "/images/sidebar.png",
     articleCategory: "COOL CATEGORY",
-    articleTitle: "This is also the title of a most viewed article"
+    articleTitle: "This is also the title of a most viewed article",
+    articleLink: "/article"
   }
 ]
 

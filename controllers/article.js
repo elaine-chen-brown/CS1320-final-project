@@ -6,7 +6,7 @@ const { response } = require("express");
 function getArticle(request, response){
   // TO DO: replace with values gotten from database queries
   let articleTitle = "This is the title of the article";
-  let articleByline = "AUTHOR BYLINE";
+  let articleAuthor = "AUTHOR NAME";
   let articleDate = "2nd March 2021";
   let photoCaption = "Photo caption";
   // Note: you might have to loop over the article and create new <p> elements for each paragraph, since I don't think HTML recognizes newline characters
@@ -14,7 +14,7 @@ function getArticle(request, response){
   response.render('article', {
     title: 'Article',
     articleTitle: articleTitle,
-    articleByline: articleByline,
+    articleAuthor: articleAuthor,
     articleDate: articleDate, 
     photoCaption: photoCaption,
     articleText: articleText,
