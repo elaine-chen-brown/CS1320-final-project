@@ -51,38 +51,24 @@
     </div>
     <!--Listed articles-->
         <div class="list-articles-wrapper">
+            {{#searchResults}}
             <!--One article-->
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src="/images/list-test.png" alt="Article picture" class="list-image">
+                        <img src={{ articleImage }} alt="Article picture" class="list-image">
                     </div>
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                        <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
+                        <div class="list-title bold hover">{{ articleTitle }}</div>
+                        <div class="list-blurb">{{ articleBlurb }}</div>
                     </div>
                 </div>
                 <div class="read-more-wrapper">
-                    <a href="#" class="read-more brown">Read more</a>
+                    <a href={{ articleLink }} class="read-more brown">Read more</a>
                 </div>
             </div>
             <!---->
-            <!--One article-->
-            <div class="list-article-wrapper">
-            <div class="list-article">
-                <div>
-                    <img src="/images/list-test.png" alt="Article picture" class="list-image">
-                </div>
-                <div class="list-text-wrapper">
-                    <div class="list-title bold">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                    <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
-                </div>
-            </div>
-                <div class="read-more-wrapper">
-                    <a href="#" class="read-more brown">Read more</a>
-                </div>
-            </div>
-            <!---->
+            {{/searchResults}}
         </div>
     </div>
 
@@ -90,10 +76,9 @@
     <div class="sidebar-wrapper">
         <div class="smaller-sidebar-title popular-title">POPULAR SEARCHES</div>
         <ul class="popular-searches">
-            <div><a href="#" class="popular-search-link">Blueno</a></div>
-            <div><a href="#" class="popular-search-link">Andrews Commons</a></div>
-            <div><a href="#" class="popular-search-link">Critical Review</a></div>
-            <div><a href="#" class="popular-search-link">Happiness</a></div>
+            {{#popularSearches}}
+            <div><a href={{ searchLink }} class="popular-search-link">{{ searchTerm }}</a></div>
+            {{/popularSearches}}
         </ul>
     </div>
 

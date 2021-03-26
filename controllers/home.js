@@ -4,20 +4,55 @@ const { response } = require("express");
 
 // handle a get request at '/' endpoint.
 function getHome(request, response){
+  // TO DO: replace with values gotten from database queries
   let featuredPic = "images/featured.png";
   let featuredTitle = "Lorem ipsum sit consectetur adipiscing elit sed do";
   let featuredCategory = "FEATURED CATEGORY";
   let featuredBlurb = "This is the featured blurb and what the featured article is about. It's so cool please read it."
   let featuredLink = "#";
+  
   response.render('home', {
     title: 'Home',
     featuredPic: featuredPic,
     featuredTitle: featuredTitle,
     featuredCategory: featuredCategory,
     featuredBlurb: featuredBlurb,
-    featuredLink: featuredLink
+    featuredLink: featuredLink,
+    listArticles: listArticles,
+    mostViewedArticles: mostViewedArticles
   });
 }
+
+// TO DO: replace with values gotten from database queries
+let listArticles = [
+  {
+    articleImage: "/images/list-test.png",
+    articleTitle: "This is the title of the first article shown!",
+    articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
+    articleLink: "#",
+  },
+  {
+    articleImage: "/images/list-test.png",
+    articleTitle: "This is the title of the second article shown!",
+    articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
+    articleLink: "#",
+  },
+]
+
+// TO DO: replace with values gotten from database queries
+// Note: you might want to limit the number of characters shown for mostViewedArticle blurbs, as Angela's mockups showed them being shorter than listArticles
+let mostViewedArticles = [
+  {
+    articleImage: "/images/sidebar.png",
+    articleCategory: "COOL CATEGORY",
+    articleTitle: "This is the title of a most viewed article"
+  },
+  {
+    articleImage: "/images/sidebar.png",
+    articleCategory: "COOL CATEGORY",
+    articleTitle: "This is also the title of a most viewed article"
+  }
+]
 
 module.exports = {
     getHome

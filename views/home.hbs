@@ -68,39 +68,25 @@
 
         <!--Listed articles-->
         <div class="list-articles-wrapper">
+            {{#listArticles}}
             <!--One article-->
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src="/images/list-test.png" alt="Article picture" class="list-image">
+                        <img src={{ articleImage }} alt="Article picture" class="list-image">
                     </div>
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                        <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
+                        <div class="list-title bold hover">{{ articleTitle }}</div>
+                        <div class="list-blurb">{{ articleBlurb }}</div>
                     </div>
                 </div>
                 <div class="read-more-wrapper">
-                    <a href="#" class="read-more brown">Read more</a>
+                    <a href={{ articleLink }} class="read-more brown">Read more</a>
                 </div>
                 <hr>
             </div>
             <!---->
-            <!--One article-->
-            <div class="list-article-wrapper">
-            <div class="list-article">
-                <div>
-                    <img src="/images/list-test.png" alt="Article picture" class="list-image">
-                </div>
-                <div class="list-text-wrapper">
-                    <div class="list-title bold">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                    <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
-                </div>
-            </div>
-                <div class="read-more-wrapper">
-                    <a href="#" class="read-more brown">Read more</a>
-                </div>
-            </div>
-            <!---->
+            {{/listArticles}}
         </div>
 
     </div>
@@ -108,24 +94,17 @@
     <!--Sidebar Section-->
     <div class="sidebar-wrapper">
         <div class="sidebar-title">MOST VIEWED</div>
+        {{#mostViewedArticles}}
         <!--Sidebar article-->
         <div class="sidebar-article">
-            <img src="/images/sidebar.png" alt="Most viewed article picture" class="sidebar-image">
+            <img src={{ articleImage }} alt="Most viewed article picture" class="sidebar-image">
             <div class="sidebar-text-wrapper">
-                <div class="sidebar-category category">CATEGORY</div>
-                <div class="sidebar-blurb bold">Diam pulvinar justo gravida rutrum  pulvinar viverra sed pulvinar justo  pulvinar  pulvinar proin</div>
+                <div class="sidebar-category category">{{ articleCategory }}</div>
+                <div class="sidebar-blurb bold">{{ articleTitle }}</div>
             </div>
         </div>
         <!---->
-        <!--Sidebar article-->
-        <div class="sidebar-article">
-            <img src="/images/sidebar.png" alt="Most viewed article picture" class="sidebar-image">
-            <div class="sidebar-text-wrapper">
-                <div class="sidebar-category brown">CATEGORY</div>
-                <div class="sidebar-blurb bold">Diam pulvinar justo gravida rutrum  pulvinar viverra sed pulvinar justo  pulvinar  pulvinar proin</div>
-            </div>
-        </div>
-        <!---->
+         {{/mostViewedArticles}}
     </div>
 </div>
 

@@ -14,7 +14,8 @@
 ### Title font
 - Used text for title instead of image on current site/in mockups in order to better accommodate screen readers
 ### Responsiveness
-- Most viewed sidebar disappears at screen widths below 850 pixels
+- Sidebar disappears at screen widths below 850 pixels
+- Except on author pages, author info displayed first
 ### User Interactions
 - Current defaults are
     - Navbar hover: underline
@@ -37,3 +38,10 @@
 
 ## Known Bugs
 - Featured article and individual article images could scale better
+
+## To do for Backend
+- Home Page
+    - Populate dictionary based on results of database queries
+- Search Page
+    - Populate dictionary based on results of database queries
+    - Handle form submit/search input events
