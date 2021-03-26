@@ -1,4 +1,4 @@
-// Controller handler to handle functionality in category page
+// Controller handler to handle functionality in a category page
 
 const { response } = require("express");
 

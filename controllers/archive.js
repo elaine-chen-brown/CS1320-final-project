@@ -12,6 +12,7 @@ function getArchive(request, response){
   });
 }
 
+// TO DO: replace with values gotten from database queries
 let timelineYears = [
   {
     year: 2006
