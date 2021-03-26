@@ -617,7 +617,34 @@
     font-size: 30px;
     padding: 8px 12px;
     color: 392520;
-  }
+}
+
+/* ARCHIVE PAGE */
+.issues-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.issue-lists-wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.archive-item {
+    font-family: 'pt-serif-bold';
+    font-size: 22px;
+    color: #573B03;
+    text-decoration: underline;
+    line-height: 1.5;
+}
+
+.archive-image-wrapper {
+    padding-right: 5%;
+}
+
+.archive-image {
+    height: 200px;
+}
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 1025px) {
@@ -689,6 +716,27 @@
     /* Make staff section single column */
     .staff-cols-wrapper {
         grid-template-columns: auto;
+    }
+
+    /* Make archive issues single column */
+    .issues-wrapper {
+        display: grid;
+        grid-template-columns: auto;
+        margin: auto;
+        width: 80%;
+    }
+
+    .issue-lists-wrapper {
+        margin-bottom: 4%;
+    }
+
+    .issue-list {
+        margin: auto;
+    }
+
+    .archive-image-wrapper {
+        padding-right: 0%;
+        margin: auto;
     }
 
     /* Text resizing */
@@ -768,5 +816,10 @@
 @media screen and (max-width: 625px) {
     .banner {
         grid-template-columns: 65% 35%;
+    }
+
+    /* Text resizing */
+    .archive-item {
+        font-size: 20px;
     }
 }

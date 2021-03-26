@@ -13,17 +13,16 @@
 - Basic routing between pages
 
 ## To do for Backend People
-### Note: each page is composed of a JS file in controllers and a hbs file in views
-- Server
+- server.js
     - Handle routing with parameters (to /article/:articleId, /author/:authorId, and /category/:categoryName endpoints)
-- Every Page
-    - Handle form submit events for search and subscribe input fields in header
-    - Populate dictionary to be rendered based on results of database queries
-- Search Page
+- Every pagename.js (in controllers) and pagename.hbs (in views) pair
+    - Handle form submit events for search and subscribe input fields in header (can do it once and copy and paste)
+    - Populate dictionary to be rendered based on results of database queries (unique for every page. they're currently static values)
+- search.js and search.hbs
     - Handle search bar input events
-- Article Page
+- article.js and article.hbs
     - Handle social media button clicked events
-- Stylesheet (style.css in public)
+- style.css (in public)
     - Replace background-image in about-image and join-image with actual images that The Noser wants to use
     - Or replace with a better way to display background images
 
