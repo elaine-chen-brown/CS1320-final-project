@@ -161,20 +161,20 @@
     padding: 0;
     overflow: hidden;
     background-color: white;
-  }
+}
   
-  .navitem {
+.navitem {
     float: left;
     color: #333333;
-  }
+}
   
-  .navitem a {
+.navitem a {
     display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-  }
+}
 
 /* FOOTER */
 .footer {
@@ -620,6 +620,36 @@
 }
 
 /* ARCHIVE PAGE */
+/* Timeline */
+.timeline-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.timeline {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+  
+.timeline-button {
+    float: left;
+    color: #333333;
+    font-family: 'pt-serif';
+    font-size: 18px;
+}
+  
+.timeline-button a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Issues Section */
 .issues-wrapper {
     display: flex;
     justify-content: space-between;
@@ -627,7 +657,7 @@
 
 .issue-lists-wrapper {
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 60% 50%;
 }
 
 .archive-item {

@@ -50,8 +50,12 @@
     </div>
     <hr>
     <!--Timeline Section-->
-    <div class="sub-banner brown">
-        The timeline will go here
+    <div class="timeline-wrapper">
+        <ul class="navlist">
+            {{#timelineYears}}
+            <li class="timeline-button"><a href="#" class="hover">{{ year }}</a></li>
+            {{/timelineYears}}
+        </ul>
     </div>
     <!--Bottom Content Section-->
     <div class="bottom-wrapper">
@@ -60,16 +64,14 @@
         <div class="issues-wrapper">
             <div class="issue-lists-wrapper">
                 <ul class="issue-list">
-                    <li class="archive-item">1st January 2021</li>
-                    <li class="archive-item">1st January 2021</li>
-                    <li class="archive-item">1st January 2021</li>
-                    <li class="archive-item">1st January 2021</li>
+                    {{#archiveList1}}
+                    <li class="archive-item"><a href={{ issueLink }} style="color:#573B03">{{ issueDate }}</a></li>
+                    {{/archiveList1}}
                 </ul>
                 <ul class="issue-list">
-                    <li class="archive-item">1st January 2021</li>
-                    <li class="archive-item">1st January 2021</li>
-                    <li class="archive-item">1st January 2021</li>
-                    <li class="archive-item">1st January 2021</li>
+                    {{#archiveList2}}
+                    <li class="archive-item"><a href={{ issueLink }} style="color:#573B03">{{ issueDate }}</a></li>
+                    {{/archiveList2}}
                 </ul>
             </div>
             <div class="archive-image-wrapper">

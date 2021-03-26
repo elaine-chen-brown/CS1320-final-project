@@ -10,7 +10,7 @@
 - All pages created and reachable on server
 - All pages responsive to screen resizing
 - All pages templated
-- Basic routing between pages
+- Basic routing implemented
 
 ## To do for Backend People
 - server.js
@@ -22,6 +22,8 @@
     - Handle search bar input events
 - article.js and article.hbs
     - Handle social media button clicked events
+- archive.js and archive.hbs
+    - Handle button clicked events
 - style.css (in public)
     - Replace background-image in about-image and join-image with actual images that The Noser wants to use
     - Or replace with a better way to display background images
