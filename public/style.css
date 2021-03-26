@@ -335,13 +335,13 @@
     text-align: center;
 }
 
-.popular-search-link {
+.unstyled-link {
     text-decoration: none;
     font-size: 20px;
     color: black;
 }
 
-.popular-search-link:hover {
+.unstyled-link:hover {
     text-decoration: underline;
 }
 
@@ -469,6 +469,7 @@
     margin: 4%;
 }
 
+/* TO DO: Replace this with the actual background photo the Noser wants to use */
 .about-image {
     background-image: url("images/red.png");
 }
@@ -532,6 +533,7 @@
 }
 
 /* JOIN US PAGE */
+/* TO DO: Replace this with the actual background photo the Noser wants to use */
 .join-image {
     background-image: url("images/join.png");
 }

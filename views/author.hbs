@@ -54,20 +54,22 @@
         </div>
          <!--Listed articles-->
         <div class="list-articles-wrapper">
+            {{#authorArticles}}
             <!--One article-->
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src="/images/list-test.png" alt="Article picture" class="list-image">
+                        <img src={{ articleImage }} alt="Article picture" class="list-image">
                     </div>
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover">Diam pulvinar justo  pulvinar viverra sed pulvinar proin</div>
-                        <div class="list-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit.In hendrerit gravida rutrum quisque non tellus orci ac. Sit amet venenatis urn. Porta lorem mollis aliquam...</div>
+                        <div class="list-title bold hover">{{ articleTitle }}</div>
+                        <div class="list-blurb">{{ articleBlurb }}</div>
                     </div>
                 </div>
                 <hr>
             </div>
             <!---->
+            {{/authorArticles}}
         </div>
     </div>
     <!--Author Info-->
@@ -83,8 +85,8 @@
                 {{ authorBlurb }}
             </div>
             <div class="author-socials-wrapper">
-                <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;">{{ instaHandle}}</span></i></div>
-                <div class="author-social"><i class="fa fa-twitter-square"><span style="font-size: 18px; margin-left: 2%;">{{ twitterHandle }}</span></i></div>
+                <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;"><a href={{ instaLink }} class="unstyled-link">{{ instaHandle}}</a></span></i></div>
+                <div class="author-social"><i class="fa fa-twitter-square"><span style="font-size: 18px; margin-left: 2%;"><a href={{ twitterLink }} class="unstyled-link">{{ twitterHandle }}</a></span></i></div>
             </div>
         </div>
     </div>

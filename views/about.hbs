@@ -51,44 +51,27 @@
     <hr>
     <!--Banner Image-->
     <div class="splash-wrapper about-image">
-        <div class="about-text">The Brown Noser is Brown University’s satirical newspaper. It was founded in 2006. Its current editors-in-chief are Henry Block, Wylie De Groff, Abby Johnson, Jacob Lockwood, and Alex Valenti. </div>
+        <div class="about-text">{{ aboutBlurb }}</div>
     </div>
     <!--Bottom Content Section-->
     <div class="bottom-wrapper">
         <div class="bottom-title">STAFF</div>
         <hr>
         <div class="staff-cols-wrapper">
+            {{#staffMembers}}
             <!--One Staff Member-->
             <div class="staff-member-wrapper">
-                <div class="staff-image-wrapper"><img src="images/red.png" class="staff-image"></div>
+                <div class="staff-image-wrapper"><img src={{ staffPhoto }} class="staff-image"></div>
                 <div class="staff-text-wrapper">
-                    <div class="staff-name">STAFF NAME</div>
-                    <div class="staff-role">Staff Role</div>
-                    <div>Diam justo  pulvinar viverra sed pulvinar proin quisque non vitae congue.  Porta lorem mollis. In hendrerit gravida rutrum quisque non tellus orci.</div>
+                    <div class="staff-name">{{ staffName }}</div>
+                    <div class="staff-role">{{ staffRole }}</div>
+                    <div>{{ staffBlurb }} </div>
                 </div>
             </div>
-            <!--One Staff Member-->
-            <div class="staff-member-wrapper">
-                <div class="staff-image-wrapper"><img src="images/lover.png" class="staff-image"></div>
-                <div class="staff-text-wrapper">
-                    <div class="staff-name">STAFF NAME</div>
-                    <div class="staff-role">Staff Role</div>
-                    <div>Diam justo  pulvinar viverra sed pulvinar proin quisque non vitae congue.  Porta lorem mollis. In hendrerit gravida rutrum quisque non tellus orci.</div>
-                </div>
-            </div>
-            <!--One Staff Member-->
-            <div class="staff-member-wrapper">
-                <div class="staff-image-wrapper"><img src="images/fearless.png" class="staff-image"></div>
-                <div class="staff-text-wrapper">
-                    <div class="staff-name">STAFF NAME</div>
-                    <div class="staff-role">Staff Role</div>
-                    <div class="staff-blurb">Diam justo  pulvinar viverra sed pulvinar proin quisque non vitae congue.  Porta lorem mollis. In hendrerit gravida rutrum quisque non tellus orci.</div>
-                </div>
-            </div>
+            <!---->
+            {{/staffMembers}}
         </div>
     </div>
-
-
 </div>
 
 <!--Footer-->
