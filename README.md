@@ -7,32 +7,24 @@
 4. Open a browser window and go to "localhost:8080" to see the site
 
 ## Current Functionality
-- Home, article, search, author, about us, and join us pages templated
+- All pages created and reachable on server
 - All pages responsive to screen resizing
+- All pages templated
 - Basic routing between pages
 
 ## To do for Backend People
 ### Note: each page is composed of a JS file in controllers and a hbs file in views
 - Server
-    - Handle routing with parameters (to /article/:articleId endpoints, etc)
+    - Handle routing with parameters (to /article/:articleId, /author/:authorId, and /category/:categoryName endpoints)
 - Every Page
     - Handle form submit events for search and subscribe input fields in header
-- Home Page
-    - Populate dictionary based on results of database queries
+    - Populate dictionary to be rendered based on results of database queries
 - Search Page
-    - Populate dictionary based on results of database queries
-    - Handle form submit/search input events
+    - Handle search bar input events
 - Article Page
-    - Populate dictionary based on results of database queries
-    - Handle social media button clicked event
-- Author Page
-    - Populate dictionary based on results of database queries
-- About Page
-    - Populate dictionary based on results of database queries
-- Join Page
-    - Populate dictionary based on results of database queries
-- style.css
-    - Replace background-image in about-image and join-image with an actual images that The Noser wants to use
-    - Or replace with a better way to display a background image
+    - Handle social media button clicked events
+- Stylesheet (style.css in public)
+    - Replace background-image in about-image and join-image with actual images that The Noser wants to use
+    - Or replace with a better way to display background images
 
 ### Note: feel free to restructure stuff if you want!

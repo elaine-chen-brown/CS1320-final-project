@@ -11,6 +11,8 @@ const articleHandler = require('./controllers/article.js');
 const aboutHandler = require('./controllers/about.js');
 const joinHandler = require('./controllers/join.js');
 const authorHandler = require('./controllers/author.js');
+const categoryHandler = require('./controllers/category.js');
+const archiveHandler = require('./controllers/archive.js');
 
 // set up express app
 const app = express();
@@ -33,10 +35,12 @@ app.set('view engine', 'hbs');
 // handle requests at each endpoint
 app.get('/', homeHandler.getHome);
 app.get('/search', searchHandler.getSearch);
-app.get('/article', articleHandler.getArticle);
+app.get('/article', articleHandler.getArticle); // TO DO: Handle /article/:articleId endpoints
 app.get('/about', aboutHandler.getAbout);
 app.get('/join', joinHandler.getJoin);
-app.get('/author', authorHandler.getAuthor);
+app.get('/author', authorHandler.getAuthor); // TO DO: Handle /author/:authorId endpoints
+app.get('/category', categoryHandler.getCategory); // TO DO: Handle /category/:categoryName endpoints
+app.get('/archive', archiveHandler.getArchive);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

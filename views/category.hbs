@@ -1,0 +1,120 @@
+<!--Header-->
+<div class="header">
+    <div class="banner">
+        <div class="title-wrapper">
+            <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
+            <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+        </div>
+        <div class="extras-wrapper">
+            <div class="extras-options">
+                <a href="/about" class="extras-text">About</a>
+                <a href="/archive" class="extras-text">Archive</a>
+                <a href="/join" class="extras-text">Join Us</a>
+            </div>
+            <div class="search">
+                <form>
+                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey">
+                </form>
+            </div>
+            <div class="email">
+                <form class="email-form">
+                    <input type="text" placeholder="Email address" name="email" class="email-input search-light-grey">
+                    <button type="submit" class="subscribe-button">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="navbar">
+        <ul class="navlist">
+            <li class="navitem"><a href="/category" class="hover">BUSINESS</a></li>
+            <li class="navitem"><a href="/category" class="hover">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category" class="hover">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category" class="hover">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category" class="hover">POLITICS</a></li>
+            <li class="navitem"><a href="/category" class="hover">SCIENCE &amp TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category" class="hover">SPORTS</a></li>
+        </ul>
+    </div>
+    <hr>
+</div>
+
+<!--Page Content-->
+<div class="page-content-wrapper">
+    <!--Main Content Section-->
+    <div class="main-content-wrapper">
+        <!--Featured article-->
+        <a href={{ featuredLink }} style="text-decoration:none">
+        <div class="featured-article">
+            <div class="featured-image-wrapper">
+                <img src={{ featuredPic }} alt="Featured article picture" class="featured-image">
+            </div>
+
+            <div class="featured-text-wrapper">
+                <div class="featured-title-wrapper">
+                    <div class="featured-title bold hover">{{ featuredTitle }}</div>
+                </div>
+                <div class="featured-category brown">
+                    {{ featuredCategory }}
+                </div>
+                <div class="featured-blurb">
+                    {{ featuredBlurb }}
+                </div>
+            </div>
+            <div class="read-more-wrapper">
+                <a href={{ featuredLink }} class="read-more brown">Read more</a>
+            </div>
+            <hr>
+        </div>
+        </a>
+
+        <!--Listed articles-->
+        <div class="list-articles-wrapper">
+            {{#listArticles}}
+            <!--One article-->
+            <a href={{ articleLink }} style="text-decoration: none;color:black">
+            <div class="list-article-wrapper">
+                <div class="list-article">
+                    <div class="list-image-wrapper">
+                        <img src={{ articleImage }} alt="Article picture" class="list-image">
+                    </div>
+                    <div class="list-text-wrapper">
+                        <div class="list-title bold hover"> {{ articleTitle }} </div>
+                        <div class="list-blurb">{{ articleBlurb }}</div>
+                    </div>
+                </div>
+                <div class="read-more-wrapper">
+                    <a href={{ articleLink }} class="read-more brown">Read more</a>
+                </div>
+                <hr>
+            </div>
+            </a>
+            <!---->
+            {{/listArticles}}
+        </div>
+
+    </div>
+
+    <!--Sidebar Section-->
+    <div class="sidebar-wrapper">
+        <div class="sidebar-title">MOST VIEWED</div>
+        {{#mostViewedArticles}}
+        <!--Sidebar article-->
+        <a href={{ articleLink }} style="text-decoration:none;color:black">
+        <div class="sidebar-article">
+            <img src={{ articleImage }} alt="Most viewed article picture" class="sidebar-image">
+            <div class="sidebar-text-wrapper">
+                <div class="sidebar-category category">{{ articleCategory }}</div>
+                <div class="sidebar-blurb bold">{{ articleTitle }}</div>
+            </div>
+        </div>
+        </a>
+        <!---->
+         {{/mostViewedArticles}}
+    </div>
+</div>
+
+<!--Footer-->
+<div class="footer">
+    <div class="footer-text">© The Brown Noser</div>
+</div>
