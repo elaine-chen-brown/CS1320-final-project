@@ -29,3 +29,17 @@
     - Or replace with a better way to display background images
 
 ### Note: feel free to restructure stuff if you want!
+
+#### 3/29
+- added db connection, routing and loading for articles and authors
+- pages should fill information if gone to directly, ie /article/100 or /author/30
+- images are still only using defaults until we set up some sort of image hosting
+- clicking on author in article page goes to author page
+- author page has author articles sorted with newest first
+- database cleaned to fix bad utf8 values and add publish date to the articles table (use new .sql file editnoser.sql)
+
+#### Connecting to database locally
+- database config is in app/config/db.config.js
+- make sure mysql installed
+- create new database (named noser_edited or change value in the config)
+- use editnoser.sql to load the database (run from where where mysql is installed: mysql -u root -p noser_edited < "path\to\sqlfile")

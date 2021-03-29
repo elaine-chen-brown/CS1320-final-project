@@ -1,25 +1,64 @@
 // Controller handler to handle functionality in an article page
+const Article = require("../app/models/article.model.js");
 
 const { response } = require("express");
+var moment = require('moment'); 
+
+function processDate(unix_timestamp){
+    // put into milliseconds
+    var date = new Date(unix_timestamp * 1000);
+    return moment(date).format('dddd, MMMM Do, YYYY');
+}
 
 // handle a get request at '/article/:articleId' endpoint.
 function getArticle(request, response){
-  // TO DO: replace with values gotten from database queries
-  let articleTitle = "This is the title of the article";
-  let articleAuthor = "AUTHOR NAME";
-  let articleDate = "2nd March 2021";
-  let photoCaption = "Photo caption";
-  // Note: you might have to loop over the article and create new <p> elements for each paragraph, since I don't think HTML recognizes newline characters
-  let articleText = "Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at. Nec ullamcorper sit amet risus nullam eget felis eget. Eget magna fermentum iaculis eu non diam phasellus. Viverra ipsum nunc aliquet bibendum enim. Ut ornare lectus sit amet est. Congue quisque egestas diam in arcu. Egestas pretium aenean pharetra magna ac placerat vestibulum lectus. In hac habitasse platea dictumst vestibulum."
-  response.render('article', {
-    title: 'Article',
-    articleTitle: articleTitle,
-    articleAuthor: articleAuthor,
-    articleDate: articleDate, 
-    photoCaption: photoCaption,
-    articleText: articleText,
-    suggestedArticles: suggestedArticles
-  });
+  Article.findById(request.params.articleId, (err, data) => {
+    if (err) {
+        if (err.kind === "not_found") {
+            reject(`Not found Article with id ${request.params.articleId}.`);
+        } else {
+            reject("Error retrieving Article with id " + request.params.articleId);
+        }
+    }
+    else {
+        // TODO add images
+        var findAuthor = function getAuthor(id) {
+            return new Promise((resolve, reject) => {
+                Article.getAuthorByArticleId(id, (err, data) => {
+                    if (err) {
+                        if (err.kind === "not_found") {
+                            reject(`Not found author for article id ${id}.`);
+                        } else {
+                            reject("Error retrieving author for Article with id " + id);
+                        }
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            })
+        }
+        findAuthor(request.params.articleId).then(items => {
+            let articleTitle = data.headline;
+            let articleAuthor = items[0].author;
+            let authorLink = `/author/${items[0].authorid}`;
+            // let articleDate = processDate(items[1].publishDate);
+            let articleDate = processDate(data.publishDate);
+            let photoCaption = data.photoCaption;
+            let articleText = data.body;
+            response.render('article', {
+                title: 'Article',
+                articleTitle: articleTitle,
+                articleAuthor: articleAuthor,
+                authorLink: authorLink,
+                articleDate: articleDate, 
+                photoCaption: photoCaption,
+                articleText: articleText,
+                suggestedArticles: suggestedArticles
+            });
+        })     
+    }
+})
 }
 
 // TO DO: replace with values gotten from database queries

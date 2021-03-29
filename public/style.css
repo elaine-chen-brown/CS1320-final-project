@@ -382,10 +382,12 @@
     font-weight: bold;
 }
 
+/* add white-space to make line breaks render */
 .article-text {
     font-family: 'pt-serif';
     font-size: 18px;
     line-height: 2;
+    white-space: pre-line;
 }
 
 .article-caption {

@@ -53,13 +53,13 @@
             <div class="article-top-text-wrapper">
                 <div class="article-title"> {{ articleTitle }} </div>
                 <div class="top-text-wrapper">
-                    <div class="article-author brown"><a href="/author" style="text-decoration:none;color:#573B03">{{ articleAuthor }}</a></div>
+                    <div class="article-author brown"><a href={{ authorLink }} style="text-decoration:none;color:#573B03">{{ articleAuthor }}</a></div>
                     <div class="article-date"> {{ articleDate }} </div>
                 </div>
             </div>
             <!--Article image-->
             <div class="featured-image-wrapper">
-                <img src="images/article-pic.png" alt="Featured article picture" class="featured-image">
+                <img src="/images/article-pic.png" alt="Featured article picture" class="featured-image">
             </div>
             <div class="article-caption"> {{ photoCaption }} </div>
             <!--Article text-->

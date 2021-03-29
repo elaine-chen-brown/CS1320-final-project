@@ -1,31 +1,137 @@
 // Controller handler to handle functionality in an author page
+const Author = require("../app/models/author.model.js");
+const Article = require("../app/models/article.model.js");
 
 const { response } = require("express");
 
-// handle a get request at '/author/:authorName' endpoint.
-function getAuthor(request, response) {
-  // TO DO: replace with values gotten from database queries
-  let authorName = "Taylor Swift"; //request.params.authorName;
-  let authorPicture = "images/red.png";
-  let authorBlurb = "This is a blurb about me as an author.";
-  let instaHandle = "@taylorswift";
-  let instaLink = "#";
-  let twitterHandle = "@taylorswift";
-  let twitterLink = "#";
-  response.render('author', {
-    title: 'Author',
-    authorName: authorName,
-    authorPicture: authorPicture,
-    authorBlurb: authorBlurb,
-    instaHandle: instaHandle,
-    instaLink: instaLink,
-    twitterHandle: twitterHandle,
-    twitterLink: twitterLink,
-    authorArticles: authorArticles
-  });
+// handle a get request at '/author/:authorName' 
+function findAuthor(req, res) {
+    Author.findById(req.params.authorId, (err, data) => {
+      if (err) {
+        if (err.kind === "not_found") {
+          res.status(404).send({
+            message: `Not found Author with id ${req.params.authorId}.`
+          });
+        } else {
+          res.status(500).send({
+            message: "Error retrieving Author with id " + req.params.authorId
+          });
+        }
+      }
+      else {
+        console.log("found author");
+        console.log(data);
+        //res.send(data);
+        // fill in data for loading author 
+        // TODO fix image and socials
+        let first_name = (data.author).split(" ")[0];
+        let title = data.title.toLowerCase();
+        let authorName = data.author; 
+        let authorPicture = "/images/red.png";
+        let authorBlurb = `${first_name} is a ${title} at The Noser. This is a blurb about ${first_name} as an author.`;
+        let instaHandle = "@taylorswift";
+        let instaLink = "#";
+        let twitterHandle = "@taylorswift";
+        let twitterLink = "#";
+        let authorArticles = getAuthorArticleIds(req,res, (articles) => {
+            console.log(articles);
+            res.render('author', {
+              title: 'Author',
+              authorName: authorName,
+              authorPicture: authorPicture,
+              authorBlurb: authorBlurb,
+              instaHandle: instaHandle,
+              instaLink: instaLink,
+              twitterHandle: twitterHandle,
+              twitterLink: twitterLink,
+              authorArticles: articles
+            });  
+          });
+      }
+    });
+  };
+
+
+
+function getAuthorArticleIds(req, res, displayfunc ) {
+    Author.findArticles(req.params.authorId, (err, data) => {
+        if (err) {
+          if (err.kind === "not_found") {
+            res.status(404).send({
+              message: `Not found articles for Author with id ${req.params.authorId}.`
+            });
+          } else {
+            res.status(500).send({
+              message: "Error retrieving articles for Author with id " + req.params.authorId
+            });
+          }
+        }
+        else {
+            var findArticle = function getArticleById(entry) {
+                return new Promise((resolve, reject) => {
+                    Article.findById(entry.articleid, (err, data) => {
+                        if (err) {
+                            if (err.kind === "not_found") {
+                                reject(`Not found Article with id ${entry.authorid}.`);
+                            } else {
+                                reject("Error retrieving Article with id " + entry.authorid);
+                            }
+                        }
+                        else {
+                            // TODO add images
+                            article_to_add = {
+                                articleImage: "/images/list-test.png",
+                                articleTitle: data.headline,
+                                articleBlurb: data.teaser,
+                                articleLink: `/article/${entry.articleid}`,
+                                publishDate: data.publishDate
+                            }
+                            resolve(article_to_add);
+                        }
+                    })
+                })
+            }
+            //get all the articles from database
+            var actions = data.map(findArticle);
+            var results = Promise.all(actions);
+            results.then(data => {
+                data.sort(function(a, b){
+                    // sort articles so they display with the newest dates at the top
+                    return b.publishDate - a.publishDate;
+                });
+                displayfunc(data);
+            })
+        }
+    })
 }
 
-// TO DO: replace with values gotten from database queries
+
+// old functions just using defaults are below
+function getAuthor(request, response) {
+    // TO DO: replace with values gotten from database queries
+    let authorName = "Taylor Swift"; //request.params.authorName;
+    let authorPicture = "images/red.png";
+  //   let authorBlurb = "This is a blurb about me as an author.";
+  //   let instaHandle = "@taylorswift";
+  //   let instaLink = "#";
+  //   let twitterHandle = "@taylorswift";
+  //   let twitterLink = "#";
+  //   let authorArticles = getAuthorArticleIds(request,response, (articles) => {
+  //     console.log(articles);
+  //     response.render('author', {
+  //       title: 'Author',
+  //       authorName: authorName,
+  //       authorPicture: authorPicture,
+  //       authorBlurb: authorBlurb,
+  //       instaHandle: instaHandle,
+  //       instaLink: instaLink,
+  //       twitterHandle: twitterHandle,
+  //       twitterLink: twitterLink,
+  //       authorArticles: articles
+  //     });  
+  //   });
+  }
+
 let authorArticles = [
   {
     articleImage: "/images/list-test.png",
@@ -42,5 +148,6 @@ let authorArticles = [
 ]
 
 module.exports = {
-    getAuthor
+    getAuthor,
+    findAuthor
 };

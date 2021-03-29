@@ -35,10 +35,12 @@ app.set('view engine', 'hbs');
 // handle requests at each endpoint
 app.get('/', homeHandler.getHome);
 app.get('/search', searchHandler.getSearch);
-app.get('/article', articleHandler.getArticle); // TO DO: Handle /article/:articleId endpoints
+app.get('/article', articleHandler.getArticle); 
+app.get('/article/:articleId', articleHandler.getArticle);
 app.get('/about', aboutHandler.getAbout);
 app.get('/join', joinHandler.getJoin);
-app.get('/author', authorHandler.getAuthor); // TO DO: Handle /author/:authorId endpoints
+app.get('/author', authorHandler.getAuthor); 
+app.get('/author/:authorId', authorHandler.findAuthor);
 app.get('/category', categoryHandler.getCategory); // TO DO: Handle /category/:categoryName endpoints
 app.get('/archive', archiveHandler.getArchive);
 
