@@ -41,7 +41,8 @@ app.get('/about', aboutHandler.getAbout);
 app.get('/join', joinHandler.getJoin);
 app.get('/author', authorHandler.getAuthor); 
 app.get('/author/:authorId', authorHandler.findAuthor);
-app.get('/category', categoryHandler.getCategory); // TO DO: Handle /category/:categoryName endpoints
+// app.get('/category', categoryHandler.getCategory); // don't need this anymore I think?
+app.get('/category/:categoryId', categoryHandler.getCategory);
 app.get('/archive', archiveHandler.getArchive);
 
 // listen on given port

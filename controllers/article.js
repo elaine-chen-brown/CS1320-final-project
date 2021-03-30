@@ -46,6 +46,8 @@ function getArticle(request, response){
             let articleDate = processDate(data.publishDate);
             let photoCaption = data.photoCaption;
             let articleText = data.body;
+            let categoryLink = `/category/${data.sectionid}`;
+            let articleCategoryName = data.section;
             response.render('article', {
                 title: 'Article',
                 articleTitle: articleTitle,
@@ -54,7 +56,9 @@ function getArticle(request, response){
                 articleDate: articleDate, 
                 photoCaption: photoCaption,
                 articleText: articleText,
-                suggestedArticles: suggestedArticles
+                suggestedArticles: suggestedArticles,
+                categoryLink: categoryLink,
+                articleCategoryName: articleCategoryName
             });
         })     
     }
