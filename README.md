@@ -30,6 +30,12 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 3/30 most viewed articles
+- setup db query to get articles with most views
+- for now loading 5 most viewed but only after 2014 to prioritize newer ones (kinda arbitrary cutoff)
+- at some point will need to add something to increase the number of views when page viewed :but want to be careful not to mess up their data
+- also the most viewed column is a bit all close together idk if we want to space them out a bit more or put dividers or not
+
 #### 3/30 archive page
 - setup archive page to query db to display possible years and get issues from those years
 - /archive/:year shows the issues from that year

@@ -1,6 +1,7 @@
 // Controller handler to handle functionality in a category page
 const Category = require("../app/models/category.model.js");
 const Article = require("../app/models/article.model.js");
+const Home = require("../app/models/home.model.js");
 
 const { response } = require("express");
 
@@ -64,27 +65,56 @@ function getCategory(req, res){
                     })
                 })
             }
+            var findPopularArticles = function getPopularArticles() {
+                return new Promise((resolve, reject) => {
+                    // get 5 most popular articles
+                    Home.findMostViewed(5, (err, data) => {
+                        if (err) {
+                            if (err.kind === "not_found") {
+                                reject(`Not found popular articles`);
+                            } else {
+                                reject("Error retrieving popular articles");
+                            }
+                        }
+                        else {
+                            resolve(data);
+                        }
+                    })
+                })
+            }
             // first get all the article ids
             findArticleIds(data).then(ids => {
                 var actions = ids.map(findArticle);
                 var results = Promise.all(actions);
                 results.then(articleData => {
-                    // for now fill in featured as first article
-                    let featuredPic = "/images/sports.png";
-                    let featuredTitle = articleData[0].articleTitle;
-                    let featuredCategory = data.section;
-                    let featuredBlurb = articleData[0].articleBlurb;
-                    let featuredLink = articleData[0].articleLink;
-                    res.render('category', {
-                        title: 'Category', 
-                        featuredPic: featuredPic,
-                        featuredTitle: featuredTitle,
-                        featuredCategory: featuredCategory,
-                        featuredBlurb: featuredBlurb,
-                        featuredLink: featuredLink,
-                        listArticles: articleData.slice(1,),
-                        mostViewedArticles: mostViewedArticles
-                      });
+                    findPopularArticles().then(popularArticles => {
+                        var buildArticle = function buildArticle(articleEntry){
+                            article_to_add = {
+                                articleImage: "/images/list-test.png",
+                                articleTitle: articleEntry.headline,
+                                articleLink: `/article/${articleEntry.articleid}`,
+                                articleCategory: articleEntry.section
+                            }
+                            return article_to_add;
+                        }
+                        let mostViewedArticles = popularArticles.map(buildArticle);
+                        // for now fill in featured as first article
+                        let featuredPic = "/images/sports.png";
+                        let featuredTitle = articleData[0].articleTitle;
+                        let featuredCategory = data.section;
+                        let featuredBlurb = articleData[0].articleBlurb;
+                        let featuredLink = articleData[0].articleLink;
+                        res.render('category', {
+                            title: 'Category', 
+                            featuredPic: featuredPic,
+                            featuredTitle: featuredTitle,
+                            featuredCategory: featuredCategory,
+                            featuredBlurb: featuredBlurb,
+                            featuredLink: featuredLink,
+                            listArticles: articleData.slice(1,),
+                            mostViewedArticles: mostViewedArticles
+                        })
+                    })
                 })
             })
         }
@@ -129,20 +159,20 @@ function getCategory(req, res){
 
 // TO DO: replace with values gotten from database queries
 // Note: you might want to limit the number of characters shown for mostViewedArticle blurbs, as Angela's mockups showed them being shorter than listArticles
-let mostViewedArticles = [
-  {
-    articleImage: "/images/sidebar.png",
-    articleCategory: "COOL CATEGORY",
-    articleTitle: "This is the title of a most viewed article",
-    articleLink: "/article"
-  },
-  {
-    articleImage: "/images/sidebar.png",
-    articleCategory: "COOL CATEGORY",
-    articleTitle: "This is also the title of a most viewed article",
-    articleLink: "/article"
-  }
-]
+// let mostViewedArticles = [
+//   {
+//     articleImage: "/images/sidebar.png",
+//     articleCategory: "COOL CATEGORY",
+//     articleTitle: "This is the title of a most viewed article",
+//     articleLink: "/article"
+//   },
+//   {
+//     articleImage: "/images/sidebar.png",
+//     articleCategory: "COOL CATEGORY",
+//     articleTitle: "This is also the title of a most viewed article",
+//     articleLink: "/article"
+//   }
+// ]
 
 
 module.exports = {
