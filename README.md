@@ -30,6 +30,13 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 3/29 again
+- added db for category pages
+- fixed link for categories in navbar
+- currently featured category article is most recent 
+- can change later to make featuredArticleId an optional field for each category (in db) and then display only if set
+- rn the articles just load all at once - maybe want to have them infinte scroll?
+
 #### 3/29
 - added db connection, routing and loading for articles and authors
 - pages should fill information if gone to directly, ie /article/100 or /author/30
