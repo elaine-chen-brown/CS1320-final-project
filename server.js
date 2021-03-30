@@ -44,7 +44,8 @@ app.get('/author', authorHandler.getAuthor);
 app.get('/author/:authorId', authorHandler.findAuthor);
 // app.get('/category', categoryHandler.getCategory); // don't need this anymore I think?
 app.get('/category/:categoryId', categoryHandler.getCategory);
-app.get('/archive', archiveHandler.getArchive);
+app.get('/archive', archiveHandler.getRecentYear);
+app.get('/archive/:year', archiveHandler.getArchive);
 app.get('/issue/:issueId', issueHandler.getIssue);
 
 // listen on given port

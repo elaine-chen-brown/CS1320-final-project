@@ -30,6 +30,14 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 3/30 archive page
+- setup archive page to query db to display possible years and get issues from those years
+- /archive/:year shows the issues from that year
+- /archive redirects to the most recent year
+- some of the links for the issues display a bit funny especially when only one column - need to look at more
+- also found some symbols still in the database that will need fixing later
+- should look into incorporating issuu?
+
 #### 3/30 issue page
 - made issue page (/issue/issueId) to display all the articles from one particular issue (to go to from archive)
 - puts featured article at top then rest in no particular order
