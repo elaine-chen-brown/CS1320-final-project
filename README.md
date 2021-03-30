@@ -30,6 +30,12 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 3/30 issue page
+- made issue page (/issue/issueId) to display all the articles from one particular issue (to go to from archive)
+- puts featured article at top then rest in no particular order
+- copied category page structure but probably want to change things around still esp the side bar
+- still need to deal with if featured article is null probably
+
 #### 3/29 about page
 - added db queries for about page
 - loads authors sorted first by position, then by name , taking only authors marked as current

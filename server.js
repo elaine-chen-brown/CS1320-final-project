@@ -13,6 +13,7 @@ const joinHandler = require('./controllers/join.js');
 const authorHandler = require('./controllers/author.js');
 const categoryHandler = require('./controllers/category.js');
 const archiveHandler = require('./controllers/archive.js');
+const issueHandler = require('./controllers/issue.js');
 
 // set up express app
 const app = express();
@@ -44,6 +45,7 @@ app.get('/author/:authorId', authorHandler.findAuthor);
 // app.get('/category', categoryHandler.getCategory); // don't need this anymore I think?
 app.get('/category/:categoryId', categoryHandler.getCategory);
 app.get('/archive', archiveHandler.getArchive);
+app.get('/issue/:issueId', issueHandler.getIssue);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
