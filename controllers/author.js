@@ -72,9 +72,9 @@ function getAuthorArticleIds(req, res, displayfunc ) {
                     Article.findById(entry.articleid, (err, data) => {
                         if (err) {
                             if (err.kind === "not_found") {
-                                reject(`Not found Article with id ${entry.authorid}.`);
+                                reject(`Not found Article with id ${entry.articleid}.`);
                             } else {
-                                reject("Error retrieving Article with id " + entry.authorid);
+                                reject("Error retrieving Article with id " + entry.articleid);
                             }
                         }
                         else {

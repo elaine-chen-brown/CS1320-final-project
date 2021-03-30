@@ -30,6 +30,13 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 3/29 about page
+- added db queries for about page
+- loads authors sorted first by position, then by name , taking only authors marked as current
+- the current data is kinda out of sync - very old authors are marked as current etc
+- also made staff names on about page redirect to their author page
+- still need to handle unhandled promise warnings, ie going to /author/8 breaks
+
 #### 3/29 again
 - added db for category pages
 - fixed link for categories in navbar
