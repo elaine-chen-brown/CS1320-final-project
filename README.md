@@ -30,6 +30,11 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 3/30 home page articles
+- has featured article and recent articles ordered by date
+- for now the featured article is the featured article in the most recent issue - maybe can change this to something that can be specifically set by the noser later
+- also for now am just loading 30 recent articles - should change to make infinite scroll
+
 #### 3/30 most viewed articles
 - setup db query to get articles with most views
 - for now loading 5 most viewed but only after 2014 to prioritize newer ones (kinda arbitrary cutoff)

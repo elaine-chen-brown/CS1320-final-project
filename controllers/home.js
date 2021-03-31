@@ -22,53 +22,92 @@ function getHome(request, response){
             })
         })
     }
+    var findTopFeatured = function getTopFeatured() {
+        return new Promise((resolve, reject) => {
+            Home.findRecentFeatured((err, data) => {
+                if (err) {
+                    if (err.kind === "not_found") {
+                        reject(`Not found recent featured`);
+                    } else {
+                        reject("Error retrieving recent featured");
+                    }
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+    var findOtherArticles = function getOtherArticles(featuredEntry) {
+        return new Promise((resolve, reject) => {
+            Home.findRecentArticles(featuredEntry, (err, data) => {
+                if (err) {
+                    if (err.kind === "not_found") {
+                        reject(`Not found recent articles`);
+                    } else {
+                        reject("Error retrieving recent articles");
+                    }
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
     findPopularArticles().then(popularArticles => {
-        var buildArticle = function buildArticle(articleEntry){
-            article_to_add = {
-                articleImage: "/images/list-test.png",
-                articleTitle: articleEntry.headline,
-                articleLink: `/article/${articleEntry.articleid}`,
-                articleCategory: articleEntry.section
-            }
-            return article_to_add;
-        }
-        let mostViewedArticles = popularArticles.map(buildArticle);
-        // TO DO: replace with values gotten from database queries
-        let featuredPic = "images/featured.png";
-        let featuredTitle = "Lorem ipsum sit consectetur adipiscing elit sed do";
-        let featuredCategory = "FEATURED CATEGORY";
-        let featuredBlurb = "This is the featured blurb and what the featured article is about. It's so cool please read it."
-        let featuredLink = "/article";
-        
-        response.render('home', {
-            title: 'Home',
-            featuredPic: featuredPic,
-            featuredTitle: featuredTitle,
-            featuredCategory: featuredCategory,
-            featuredBlurb: featuredBlurb,
-            featuredLink: featuredLink,
-            listArticles: listArticles,
-            mostViewedArticles: mostViewedArticles
-        });
+        findTopFeatured().then(featuredArticle => {
+            findOtherArticles(featuredArticle.articleid).then(otherArticles => {
+                var buildArticle = function buildArticle(articleEntry){
+                    article_to_add = {
+                        articleImage: "/images/list-test.png",
+                        articleTitle: articleEntry.headline,
+                        articleLink: `/article/${articleEntry.articleid}`,
+                        articleCategory: articleEntry.section,
+                        articleBlurb: articleEntry.teaser
+                    }
+                    return article_to_add;
+                }
+                let mostViewedArticles = popularArticles.map(buildArticle);
+                let listArticles = otherArticles.map(buildArticle);
+                // TO DO: replace with values gotten from database queries
+                let featuredPic = "/images/featured.png";
+                let featuredTitle = featuredArticle.headline;
+                let featuredCategory = featuredArticle.section;
+                let featuredBlurb = featuredArticle.teaser;
+                let featuredLink = `/article/${featuredArticle.articleid}`;
+                
+                response.render('home', {
+                    title: 'Home',
+                    featuredPic: featuredPic,
+                    featuredTitle: featuredTitle,
+                    featuredCategory: featuredCategory,
+                    featuredBlurb: featuredBlurb,
+                    featuredLink: featuredLink,
+                    listArticles: listArticles,
+                    mostViewedArticles: mostViewedArticles
+                });
+            })
+            
+        })
     })
   
 }
 
 // TO DO: replace with values gotten from database queries
-let listArticles = [
-  {
-    articleImage: "/images/list-test.png",
-    articleTitle: "This is the title of the first article shown!",
-    articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "/article",
-  },
-  {
-    articleImage: "/images/list-test.png",
-    articleTitle: "This is the title of the second article shown!",
-    articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "/article",
-  },
-]
+// let listArticles = [
+//   {
+//     articleImage: "/images/list-test.png",
+//     articleTitle: "This is the title of the first article shown!",
+//     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
+//     articleLink: "/article",
+//   },
+//   {
+//     articleImage: "/images/list-test.png",
+//     articleTitle: "This is the title of the second article shown!",
+//     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
+//     articleLink: "/article",
+//   },
+// ]
 
 // TO DO: replace with values gotten from database queries
 // Note: you might want to limit the number of characters shown for mostViewedArticle blurbs, as Angela's mockups showed them being shorter than listArticles
