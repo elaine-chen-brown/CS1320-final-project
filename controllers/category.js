@@ -104,15 +104,42 @@ function getCategory(req, res){
                         let featuredCategory = data.section;
                         let featuredBlurb = articleData[0].articleBlurb;
                         let featuredLink = articleData[0].articleLink;
+                        // styling for each category
+                        let business = "text-decoration:underline"; // TO DO: change back to "", this is for visualization purposes
+                        let campusLife = "";
+                        let cinemaCorner = "";
+                        let offCampus = "";
+                        let newsInPics = "";
+                        let opinion = "";
+                        let politics = "";
+                        let scienceAndTech = "";
+                        let sports = "";
+                        // TO DO: get categoryName to match against
+                        // really ugly way to do it, but could do something like this
+                        // if (category.name == "Business") {
+                        //     business = "text-decoration:underline";
+                        // } else if (category.name == "Campus Life") {
+                        //     campusLife = "text-decoration:underline";
+                        //  for all categories
                         res.render('category', {
-                            title: 'Category', 
+                            title: 'Category', // TO DO: replace with category name
                             featuredPic: featuredPic,
                             featuredTitle: featuredTitle,
                             featuredCategory: featuredCategory,
                             featuredBlurb: featuredBlurb,
                             featuredLink: featuredLink,
                             listArticles: articleData.slice(1,),
-                            mostViewedArticles: mostViewedArticles
+                            mostViewedArticles: mostViewedArticles,
+                            // styling for each category
+                            businessStyle: business,
+                            campusLifeStyle: campusLife,
+                            cinemaCornerStyle: cinemaCorner,
+                            offCampusStyle: offCampus,
+                            newsInPicsStyle: newsInPics,
+                            opinionStyle: opinion,
+                            politicsStyle: politics,
+                            sTStyle: scienceAndTech,
+                            sportsStyle: sports
                         })
                     })
                 })
