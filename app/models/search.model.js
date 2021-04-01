@@ -8,8 +8,8 @@ const Search = function(search) {
 
 // search by keyword
 Search.findByKeyword = (keyword, result) => {
-  keyword = '%' + keyword;
-  sql.query("SELECT articleid, headline, teaser, photoUploadId FROM articles WHERE headline LIKE ? OR body LIKE ?", [keyword, keyword], (err, res) => {
+  keyword = '%' + keyword + '%';
+  sql.query("SELECT articleid, headline, teaser FROM articles WHERE headline LIKE ? OR body LIKE ?", [keyword, keyword], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -25,7 +25,8 @@ Search.findByKeyword = (keyword, result) => {
 
 // search by author name
 Search.findByAuthor = (authorName, result) => {
-  sql.query("SELECT authorid from authors WHERE author LIKE ?", '%' + authorName, (err, res) => {
+  authorName = '%' + authorName + '%';
+  sql.query("SELECT authorid, author from authors WHERE author LIKE ?", authorName, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

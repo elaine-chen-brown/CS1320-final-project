@@ -7,42 +7,97 @@ const { response } = require("express");
 
 function getSearch(req, res){
   var searchTerm = req.query.search;
-  console.log(searchTerm);
 
-  // TODO: add a check for whether we are searching by keyword or author name
-  // + minimum string input length?
+  var getAuthorResults = function getAuthorResults() {
+    return new Promise((resolve, reject) => {
+      Search.findByAuthor(searchTerm, (err, data) => {
+        if (err) {
+          if (err.kind == 'not_found') {
+            reject("Not found");
+          }
+          else {
+            reject("Error retrieving search results with term " + searchTerm);
+          }
+        }
+        else {
+          resolve(data);
+        }
+      })
+    })
+  }
+  var getSearchResults = function getSearchResults() {
+    return new Promise((resolve, reject) => {
+      Search.findByKeyword(searchTerm, (err, data) => {
+        if (err) {
+          if (err.kind == 'not_found') {
+            reject("Not found");
+          }
+          else {
+            reject("Error retrieving search results with term " + searchTerm);
+          }
+        }
+        else {
+          resolve(data);
+        }
+      });
+    });
+  }
 
-  // Search by keyword
-  Search.findByKeyword(searchTerm, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        //display text that says that no results found for ___ 
-        //underneath, recommended articles (popular ones?)
-      }
-      else {
-        res.status(500).send({
-          message: "Error retrieving search results for " + searchTerm
-        });
-      }
+  var buildResult = function buildResult(result) {
+    result_to_add = {
+      articleImage: "/images/list-test.png",
+      articleTitle: result.headline,
+      articleLink: `/article/${result.articleid}`,
+      articleBlurb: result.teaser
     }
-    else {
-      console.log("searching");
-      console.log(data);
+    return result_to_add;
+  }
 
-      //TODO: render response based on results
+  var buildAuthor = function buildAuthor(result) {
+    author_to_add = {
+      authorName: result.author,
+      authorLink: `/author/${result.authorid}`
     }
-  });
+    return author_to_add;
+  }
 
-  // Search by author: will need to do an additional 
-
-  /* res.render('search', {
-    title: 'Search', //seems to be missing from hbs file 
-    searchResults: searchResults,
-    popularSearches: popularSearches
-  }); */
+  getSearchResults().then(results => {
+    let searchResults = results.map(buildResult);
+    getAuthorResults().then(author_results => {
+    /*var buildResult = function buildResult(result) {
+      result_to_add = {
+        articleImage: "/images/list-test.png",
+        articleTitle: result.headline,
+        articleLink: `/article/${result.articleid}`,
+        articleBlurb: result.teaser
+      }
+      return result_to_add;
+    }*/
+      let authorResults = author_results.map(buildAuthor);
+      res.render('search', {
+        title: 'Search', 
+        searchTerm: 'Showing search results for "' + searchTerm +'"',
+        searchResults: searchResults,
+        authorResults: authorResults,
+      });
+    }).catch(error => {
+      res.render('search', {
+        title: 'Search',
+        searchTerm: 'Showing search results for "' + searchTerm +'"',
+        searchResults: searchResults,
+        authorResults: ""
+      });
+    });
+  })
+  .catch(error => {
+    res.render('search', {
+      title: 'Search', 
+      searchTerm: 'No search results found for "' + searchTerm + '"',
+      searchResults: [],
+      authorResults: ""
+    });
+  })
 }
-
-// TO DO: write an event handler for the search form (in search.hbs)
 
 // TO DO: replace with values gotten from database queries
 let searchResults = [

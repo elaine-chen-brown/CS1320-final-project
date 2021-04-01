@@ -51,6 +51,13 @@
     </div>
     <!--Listed articles-->
         <div class="list-articles-wrapper">
+            <p class="search-term-description brown" style="font-size:30px;margin-left:30px;">{{ searchTerm }}</p>
+            
+            <!-- need to add something here for author search results -->
+            {{#authorResults}}
+            <p class="list-title bold hover"><a href={{ authorLink }} style="text-decoration:none;color:black">{{ authorName }}</a></p>
+            {{/authorResults}}
+
             {{#searchResults}}
             <!--One article-->
             <a href={{ articleLink }} style="text-decoration:none;color:black">
