@@ -674,8 +674,9 @@
 }
 
 .issue-lists-wrapper {
+    width: 70%;
     display: grid;
-    grid-template-columns: 60% 50%;
+    grid-template-columns: 60% 40%;
 }
 
 .archive-item {
