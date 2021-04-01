@@ -82,3 +82,9 @@
 - make sure mysql installed
 - create new database (named noser_edit or change value in the config)
 - use editnoser.sql to load the database (run from where where mysql is installed: mysql -u root -p noser_edited < "path\to\sqlfile")
+
+#### 04/01
+- fixed archive display
+- added author search results display
+- added ARIA landmarks to all pages
+- wrote outline of how category underlining could be done

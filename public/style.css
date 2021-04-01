@@ -52,6 +52,14 @@
 
 /* HEADER */
 .header {
+    /* styling for if we want fixed top banner */
+    /*
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    */
+    background-color: white;
     font-family: pt-serif;
 }
 
@@ -298,6 +306,21 @@
 
 .sidebar-text-wrapper {
     line-height: 1.5;
+}
+
+/* Three Articles Bar */
+.three-articles-wrapper {
+    margin: 4%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.three-article {
+    margin: 2%;
+}
+
+.three-article-image {
+    max-width: 100%;
 }
 
 /* SEARCH PAGE */
