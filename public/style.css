@@ -326,6 +326,22 @@
     cursor: pointer;
 }
 
+/* Author Results */
+.result-wrapper{
+    margin: 4%;
+    display: flex;
+}
+
+.result-image {
+    max-height: 100px;
+    border-radius: 50%;
+}
+
+.result-text-wrapper {
+    padding-top: 2%;
+    margin-left: 4%;
+}
+
 
 /* Side Bar */
 .popular-searches {

@@ -56,7 +56,10 @@ function getSearch(req, res){
   var buildAuthor = function buildAuthor(result) {
     author_to_add = {
       authorName: result.author,
-      authorLink: `/author/${result.authorid}`
+      authorLink: `/author/${result.authorid}`,
+      // TO DO: replace static values with values from query result
+      authorPic: "images/red.png",
+      authorRole: "ROLE GOES HERE"
     }
     return author_to_add;
   }

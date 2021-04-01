@@ -53,9 +53,18 @@
         <div class="list-articles-wrapper">
             <p class="search-term-description brown" style="font-size:30px;margin-left:30px;">{{ searchTerm }}</p>
             
-            <!-- need to add something here for author search results -->
             {{#authorResults}}
-            <p class="list-title bold hover"><a href={{ authorLink }} style="text-decoration:none;color:black">{{ authorName }}</a></p>
+            <!--One Author-->
+            <a href={{authorLink}} style="text-decoration:none;color:black">
+            <div class="result-wrapper">
+                <div class="result-image-wrapper"><img src={{ authorPic }} class="result-image"></div>
+                <div class="result-text-wrapper">
+                    <div class="list-title bold hover"><a href={{ authorLink }} style="text-decoration:none;color:black">{{ authorName }}</a></div>
+                    <div class="staff-role">{{ authorRole }}</div>
+                </div>
+            </div>
+            </a>
+            <!---->
             {{/authorResults}}
 
             {{#searchResults}}

@@ -80,5 +80,5 @@
 #### Connecting to database locally
 - database config is in app/config/db.config.js
 - make sure mysql installed
-- create new database (named noser_edited or change value in the config)
+- create new database (named noser_edit or change value in the config)
 - use editnoser.sql to load the database (run from where where mysql is installed: mysql -u root -p noser_edited < "path\to\sqlfile")
