@@ -1,6 +1,6 @@
 <!--Header-->
 <div class="header">
-    <div class="banner">
+    <div class="banner" role="banner">
         <div class="title-wrapper">
             <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
             <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
@@ -11,7 +11,7 @@
                 <a href="/archive" class="extras-text">Archive</a>
                 <a href="/join" class="extras-text">Join Us</a>
             </div>
-            <div class="search">
+            <div class="search" role="search">
                 <form action="/search">
                     <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey">
                 </form>
@@ -25,7 +25,7 @@
         </div>
     </div>
     <hr>
-    <div class="navbar">
+    <div class="navbar" role="navigation">
         <ul class="navlist">
             <li class="navitem"><a href="/category/15" class="hover">BUSINESS</a></li>
             <li class="navitem"><a href="/category/14" class="hover">CAMPUS LIFE</a></li>
@@ -42,14 +42,14 @@
 </div>
 
 <!--Page Content-->
-<div class="page-content-wrapper">
+<div class="page-content-wrapper" role="main">
     <!--Main Content Section-->
     <div class="main-content-wrapper">
         <!--Featured article-->
         <a href={{ featuredLink }} style="text-decoration:none">
         <div class="featured-article">
             <div class="featured-image-wrapper">
-                <img src={{ featuredPic }} alt="Featured article picture" class="featured-image">
+                <img src={{ featuredPic }} alt="featured article picture" class="featured-image">
             </div>
 
             <div class="featured-text-wrapper">
@@ -78,7 +78,7 @@
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="Article picture" class="list-image">
+                        <img src={{ articleImage }} alt="article picture" class="list-image">
                     </div>
                     <div class="list-text-wrapper">
                         <div class="list-title bold hover"> {{ articleTitle }} </div>
@@ -104,7 +104,7 @@
         <!--Sidebar article-->
         <a href={{ articleLink }} style="text-decoration:none;color:black">
         <div class="sidebar-article">
-            <img src={{ articleImage }} alt="Most viewed article picture" class="sidebar-image">
+            <img src={{ articleImage }} alt="most viewed article picture" class="sidebar-image">
             <div class="sidebar-text-wrapper">
                 <div class="sidebar-category category">{{ articleCategory }}</div>
                 <div class="sidebar-blurb bold">{{ articleTitle }}</div>

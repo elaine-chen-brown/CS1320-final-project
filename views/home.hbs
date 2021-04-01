@@ -1,33 +1,33 @@
 <!--Header-->
 <div class="header">
-    <div class="banner">
-        <div class="title-wrapper">
+    <div class="banner" role="banner">
+        <div class="title-wrapper" tabindex="1">
             <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
             <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
         </div>
         <div class="extras-wrapper">
             <div class="extras-options">
-                <a href="/about" class="extras-text">About</a>
-                <a href="/archive" class="extras-text">Archive</a>
-                <a href="/join" class="extras-text">Join Us</a>
+                <a href="/about" class="extras-text" tabindex="2">About</a>
+                <a href="/archive" class="extras-text" tabindex="3">Archive</a>
+                <a href="/join" class="extras-text" tabindex="4">Join Us</a>
             </div>
-            <div class="search">
+            <div class="search" role="search">
                 <form action="/search">
-                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey">
+                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey" tabindex="5">
                 </form>
             </div>
             <div class="email">
                 <form class="email-form">
-                    <input type="text" placeholder="Email address" name="email" class="email-input search-light-grey">
-                    <button type="submit" class="subscribe-button">Subscribe</button>
+                    <input type="text" placeholder="Email address" name="email" class="email-input search-light-grey" tabindex="6">
+                    <button type="submit" class="subscribe-button" tabindex="7">Subscribe</button>
                 </form>
             </div>
         </div>
     </div>
     <hr>
-    <div class="navbar">
+    <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover" tabindex="7">BUSINESS</a></li>
             <li class="navitem"><a href="/category/14" class="hover">CAMPUS LIFE</a></li>
             <li class="navitem"><a href="/category/50" class="hover">CINEMA CORNER</a></li>
             <li class="navitem"><a href="/category" class="hover">OFF CAMPUS</a></li>
@@ -42,7 +42,7 @@
 </div>
 
 <!--Page Content-->
-<div class="page-content-wrapper">
+<div class="page-content-wrapper" role="main">
     <!--Main Content Section-->
     <div class="main-content-wrapper">
         <!--Featured article-->
@@ -78,7 +78,7 @@
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="Article picture" class="list-image">
+                        <img src={{ articleImage }} alt="article picture" class="list-image">
                     </div>
                     <div class="list-text-wrapper">
                         <div class="list-title bold hover"> {{ articleTitle }} </div>
@@ -104,7 +104,7 @@
         <!--Sidebar article-->
         <a href={{ articleLink }} style="text-decoration:none;color:black">
         <div class="sidebar-article">
-            <img src={{ articleImage }} alt="Most viewed article picture" class="sidebar-image">
+            <img src={{ articleImage }} alt="most viewed article picture" class="sidebar-image">
             <div class="sidebar-text-wrapper">
                 <div class="sidebar-category category">{{ articleCategory }}</div>
                 <div class="sidebar-blurb bold">{{ articleTitle }}</div>
