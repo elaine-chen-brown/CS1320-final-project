@@ -54,12 +54,15 @@ function getSearch(req, res){
   }
 
   var buildAuthor = function buildAuthor(result) {
+    var title = result.title;
+    if (result.isRetired) {
+      title = title + " (Retired)";
+    }
     author_to_add = {
       authorName: result.author,
       authorLink: `/author/${result.authorid}`,
-      // TO DO: replace static values with values from query result
-      authorPic: "images/red.png",
-      authorRole: "ROLE GOES HERE"
+      authorPic: "images/red.png", 
+      authorRole: title
     }
     return author_to_add;
   }
@@ -67,15 +70,6 @@ function getSearch(req, res){
   getSearchResults().then(results => {
     let searchResults = results.map(buildResult);
     getAuthorResults().then(author_results => {
-    /*var buildResult = function buildResult(result) {
-      result_to_add = {
-        articleImage: "/images/list-test.png",
-        articleTitle: result.headline,
-        articleLink: `/article/${result.articleid}`,
-        articleBlurb: result.teaser
-      }
-      return result_to_add;
-    }*/
       let authorResults = author_results.map(buildAuthor);
       res.render('search', {
         title: 'Search', 
