@@ -13,12 +13,12 @@
 - Basic routing implemented
 
 ## To do for Backend People
-- server.js
+- server.js -- DONE
     - Handle routing with parameters (to /article/:articleId, /author/:authorId, and /category/:categoryName endpoints)
-- Every pagename.js (in controllers) and pagename.hbs (in views) pair
+- Every pagename.js (in controllers) and pagename.hbs (in views) pair -- DONE
     - Handle form submit events for search and subscribe input fields in header (can do it once and copy and paste)
     - Populate dictionary to be rendered based on results of database queries (unique for every page. they're currently static values)
-- search.js and search.hbs
+- search.js and search.hbs -- DONE
     - Handle search bar input events
 - article.js and article.hbs
     - Handle social media button clicked events
@@ -27,6 +27,10 @@
 - style.css (in public)
     - Replace background-image in about-image and join-image with actual images that The Noser wants to use
     - Or replace with a better way to display background images
+
+## Database TODOs:
+- Author table needs to be reworked to include photo and social media handle(s)
+- Images database: how will we store multiple images per article? Will also need to store 'main' image for purposes of home/search page display. 
 
 ### Note: feel free to restructure stuff if you want!
 
