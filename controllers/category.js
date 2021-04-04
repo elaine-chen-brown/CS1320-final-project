@@ -106,23 +106,11 @@ function getCategory(req, res){
                         let featuredLink = articleData[0].articleLink;
                         // styling for each category
                         let business = "text-decoration:underline"; // TO DO: change back to "", this is for visualization purposes
-                        let campusLife = "";
-                        let cinemaCorner = "";
-                        let offCampus = "";
-                        let newsInPics = "";
-                        let opinion = "";
-                        let politics = "";
-                        let scienceAndTech = "";
-                        let sports = "";
-                        // TO DO: get categoryName to match against
-                        // really ugly way to do it, but could do something like this
-                        // if (category.name == "Business") {
-                        //     business = "text-decoration:underline";
-                        // } else if (category.name == "Campus Life") {
-                        //     campusLife = "text-decoration:underline";
-                        //  for all categories
+                        let sectionNames = ["Business", "Campus Life", "Cinema Corner", "Off Campus", "News In Pictures", "Opinion", "Politics", "Science & Technology", "Sports"];
+                        // set underline for the entry with the correct section name
+                        let sectionStyle = sectionNames.map(name => (name == data.section) ? "text-decoration:underline" : "");
                         res.render('category', {
-                            title: 'Category', // TO DO: replace with category name
+                            title: data.section, 
                             featuredPic: featuredPic,
                             featuredTitle: featuredTitle,
                             featuredCategory: featuredCategory,
@@ -130,16 +118,15 @@ function getCategory(req, res){
                             featuredLink: featuredLink,
                             listArticles: articleData.slice(1,),
                             mostViewedArticles: mostViewedArticles,
-                            // styling for each category
-                            businessStyle: business,
-                            campusLifeStyle: campusLife,
-                            cinemaCornerStyle: cinemaCorner,
-                            offCampusStyle: offCampus,
-                            newsInPicsStyle: newsInPics,
-                            opinionStyle: opinion,
-                            politicsStyle: politics,
-                            sTStyle: scienceAndTech,
-                            sportsStyle: sports
+                            businessStyle: sectionStyle[0],
+                            campusLifeStyle: sectionStyle[1],
+                            cinemaCornerStyle: sectionStyle[2],
+                            offCampusStyle: sectionStyle[3],
+                            newsInPicsStyle: sectionStyle[4],
+                            opinionStyle: sectionStyle[5],
+                            politicsStyle: sectionStyle[6],
+                            sTStyle: sectionStyle[7],
+                            sportsStyle: sectionStyle[8]
                         })
                     })
                 })

@@ -34,6 +34,9 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/4 
+- assign underline styling to the correct category name for the navbar
+
 #### 3/30 home page articles
 - has featured article and recent articles ordered by date
 - for now the featured article is the featured article in the most recent issue - maybe can change this to something that can be specifically set by the noser later
