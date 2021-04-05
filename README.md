@@ -36,6 +36,9 @@
 
 #### 4/4 
 - assign underline styling to the correct category name for the navbar
+- added folder with the images temporarily so we can see what it looks like
+- some look kinda funny bc the caption is included with the image
+- some of them have independent captions - maybe need some kind of setup for using those
 
 #### 3/30 home page articles
 - has featured article and recent articles ordered by date

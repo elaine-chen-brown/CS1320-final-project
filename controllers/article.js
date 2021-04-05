@@ -48,6 +48,8 @@ function getArticle(request, response){
             let articleText = data.body;
             let categoryLink = `/category/${data.sectionid}`;
             let articleCategoryName = data.section;
+            let articleImage = `/images/images/${data.photoFilename}`;
+            console.log(articleImage);
             response.render('article', {
                 title: 'Article',
                 articleTitle: articleTitle,
@@ -58,7 +60,8 @@ function getArticle(request, response){
                 articleText: articleText,
                 suggestedArticles: suggestedArticles,
                 categoryLink: categoryLink,
-                articleCategoryName: articleCategoryName
+                articleCategoryName: articleCategoryName,
+                articleImage: articleImage
             });
         })     
     }

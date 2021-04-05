@@ -59,7 +59,8 @@ function getHome(request, response){
             findOtherArticles(featuredArticle.articleid).then(otherArticles => {
                 var buildArticle = function buildArticle(articleEntry){
                     article_to_add = {
-                        articleImage: "/images/list-test.png",
+                        // articleImage: "/images/list-test.png",
+                        articleImage: `/images/images/${articleEntry.photoFilename}`,
                         articleTitle: articleEntry.headline,
                         articleLink: `/article/${articleEntry.articleid}`,
                         articleCategory: articleEntry.section,
@@ -70,7 +71,8 @@ function getHome(request, response){
                 let mostViewedArticles = popularArticles.map(buildArticle);
                 let listArticles = otherArticles.map(buildArticle);
                 // TO DO: replace with values gotten from database queries
-                let featuredPic = "/images/featured.png";
+                // let featuredPic = "/images/featured.png";
+                let featuredPic = `/images/images/${featuredArticle.photoFilename}`;
                 let featuredTitle = featuredArticle.headline;
                 let featuredCategory = featuredArticle.section;
                 let featuredBlurb = featuredArticle.teaser;

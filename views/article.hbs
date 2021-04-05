@@ -61,7 +61,7 @@
             </div>
             <!--Article image-->
             <div class="featured-image-wrapper">
-                <img src="/images/article-pic.png" alt="featured article picture" class="featured-image">
+                <img src={{ articleImage }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
             </div>
             <div class="article-caption"> {{ photoCaption }} </div>
             <!--Article text-->

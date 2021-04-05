@@ -54,7 +54,7 @@ function getCategory(req, res){
                         else {
                             // TODO add images
                             article_to_add = {
-                                articleImage: "/images/list-test.png",
+                                articleImage: `/images/images/${data.photoFilename}`,
                                 articleTitle: data.headline,
                                 articleBlurb: data.teaser,
                                 articleLink: `/article/${entry.articleid}`,
@@ -90,7 +90,7 @@ function getCategory(req, res){
                     findPopularArticles().then(popularArticles => {
                         var buildArticle = function buildArticle(articleEntry){
                             article_to_add = {
-                                articleImage: "/images/list-test.png",
+                                articleImage: `/images/images/${articleEntry.photoFilename}`,
                                 articleTitle: articleEntry.headline,
                                 articleLink: `/article/${articleEntry.articleid}`,
                                 articleCategory: articleEntry.section
@@ -99,7 +99,8 @@ function getCategory(req, res){
                         }
                         let mostViewedArticles = popularArticles.map(buildArticle);
                         // for now fill in featured as first article
-                        let featuredPic = "/images/sports.png";
+                        // let featuredPic = "/images/sports.png";
+                        let featuredPic = articleData[0].articleImage;
                         let featuredTitle = articleData[0].articleTitle;
                         let featuredCategory = data.section;
                         let featuredBlurb = articleData[0].articleBlurb;

@@ -80,7 +80,7 @@ function getAuthorArticleIds(req, res, displayfunc ) {
                         else {
                             // TODO add images
                             article_to_add = {
-                                articleImage: "/images/list-test.png",
+                                articleImage: `/images/images/${data.photoFilename}`,
                                 articleTitle: data.headline,
                                 articleBlurb: data.teaser,
                                 articleLink: `/article/${entry.articleid}`,

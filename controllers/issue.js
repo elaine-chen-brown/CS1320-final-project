@@ -59,7 +59,7 @@ function getIssue(req, res){
                 findNonLeadArticles(data).then(otherArticles => {
                     var buildArticle = function buildArticle(articleEntry){
                         article_to_add = {
-                            articleImage: "/images/list-test.png",
+                            articleImage: `/images/images/${articleEntry.photoFilename}`,
                             articleTitle: articleEntry.headline,
                             articleBlurb: articleEntry.teaser,
                             articleLink: `/article/${articleEntry.articleid}`,
@@ -76,7 +76,7 @@ function getIssue(req, res){
                     let date = processDate(leadArticle.publishDate);
                     res.render('issue', {
                         title: 'Issue',
-                        featuredPic: "/images/sports.png",
+                        featuredPic: `/images/images/${leadArticle.photoFilename}`,
                         featuredTitle: leadArticle.headline,
                         featuredCategory: leadArticle.section,
                         featuredBlurb: leadArticle.teaser,

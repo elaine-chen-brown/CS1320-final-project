@@ -62,7 +62,7 @@
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="Article picture" class="list-image">
+                        <img src={{ articleImage }} alt="Article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
                     </div>
                     <div class="list-text-wrapper">
                         <div class="list-title bold hover">{{ articleTitle }}</div>

@@ -45,7 +45,7 @@ function getSearch(req, res){
 
   var buildResult = function buildResult(result) {
     result_to_add = {
-      articleImage: "/images/list-test.png",
+      articleImage: `/images/images/${result.photoFilename}`,
       articleTitle: result.headline,
       articleLink: `/article/${result.articleid}`,
       articleBlurb: result.teaser
