@@ -15,6 +15,8 @@ const categoryHandler = require('./controllers/category.js');
 const archiveHandler = require('./controllers/archive.js');
 const issueHandler = require('./controllers/issue.js');
 
+const newHandler = require('./controllers/write_new.js');
+
 // set up express app
 const app = express();
 const port = 8080;
@@ -48,6 +50,9 @@ app.get('/category/:categoryId', categoryHandler.getCategory);
 app.get('/archive', archiveHandler.getRecentYear);
 app.get('/archive/:year', archiveHandler.getArchive);
 app.get('/issue/:issueId', issueHandler.getIssue);
+
+app.get('/write_new', newHandler.display);
+app.post('/write_new', newHandler.handleNew);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
