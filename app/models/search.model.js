@@ -9,7 +9,7 @@ const Search = function(search) {
 // search by keyword
 Search.findByKeyword = (keyword, result) => {
   keyword = '%' + keyword + '%';
-  sql.query("SELECT articleid, headline, teaser FROM articles WHERE headline LIKE ? OR body LIKE ?", [keyword, keyword], (err, res) => {
+  sql.query("SELECT articleid, headline, teaser, photoFilename FROM articles WHERE headline LIKE ? OR body LIKE ?", [keyword, keyword], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
