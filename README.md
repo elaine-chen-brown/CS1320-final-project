@@ -34,6 +34,11 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/5 
+- updated editnoser.sql to fix some symbols I missed last time
+- also added columns to authors table for authorImage and authorBio
+- alter author page setup to use database image/bio values if present
+
 #### 4/4 
 - assign underline styling to the correct category name for the navbar
 - added folder with the images temporarily so we can see what it looks like

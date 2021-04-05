@@ -20,21 +20,19 @@ function findAuthor(req, res) {
       }
       else {
         console.log("found author");
-        console.log(data);
         //res.send(data);
         // fill in data for loading author 
         // TODO fix image and socials
         let first_name = (data.author).split(" ")[0];
         let title = data.title.toLowerCase();
         let authorName = data.author; 
-        let authorPicture = "/images/red.png";
-        let authorBlurb = `${first_name} is a ${title} at The Noser. This is a blurb about ${first_name} as an author.`;
+        let authorPicture = (data.authorImage) ? data.authorImage : "/images/red.png";
+        let authorBlurb = (data.authorBio) ? data.authorBio : `${first_name} is an ${title} at The Noser.`;
         let instaHandle = "@taylorswift";
         let instaLink = "#";
         let twitterHandle = "@taylorswift";
         let twitterLink = "#";
         let authorArticles = getAuthorArticleIds(req,res, (articles) => {
-            console.log(articles);
             res.render('author', {
               title: 'Author',
               authorName: authorName,
