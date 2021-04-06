@@ -38,6 +38,9 @@
 - updated editnoser.sql to fix some symbols I missed last time
 - also added columns to authors table for authorImage and authorBio
 - alter author page setup to use database image/bio values if present
+- home page link now works from issue page
+- added suggested articles to article page (takes 6 most recent in same category)
+- added author socials to db - set to only render on page if they exist (so atm none are there)
 
 #### 4/4 
 - assign underline styling to the correct category name for the navbar

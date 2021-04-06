@@ -28,10 +28,12 @@ function findAuthor(req, res) {
         let authorName = data.author; 
         let authorPicture = (data.authorImage) ? data.authorImage : "/images/red.png";
         let authorBlurb = (data.authorBio) ? data.authorBio : `${first_name} is an ${title} at The Noser.`;
-        let instaHandle = "@taylorswift";
-        let instaLink = "#";
-        let twitterHandle = "@taylorswift";
-        let twitterLink = "#";
+        let instaLinkname = (data.authorInsta) ? data.authorInsta.replace("@", "") : "";
+        let twitterLinkname = (data.authorTwitter) ? data.authorTwitter.replace("@", "") : "";
+        let instaHandle = (data.authorInsta) ? data.authorInsta : ""; 
+        let instaLink = (data.authorInsta) ? `instagram.com/${instaLinkname}` : "#";
+        let twitterHandle = (data.authorTwitter) ? data.authorTwitter : "";
+        let twitterLink = (data.authorTwitter) ? `twitter.com/${twitterLinkname}` : "#";
         let authorArticles = getAuthorArticleIds(req,res, (articles) => {
             res.render('author', {
               title: 'Author',

@@ -65,6 +65,25 @@ Article.getAuthorByArticleId = (articleId, result) => {
     });
 };
 
+Article.findRelated = (articleId, section, result) => {
+    sql.query( "SELECT * FROM articles WHERE section = ? AND articleid <> ? ORDER BY publishDate DESC LIMIT 6 ", [section, articleId], (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+
+        if (res.length) {
+            //console.log("found article: ", res[0]);
+            console.log(res);
+            result(null, res);
+            return;
+        }
+
+        // not found Article with the id
+        result({ kind: "not_found" }, null);
+    });
+}
 
 
 module.exports = Article;

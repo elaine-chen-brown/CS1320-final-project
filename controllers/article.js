@@ -38,6 +38,22 @@ function getArticle(request, response){
                 })
             })
         }
+        var findRelated = function getRelated(articleid, section) {
+            return new Promise((resolve, reject) => {
+                Article.findRelated(articleid, section, (err, data) => {
+                    if (err) {
+                        if (err.kind === "not_found") {
+                            reject(`Not found related for article id ${articleid}.`);
+                        } else {
+                            reject("Error retrieving related for Article with id " + articleid);
+                        }
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            })
+        }
         findAuthor(request.params.articleId).then(items => {
             let articleTitle = data.headline;
             let articleAuthor = items[0].author;
@@ -49,20 +65,37 @@ function getArticle(request, response){
             let categoryLink = `/category/${data.sectionid}`;
             let articleCategoryName = data.section;
             let articleImage = `/images/images/${data.photoFilename}`;
-            console.log(articleImage);
-            response.render('article', {
-                title: 'Article',
-                articleTitle: articleTitle,
-                articleAuthor: articleAuthor,
-                authorLink: authorLink,
-                articleDate: articleDate, 
-                photoCaption: photoCaption,
-                articleText: articleText,
-                suggestedArticles: suggestedArticles,
-                categoryLink: categoryLink,
-                articleCategoryName: articleCategoryName,
-                articleImage: articleImage
-            });
+            findRelated(request.params.articleId, articleCategoryName).then(related => {
+                function processDate(unix_timestamp){
+                    // put into milliseconds
+                    var date = new Date(unix_timestamp * 1000);
+                    return moment(date).format('Do MMMM YYYY');
+                }
+                var buildArticle = function buildArticle(articleEntry){
+                    let date = processDate(articleEntry.publishDate);
+                    article_to_add = {
+                        articleImage: `/images/images/${articleEntry.photoFilename}`,
+                        articleTitle: articleEntry.headline,
+                        articleLink: `/article/${articleEntry.articleid}`,
+                        articleDate: date
+                    }
+                    return article_to_add;
+                }
+                let relatedArticles = related.map(buildArticle);
+                response.render('article', {
+                    title: 'Article',
+                    articleTitle: articleTitle,
+                    articleAuthor: articleAuthor,
+                    authorLink: authorLink,
+                    articleDate: articleDate, 
+                    photoCaption: photoCaption,
+                    articleText: articleText,
+                    suggestedArticles: relatedArticles,
+                    categoryLink: categoryLink,
+                    articleCategoryName: articleCategoryName,
+                    articleImage: articleImage
+                });
+            })
         })     
     }
 })

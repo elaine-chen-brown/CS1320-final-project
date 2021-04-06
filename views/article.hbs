@@ -83,7 +83,7 @@
         {{#suggestedArticles}}
         <!--Suggested article-->
             <div class="suggested-article">
-                <img src={{ articleImage }} alt="article picture" class="suggested-image">
+                <img src={{ articleImage }} alt="article picture" class="suggested-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
                 <div class="suggested-text">
                     <div class="suggested-title hover"><a href={{ articleLink }} class="link">{{ articleTitle }}</a></div>
                     <div class="suggested-date">{{ articleDate }}</div>
