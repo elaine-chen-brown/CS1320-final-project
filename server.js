@@ -55,7 +55,8 @@ app.get('/issue/:issueId', issueHandler.getIssue);
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
 app.get('/publish', publishHandler.display);
-app.post('/publish', publishHandler.publish);
+app.post('/publish_issue', publishHandler.publishIssue);
+app.post('publish_topical', publishHandler.publishTopical);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

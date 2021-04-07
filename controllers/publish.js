@@ -42,14 +42,18 @@ function display(req, res) {
 
 
 //push all articles to db, remove from drafts
-function publish(req, res) {
+function publishIssue(req, res) {
     var drafts = req.body.draft;
-    var publishIssue = function publishIssue(req, res) {
+    var publish = function publish(req, res) {
         return new Promise((resolve, reject) => {
-            //For each article, Draft.publish
+            //For each article, Draft.publish, assigning an issue id based on last issue id
         })
     }
-    var publishTopical = function publishTopical(req, res) {
+}
+
+function publishTopical(req, res) {
+    var drafts = req.body.draft;
+    var publish = function publish(req, res) {
         return new Promise((resolve, reject) => {
             //Draft.publish
         })
@@ -58,5 +62,6 @@ function publish(req, res) {
 
 module.exports = {
     display,
-    publish
+    publishIssue,
+    publishTopical
 }
