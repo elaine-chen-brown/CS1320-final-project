@@ -24,21 +24,26 @@
 
             {{!-- Potentially make drop down list for authors to ensure misspellings don't cause trouble --}}
             <label for="author">Author name: </label>
-            <input type="text" id="author" name="author"> <br/>
+            {{!-- <select name="author" id="author">
+                {{#authors}}
+                <option value={{authorid}}>{{authorname}}</option>
+                {{/authors}}
+            </select> <br/> --}}
+            <input type="text" id="author" name="author"><br/>
 
             <label for="category">Category: </label>
             <select name="category" id="category">
                 {{#categories}}
-                <option value={{category}}>{{category}}</option>
+                <option value={{categoryid}}>{{category}}</option>
                 {{/categories}}
-            </select>
+            </select> <br/>
 
             <label for="teaser">Article teaser: </label>
             <input type="text" id="teaser" name="teaser"> <br/>
 
             <label for="content">Article body: </label><br/>
             <textarea id="content" name="content"></textarea> <br/>
-            
+
             <input type="submit" value="Save">
         </form>
     </div>

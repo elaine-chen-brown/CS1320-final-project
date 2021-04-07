@@ -6,6 +6,21 @@ const Category = function(category) {
     this.featuredArticleId = category.featuredArticleId;
 }
 
+Category.getAll = (accountid, result) => {
+  sql.query("SELECT sectionid, section FROM sections WHERE accountid = ?", accountid, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+    result({ kind: "not_found" }, null);
+  })
+}
+
 // get entry from sections for given category id
 Category.findById = (categoryId, result) => {
     sql.query("SELECT * FROM sections WHERE sectionid = ?", categoryId, (err, res) => {

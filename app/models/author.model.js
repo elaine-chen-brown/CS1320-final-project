@@ -24,6 +24,21 @@ Author.create = (newAuthor, result) => {
   });
 };
 
+Author.getAllActive = (result) => {
+  sql.query("SELECT author, authorid FROM authors WHERE isRetired = 0 ORDER BY author ASC", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+    result({ kind: "not_found" }, null);
+  })
+}
+
 Author.findById = (authorId, result) => {
   sql.query("SELECT * FROM authors WHERE authorid = ?", authorId, (err, res) => {
     if (err) {

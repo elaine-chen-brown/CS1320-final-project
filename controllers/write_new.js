@@ -1,14 +1,64 @@
 const New = require("../app/models/write_new.model.js");
+const Category = require("../app/models/category.model.js");
+const Author = require("../app/models/author.model.js");
 
 const { response } = require("express");
 
 //TODO
 function display(req, res) {
-    //get categories
-    res.render('write_new', {
-        title: 'New article',
-        message: '',
-        categories: //
+    var getCategories = function getCategories(req, res) {
+        return new Promise((resolve, reject) => {
+            //should ideally get account id from req
+            Category.getAll(3, (err, data) => {
+                if (err) {
+                    reject("unable to get categories");
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+
+    var getAuthors = function getAuthors(req, res) {
+        return new Promise((resolve, reject) => {
+            Author.getAllActive((err, data) => {
+                if (err) {
+                    reject("unable to get authors");
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+
+    var buildCategoryList = function buildCategoryList(result) {
+        result_to_add = {
+            category: result.section,
+            categoryid: result.sectionid
+        }
+        return result_to_add;
+    }
+
+    var buildAuthorList = function buildAuthorList(result) {
+        author_to_add = {
+            authorname: result.author,
+            authorid: result.authorid
+        }
+        return author_to_add;
+    }
+    getCategories().then(results => {
+        getAuthors().then(authorResults => {
+            let categories = results.map(buildCategoryList);
+            let authors = authorResults.map(buildAuthorList);
+            res.render('write_new', {
+                title: 'New article',
+                message: '',
+                categories: categories,
+                authors: authors
+            })
+        })
     })
 }
 
@@ -17,7 +67,7 @@ function handleNew(req, res) {
     //pass along req.body to New.save
     //res.render that Article has been saved
     var saveDraft = function saveDraft() {
-        returrn new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             New.save(req.body, (err, data) => {
                 if (err) {
                     reject("unable to save draft");

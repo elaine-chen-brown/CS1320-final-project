@@ -54,7 +54,7 @@ app.get('/issue/:issueId', issueHandler.getIssue);
 
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
-app.get('/publish', publishHander.display);
+app.get('/publish', publishHandler.display);
 app.post('/publish', publishHandler.publish);
 
 // listen on given port
