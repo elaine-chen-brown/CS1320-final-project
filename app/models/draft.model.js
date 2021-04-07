@@ -15,10 +15,9 @@ const Draft = function(article) {
 };
 
 Draft.save = (articleInfo, result) => {
-    console.log(articleInfo);
-    var headline = articleInfo.title;
+    var headline = articleInfo.headline;
     var body = articleInfo.content;
-    var authorInfo = articleInfo.author;
+    var authorInfo = articleInfo.author.split(",");
     var authorid = authorInfo[0];
     var author = authorInfo[1];
     var teaser = articleInfo.teaser;
@@ -43,21 +42,26 @@ Draft.save = (articleInfo, result) => {
 Draft.getAll = (result) => {
     sql.query("SELECT * FROM drafts", (err, res) => {
         if (err) {
-            console.log("error retrieving drafts");
+            console.log("error: ", err);
             result(err, null);
             return;
         }
-        else {
-            console.log(res);
+        if (res.length) {
             result(null, res);
             return;
         }
+        result({ kind: "not_found" }, null);
     })
 }
 
-Draft.publish = (article, result) => {
+Draft.publishTopical = (article, result) => {
     console.log(article);
-    //Insert info into main database, delete from drafts 
+    //Insert info into main database, delete from drafts, setting issue id to topical
+}
+
+Draft.publishIssue = (articles, result) => {
+    console.log(articles);
+    //For each article, move to main database, setting issueid appropriately 
 }
 
 module.exports = Draft;

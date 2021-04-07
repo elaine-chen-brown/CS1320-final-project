@@ -66,9 +66,6 @@ function display(req, res) {
 }
 
 function handleNew(req, res) {
-    console.log(req.body);
-    //pass along req.body to Draft.save
-    //res.render that Article has been saved
     var saveDraft = function saveDraft() {
         return new Promise((resolve, reject) => {
             Draft.save(req.body, (err, data) => {
