@@ -1,0 +1,28 @@
+<body>
+    <div class="navigation" role="navigation">
+        <ul class="navlist">
+            <li class="navitem"><a href="#">New article</a></li>
+            <li class="navitem"><a href="#">Edit article</a></li>
+            <li class="navitem"><a href="#">Pubish article(s)</a></li>
+            <li class="navitem"><a href="#">Delete article</a></li>
+        </ul>
+    </div>
+
+    <div class="drafts-list">
+        {{#drafts}}
+        <div class="drafts-list-wrapper">
+            {{!-- Should make this into selectable items --}}
+            <div class="draft-wrapper">
+                <div class="draft-author-name">{{author}}</div>
+                <div class="draft-headline">{{headline}}</div>
+                <div class="draft-teaser">{{teaser}}</div>
+                {{!-- Should we include photo as well? Might not be necessary --}}
+            </div>
+        </div>
+        {{/drafts}}
+    </div>
+
+    <div class="result">
+        {{ message }}
+    </div>
+</body>
