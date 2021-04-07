@@ -22,7 +22,7 @@
     - Handle search bar input events
 - article.js and article.hbs
     - Handle social media button clicked events
-- archive.js and archive.hbs
+- archive.js and archive.hbs -- DONE
     - Handle button clicked events
 - style.css (in public)
     - Replace background-image in about-image and join-image with actual images that The Noser wants to use
@@ -30,7 +30,8 @@
 
 ## Database TODOs:
 - Author table needs to be reworked to include photo and social media handle(s)
-- Images database: how will we store multiple images per article? Will also need to store 'main' image for purposes of home/search page display. 
+- Images database: how will we store multiple images per article? Will also need to store 'main' image for purposes of home/search page display.
+- Create drafts table: should hold headline, article body (in html formatting), teaser, author name + id, category name + id, photo information. Things like date and issue id will only be determined upon publishing
 
 ### Note: feel free to restructure stuff if you want!
 
