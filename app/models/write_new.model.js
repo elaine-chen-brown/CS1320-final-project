@@ -18,11 +18,9 @@ New.save = (articleInfo, result) => {
     console.log(articleInfo);
     var headline = articleInfo.title;
     var body = articleInfo.content;
-    var author = articleInfo.author;
-    var authorid = 0;
-    // var authorInfo = articleInfo.author;
-    // var authorid = authorInfo[0];
-    // var author = authorInfo[1];
+    var authorInfo = articleInfo.author;
+    var authorid = authorInfo[0];
+    var author = authorInfo[1];
     var teaser = articleInfo.teaser;
     var categoryInfo = articleInfo.category.split(",");
     var sectionid = categoryInfo[0];
