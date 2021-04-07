@@ -1,8 +1,16 @@
 <head>
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
     <script>
       tinymce.init({
         selector: '#content'
+      });
+      $(document).ready(function () {
+        $('select').selectize({
+            sortField: 'text'
+        });
       });
     </script>
 </head>
@@ -23,20 +31,18 @@
             <input type="text" id="title" name="title"> <br/>
 
             <label for="author">Author name: </label>
-            <input type="text" id="author" name="author"><br/>
+            {{!-- <input type="text" id="author" name="author"><br/> --}}
 
-            {{!-- Should make drop down list for authors to ensure misspellings don't cause trouble.
-            Leaving it as simple text input for now so that we don't have to use real author names, 
-            which should make it easier to remove our tests from the db later. --}}
-
-            {{!-- <select name="author" id="author">
+            <select id="author" name="author" placeholder>
+                <option value="">Select a name...</option>
                 {{#authors}}
-                <option value='{{authorid}}, {{authorname}}'>{{authorname}}</option>
+                <option value='{{authorid}},{{authorname}}'>{{authorname}}</option>
                 {{/authors}}
-            </select> <br/> --}}
+            </select> <br/> 
 
             <label for="category">Category: </label>
             <select name="category" id="category">
+                <option value="">Select a category...</option>
                 {{#categories}}
                 <option value='{{categoryid}},{{category}}'>{{category}}</option>
                 {{/categories}}
