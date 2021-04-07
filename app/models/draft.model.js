@@ -1,20 +1,20 @@
 const sql = require("./db.js");
 
-const New = function(new_article) {
-    this.articleid = new_article.articleid;
-    this.headline = new_article.headline;
-    this.section = new_article.section;
-    this.body = new_article.body;
+const Draft = function(article) {
+    this.articleid = article.articleid;
+    this.headline = article.headline;
+    this.section = article.section;
+    this.body = article.body;
     this.teaser = new_article.teaser;
-    /*this.photoUploadId = new_article.photoUploadId;
-    this.photoFilename = new_article.photoFilename;
-    this.photoCaption = new_article.photoCaption;
-    this.photoCredit = new_article.photoCredit;
-    this.photoPosition = new_article.photoPosition;
+    /*this.photoUploadId = article.photoUploadId;
+    this.photoFilename = article.photoFilename;
+    this.photoCaption = article.photoCaption;
+    this.photoCredit = article.photoCredit;
+    this.photoPosition = article.photoPosition;
     */
 };
 
-New.save = (articleInfo, result) => {
+Draft.save = (articleInfo, result) => {
     console.log(articleInfo);
     var headline = articleInfo.title;
     var body = articleInfo.content;
@@ -38,7 +38,26 @@ New.save = (articleInfo, result) => {
             return;
         }
     });
-    
 }
 
-module.exports = New;
+Draft.getAll = (result) => {
+    sql.query("SELECT * FROM drafts", (err, res) => {
+        if (err) {
+            console.log("error retrieving drafts");
+            result(err, null);
+            return;
+        }
+        else {
+            console.log(res);
+            result(null, res);
+            return;
+        }
+    })
+}
+
+Draft.publish = (article, result) => {
+    console.log(article);
+    //Insert info into main database, delete from drafts 
+}
+
+module.exports = Draft;

@@ -9,17 +9,15 @@
     </div>
 
     <div class="drafts-list">
-        {{#drafts}}
-        <div class="drafts-list-wrapper">
-            {{!-- Should make this into selectable items --}}
-            <div class="draft-wrapper">
-                <div class="draft-author-name">{{author}}</div>
-                <div class="draft-headline">{{headline}}</div>
-                <div class="draft-teaser">{{teaser}}</div>
-                {{!-- Should we include photo as well? Might not be necessary --}}
-            </div>
-        </div>
-        {{/drafts}}
+        <form method="post">
+            {{#drafts}}
+                <input type="checkbox" id="{{articleid}}" name="{{articleid}}" value="{{articleid}}">
+                <label for="{{articleid}}">{{title}}</label>
+                <label for="{{articleid}}">{{author}}</label>
+            {{/drafts}}
+            <input type="submit" value="Publish">
+        </form>
+        
     </div>
 
     <div class="result">
