@@ -16,6 +16,7 @@ const archiveHandler = require('./controllers/archive.js');
 const issueHandler = require('./controllers/issue.js');
 
 const newHandler = require('./controllers/write_new.js');
+const publishHandler = require('./controllers/publish.js');
 
 // set up express app
 const app = express();
@@ -53,6 +54,8 @@ app.get('/issue/:issueId', issueHandler.getIssue);
 
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
+app.get('/publish', publishHander.display);
+app.post('/publish', publishHandler.publish);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
