@@ -4,7 +4,6 @@ const Author = require("../app/models/author.model.js");
 
 const { response } = require("express");
 
-//TODO
 function display(req, res) {
     var getCategories = function getCategories(req, res) {
         return new Promise((resolve, reject) => {
@@ -58,7 +57,11 @@ function display(req, res) {
                 categories: categories,
                 authors: authors
             })
+        }).catch(error => {
+            console.log("error fetching authors");
         })
+    }).catch(error => {
+        console.log("error fetcing categories");
     })
 }
 

@@ -22,24 +22,30 @@
             <label for="title">Title: </label>
             <input type="text" id="title" name="title"> <br/>
 
-            {{!-- Potentially make drop down list for authors to ensure misspellings don't cause trouble --}}
             <label for="author">Author name: </label>
+            <input type="text" id="author" name="author"><br/>
+
+            {{!-- Should make drop down list for authors to ensure misspellings don't cause trouble.
+            Leaving it as simple text input for now so that we don't have to use real author names, 
+            which should make it easier to remove our tests from the db later. --}}
+
             {{!-- <select name="author" id="author">
                 {{#authors}}
-                <option value={{authorid}}>{{authorname}}</option>
+                <option value='{{authorid}}, {{authorname}}'>{{authorname}}</option>
                 {{/authors}}
             </select> <br/> --}}
-            <input type="text" id="author" name="author"><br/>
 
             <label for="category">Category: </label>
             <select name="category" id="category">
                 {{#categories}}
-                <option value={{categoryid}}>{{category}}</option>
+                <option value='{{categoryid}},{{category}}'>{{category}}</option>
                 {{/categories}}
             </select> <br/>
 
             <label for="teaser">Article teaser: </label>
             <input type="text" id="teaser" name="teaser"> <br/>
+
+            {{!-- Need to add photo upload and caption --}}
 
             <label for="content">Article body: </label><br/>
             <textarea id="content" name="content"></textarea> <br/>

@@ -3,7 +3,7 @@ const sql = require("./db.js");
 const New = function(new_article) {
     this.articleid = new_article.articleid;
     this.headline = new_article.headline;
-    //this.section = new_article.section;
+    this.section = new_article.section;
     this.body = new_article.body;
     this.teaser = new_article.teaser;
     /*this.photoUploadId = new_article.photoUploadId;
@@ -19,9 +19,16 @@ New.save = (articleInfo, result) => {
     var headline = articleInfo.title;
     var body = articleInfo.content;
     var author = articleInfo.author;
+    var authorid = 0;
+    // var authorInfo = articleInfo.author;
+    // var authorid = authorInfo[0];
+    // var author = authorInfo[1];
     var teaser = articleInfo.teaser;
-    //don't forget to add back in photo information, category
-    sql.query("INSERT INTO drafts (headline, teaser, body, author) VALUES (?, ?, ?, ?)", [headline, teaser, body, author], (err, res) => {
+    var categoryInfo = articleInfo.category.split(",");
+    var sectionid = categoryInfo[0];
+    var section = categoryInfo[1];
+    //don't forget to add back in photo information later
+    sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid) VALUES (?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid], (err, res) => {
         if (err) {
             console.log("error inserting into table");
             result(err, null);
