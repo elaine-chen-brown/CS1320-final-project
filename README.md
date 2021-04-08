@@ -35,6 +35,11 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/8
+- package for doing social media sharing
+- facebook + twitter error bc hosting locally - need to setup hosting before testing those
+- added meta tags for displaying preview nicely (need hosting to test if they work)
+
 #### 4/7
 - removed subscribe bar (maybe need to change spacing around search bar now?)
 - conditional rendering if inputType set to html (think it worked for everything using 3 braces but made if statement to check in case)

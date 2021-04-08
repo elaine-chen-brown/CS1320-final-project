@@ -55,7 +55,6 @@ Article.getAuthorByArticleId = (articleId, result) => {
 
         if (res.length) {
             //console.log("found article: ", res[0]);
-            console.log(res);
             result(null, res);
             return;
         }
@@ -75,7 +74,6 @@ Article.findRelated = (articleId, section, result) => {
 
         if (res.length) {
             //console.log("found article: ", res[0]);
-            console.log(res);
             result(null, res);
             return;
         }

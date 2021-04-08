@@ -66,6 +66,17 @@ function getArticle(request, response){
             let articleCategoryName = data.section;
             let articleImage = `/images/images/${data.photoFilename}`;
             let isHTML = (data.inputType == 'html') ? true : false;
+            let shareUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
+            // let shareTitle = articleTitle.replace(/ /g, "-");
+            let shareTitle = articleTitle;
+            let fullPhotoUrl = request.protocol + '://' + request.get('host') + articleImage;
+            // meta tags for social media preview card
+            let socialMetas = "<meta property=\"og:title\" content=\"The Brown Noser\"></meta>" + 
+                `<meta property=\"og:description\" content=\"${articleTitle}\">` + 
+                `<meta property=\"og:image\" content=${fullPhotoUrl}></meta>` + 
+                `<meta property=\"og:url\" content=${shareUrl}></meta>` + 
+                "<meta name=\"twitter:card\" content=\"summary_large_image\"></meta>"
+            console.log(shareTitle);
             findRelated(request.params.articleId, articleCategoryName).then(related => {
                 function processDate(unix_timestamp){
                     // put into milliseconds
@@ -95,7 +106,10 @@ function getArticle(request, response){
                     categoryLink: categoryLink,
                     articleCategoryName: articleCategoryName,
                     articleImage: articleImage,
-                    isHTML: isHTML
+                    isHTML: isHTML,
+                    shareUrl: shareUrl,
+                    shareTitle: shareTitle,
+                    socialMetas: socialMetas
                 });
             })
         })     

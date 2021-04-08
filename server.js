@@ -36,6 +36,8 @@ app.engine('hbs', hbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+app.get('/share-buttons.js', (req, res) => {res.sendFile(path.join(__dirname, '/public/share-buttons.js'))});
+
 // handle requests at each endpoint
 app.get('/', homeHandler.getHome);
 app.get('/search', searchHandler.getSearch);

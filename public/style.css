@@ -895,3 +895,43 @@
         font-size: 20px;
     }
 }
+
+
+/* .share-btn > a {
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 12px;
+    font-family: Verdana, Arial;
+}
+.share-btn > a:hover {
+    cursor: pointer;
+} */
+
+.share-btn > a {
+    border: solid black 1px;
+    padding: 8px 12px;
+    font-size: 24px;
+    background-color: white;
+    border-radius: 5px;
+    color: black;
+
+}
+.share-btn > a:hover {
+    cursor: pointer;
+    background-color: RoyalBlue;
+}
+/* 
+.btn {
+    background-color: white;
+    border: solid black 1px;
+    border-radius: 5px;
+    color: black;
+    font-size: 24px;
+    padding: 8px 12px;
+    cursor: pointer;
+  } */
+  
+  /* Darker background on mouse-over */
+  /* .btn:hover {
+    background-color: RoyalBlue;
+  } */
