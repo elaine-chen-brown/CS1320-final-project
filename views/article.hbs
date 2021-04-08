@@ -16,12 +16,6 @@
                     <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey">
                 </form>
             </div>
-            <div class="email">
-                <form class="email-form">
-                    <input type="text" placeholder="Email address" name="email" class="email-input light-grey">
-                    <button type="submit" class="subscribe-button">Subscribe</button>
-                </form>
-            </div>
         </div>
     </div>
     <hr>
@@ -66,7 +60,11 @@
             <div class="article-caption"> {{ photoCaption }} </div>
             <!--Article text-->
             <div class="article-text">
-                {{ articleText }}
+                {{#if isHTML}}
+                {{{ articleText }}}
+                {{else}}
+                {{articleText}}
+                {{/if}}
             </div>
             <!--Social media buttons-->
             <div class="social-buttons">

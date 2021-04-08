@@ -35,6 +35,12 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/7
+- removed subscribe bar (maybe need to change spacing around search bar now?)
+- conditional rendering if inputType set to html (think it worked for everything using 3 braces but made if statement to check in case)
+- fixed ordering or archive years 2011 and error when only 1 article in issue (some of 2011's seem like test issues?)
+- changed most viewed cutoff year to 2018
+
 #### 4/5 
 - updated editnoser.sql to fix some symbols I missed last time
 - also added columns to authors table for authorImage and authorBio
