@@ -23,7 +23,7 @@ Archive.findYears = (result) => {
 };
 
 Archive.findYearIssues = (year, result) => {
-    sql.query("SELECT DISTINCT issueid, publishDate FROM articles WHERE from_unixtime(publishDate, '%Y')=?", year, (err, res) => {
+    sql.query("SELECT DISTINCT issueid, publishDate FROM articles WHERE from_unixtime(publishDate, '%Y')=? ORDER BY publishDate", year, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -31,6 +31,7 @@ Archive.findYearIssues = (year, result) => {
         }
 
         if (res.length) {
+            console.log(res);
             result(null, res);
             return;
         }

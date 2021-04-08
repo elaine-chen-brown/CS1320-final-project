@@ -65,6 +65,7 @@ function getArticle(request, response){
             let categoryLink = `/category/${data.sectionid}`;
             let articleCategoryName = data.section;
             let articleImage = `/images/images/${data.photoFilename}`;
+            let isHTML = (data.inputType == 'html') ? true : false;
             findRelated(request.params.articleId, articleCategoryName).then(related => {
                 function processDate(unix_timestamp){
                     // put into milliseconds
@@ -93,7 +94,8 @@ function getArticle(request, response){
                     suggestedArticles: relatedArticles,
                     categoryLink: categoryLink,
                     articleCategoryName: articleCategoryName,
-                    articleImage: articleImage
+                    articleImage: articleImage,
+                    isHTML: isHTML
                 });
             })
         })     

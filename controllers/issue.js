@@ -43,9 +43,9 @@ function getIssue(req, res){
                     Issue.findNonFeaturedArticles(entry.leadStory, req.params.issueId, (err, data) => {
                         if (err) {
                             if (err.kind === "not_found") {
-                                reject(`Not found articles from issue id ${entry.leadStory}.`);
+                                reject(`Not found articles from issue id ${req.params.issueId}.`);
                             } else {
-                                reject("Error retrieving articles from issue id " + entry.leadStory);
+                                reject("Error retrieving articles from issue id " + req.params.issueId);
                             }
                         }
                         else {

@@ -7,7 +7,7 @@ const Home = function(home) {
 
 // get the top x most viewed articles, taking only ones published after 2014
 Home.findMostViewed = (numToGet, result) => {
-    sql.query("SELECT * FROM articles WHERE FROM_UNIXTIME(publishDate, '%Y') > 2014 ORDER BY views DESC LIMIT ?", numToGet, (err, res) => {
+    sql.query("SELECT * FROM articles WHERE FROM_UNIXTIME(publishDate, '%Y') > 2018 ORDER BY views DESC LIMIT ?", numToGet, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

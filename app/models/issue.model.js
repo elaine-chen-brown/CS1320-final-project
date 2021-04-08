@@ -31,12 +31,7 @@ Issue.findNonFeaturedArticles = (featuredId, issueId, result) => {
             result(err, null);
             return;
         }
-
-        if (res.length) {
-            result(null, res);
-            return;
-        }
-        result({ kind: "not_found" }, null);
+        result(null,res);
     });
 };
 

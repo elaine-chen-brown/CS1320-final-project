@@ -60,7 +60,11 @@
             <div class="article-caption"> {{ photoCaption }} </div>
             <!--Article text-->
             <div class="article-text">
-                {{ articleText }}
+                {{#if isHTML}}
+                {{{ articleText }}}
+                {{else}}
+                {{articleText}}
+                {{/if}}
             </div>
             <!--Social media buttons-->
             <div class="social-buttons">
