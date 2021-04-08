@@ -24,8 +24,9 @@ Draft.save = (articleInfo, result) => {
     var categoryInfo = articleInfo.category.split(",");
     var sectionid = categoryInfo[0];
     var section = categoryInfo[1];
+    var type = articleInfo.type;
     //don't forget to add back in photo information later
-    sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid) VALUES (?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid], (err, res) => {
+    sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid, type) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid, type], (err, res) => {
         if (err) {
             console.log("error inserting into table");
             result(err, null);

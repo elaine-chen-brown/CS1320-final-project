@@ -8,7 +8,7 @@
         selector: '#content'
       });
       $(document).ready(function () {
-        $('select').selectize({
+        $('.limited').selectize({
             sortField: 'text'
         });
       });
@@ -34,7 +34,7 @@
             <label for="author">Author name: </label>
             {{!-- <input type="text" id="author" name="author"><br/> --}}
 
-            <select id="author" name="author" placeholder>
+            <select class="limited" id="author" name="author" placeholder>
                 <option value="">Select a name...</option>
                 {{#authors}}
                 <option value='{{authorid}},{{authorname}}'>{{authorname}}</option>
@@ -42,12 +42,18 @@
             </select> <br/> 
 
             <label for="category">Category: </label>
-            <select name="category" id="category">
+            <select class="limited" name="category" id="category">
                 <option value="">Select a category...</option>
                 {{#categories}}
                 <option value='{{categoryid}},{{category}}'>{{category}}</option>
                 {{/categories}}
             </select> <br/>
+
+            <label for="type">Publish as: </label>
+            <select name="type" id="type">
+                <option value="topical">a topical article</option>
+                <option value="issue">part of the next issue</option>
+            </select>
 
             <label for="teaser">Article teaser: </label>
             <input type="text" id="teaser" name="teaser"> <br/>
