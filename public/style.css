@@ -909,8 +909,66 @@
 }
 
 .login-banner-text {
-    font-size: 48px;
+    font-size: 44px;
 }
+
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+}
+
+.login-text {
+    font-family: "roboto";
+    font-size: 28px;
+    text-align: center;
+}
+
+.login-email {
+    font-family: "roboto";
+    font-size: 14px;
+    color: #959595;
+    padding: 4%;
+    margin-top: 5%;
+    border-radius: 19px;
+    border-style: solid;
+    border-color: #D4D4D4;
+}
+
+.login-password {
+    font-family: "roboto";
+    font-size: 14px;
+    color: #959595;
+    padding: 4%;
+    margin-top: 5%;
+    border-radius: 19px;
+    border-style: solid;
+    border-color: #D4D4D4;
+}
+
+.login-button {
+    background-color: #573B03;
+    color: white;
+    font-family: "roboto";
+    font-size: 15px;
+    align-self: center;
+    padding: 4%;
+    margin: 5%;
+    margin-left: 12%;
+    width: 150px;
+    border-radius: 19px;
+    border-style: solid;
+    border-color: #573B03;
+}
+
+.forgot-password {
+    font-family: "roboto";
+    font-size: 12px;
+    color: #573B03;
+    margin-left: 27%;
+}
+
 
 /* DASHBOARD PAGE */
 /* Dashboard Banner */
@@ -980,7 +1038,7 @@
     font-size: 20px;
 }
 
-/* Footer */
+/* Dashboard Footer */
 .dashboard-footer {
     background-color: #3A2B03;
     display: flex;
@@ -994,7 +1052,7 @@
     right: 0;
 }
 
-/* EDIT ARTICLES PAGE */
+/* EDIT PAGE */
 /* Write New Button */
 .new-buttons-wrapper {
     margin: 2%;

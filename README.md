@@ -121,8 +121,6 @@
 
 #### CMS Frontend Notes
 - Current functionality
-    - Login
-        - Login button directs to dashboard
     - Dashboard
         - "Article" link under create directs to write_new
         - "Article" link under edit directs to edit
