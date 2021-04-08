@@ -35,4 +35,15 @@ Issue.findNonFeaturedArticles = (featuredId, issueId, result) => {
     });
 };
 
+Issue.getLatest = (result) => {
+    sql.query("SELECT MAX(issueid) from issues", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    })
+}
+
 module.exports = Issue;

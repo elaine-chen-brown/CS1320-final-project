@@ -8,8 +8,16 @@ function display(req, res) {
         return new Promise((resolve, reject) => {
             Draft.getAll((err, data) => {
                 if (err) {
-                    console.log(err);
-                    reject("unable to retrieve drafts");
+                    if (err.kind === "no_drafts") {
+                        res.render('publish_topical', {
+                            title: 'Publish', 
+                            message: 'No drafts'
+                        });
+                    }
+                    else {
+                        console.log(err);
+                        reject("unable to retrieve drafts");
+                    }
                 }
                 else {
                     resolve(data);
@@ -29,7 +37,7 @@ function display(req, res) {
 
     getDrafts().then(result => {
         let drafts = result.map(buildList);
-        res.render('publish', {
+        res.render('publish_topical', {
             title: 'Publish',
             message: '',
             drafts: drafts
@@ -39,17 +47,6 @@ function display(req, res) {
     })
 }
 
-
-
-//push all articles to db, remove from drafts
-function publishIssue(req, res) {
-    var drafts = req.body.draft;
-    var publish = function publish(req, res) {
-        return new Promise((resolve, reject) => {
-            //For each article, Draft.publish, assigning an issue id based on last issue id
-        })
-    }
-}
 
 function publishTopical(req, res) {
     var drafts = req.body.draft;
@@ -62,6 +59,5 @@ function publishTopical(req, res) {
 
 module.exports = {
     display,
-    publishIssue,
     publishTopical
 }

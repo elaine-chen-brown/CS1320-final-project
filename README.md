@@ -118,3 +118,28 @@
 - added author search results display
 - added ARIA landmarks to all pages
 - wrote outline of how category underlining could be done
+
+#### 04/08 
+- added login, dashboard, and edit pages
+- implemented routing and links between pages
+- restyled write_new to match
+
+#### CMS Frontend Notes
+- Current functionality
+    - Dashboard
+        - "Article" link under create directs to write_new
+        - "Article" link under edit directs to edit
+    - Edit
+        - Published and/or draft articles listed
+        - Clicking an article directs to write_new
+        - "Write new" button directs to write_new
+- TODO for backend people
+    - dashboard.hbs
+        - Fill in href values depending on which links you want to use
+        - Note: can take out some if we don't use them, like ones having to do with issues
+    - dashboard.js
+        - Handle logout
+    - edit.js
+        - Replace static values with values gotten from database queries
+    - login.js
+        - Handle login

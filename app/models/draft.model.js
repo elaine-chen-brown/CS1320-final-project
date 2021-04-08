@@ -51,18 +51,24 @@ Draft.getAll = (result) => {
             result(null, res);
             return;
         }
-        result({ kind: "not_found" }, null);
+        result({ kind: "no_drafts" }, null);
     })
 }
 
-Draft.publishTopical = (article, result) => {
-    console.log(article);
-    //Insert info into main database, delete from drafts, setting issue id to topical
-}
-
-Draft.publishIssue = (articles, result) => {
-    console.log(articles);
-    //For each article, move to main database, setting issueid appropriately 
+Draft.publish = (articleid, issueid, date, result) => {
+    console.log(articleid);
+    sql.query("SELECT * FROM drafts WHERE articleid = ?", articleid, (err, res) => {
+        if (err) {
+            //error handling
+        }
+        if (res.length) {
+            //insert into articles
+                //need to generate previewToken and keyword 
+            //insert info into authorassociations 
+            //if issueid != topical issueid, insert info into issues
+            //delete from drafts
+        }
+    })
 }
 
 module.exports = Draft;
