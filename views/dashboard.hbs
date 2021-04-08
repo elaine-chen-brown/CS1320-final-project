@@ -2,7 +2,7 @@
 <div class="dashboard-banner">
     <div class="dashboard-logo">
         <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
-        <div class="dashboard-logo-text">THE BROWN NOSER</div>
+        <div class="dashboard-logo-text"><a href="/admin/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
     </div>
     <div class="dashboard-buttons">
         <div class="logout-button-wrapper">
@@ -14,41 +14,36 @@
     </div>
 </div>
 
-<!--Write New Button-->
-<div class="new-buttons-wrapper">
-    <button class="new-button">+ Write New</button>
-</div>
-
 <!--Dashboard Content-->
 <div class="dashboard-content-wrapper">
-    <div class="drafts-list-title">Articles</div>
-    <hr>
-    <div class="drafts-articles-list">
-        <!--One Draft-->
-        <div class="draft-article-wrapper">
-            <div class="draft-article-text">
-                <div>Title</div>
-                <div>Blurb</div>
-                <div>Date</div>
-            </div>
-            <div class="draft-article-ellipse">
-                ...
-            </div>
-        </div>
+    <div class="dashboard-option-wrapper">
+        <div class="dashboard-option-title">Create</div>
         <hr>
-        <!---->
-        <!--One Draft-->
-        <div class="draft-article-wrapper">
-            <div class="draft-article-text">
-                <div>Title</div>
-                <div>Blurb</div>
-                <div>Date</div>
-            </div>
-            <div class="draft-article-ellipse">
-                ...
-            </div>
-        </div>
-        <!---->
-        <hr>
+        <ul>
+            <li class="dashboard-option hover"><a href="#" style="text-decoration:none;color:black">Article</a></li>
+            <li class="dashboard-option hover"><a href="#" style="text-decoration:none;color:black">Issue</a></li>
+        </ul>
     </div>
+    <div class="dashboard-option-wrapper">
+        <div class="dashboard-option-title">Edit</div>
+        <hr>
+        <ul>
+            <li class="dashboard-option hover"><a href="/admin/edit" style="text-decoration:none;color:black">Article</a></li>
+            <li class="dashboard-option hover"><a href="#" style="text-decoration:none;color:black">Issue</a></li>
+        </ul>
+    </div>
+    <div class="dashboard-option-wrapper">
+        <div class="dashboard-option-title">Publish</div>
+        <hr>
+        <ul>
+            <li class="dashboard-option hover"><a href="#" style="text-decoration:none;color:black">Article</a></li>
+            <li class="dashboard-option hover"><a href="#" style="text-decoration:none;color:black">Issue</a></li>
+        </ul>
+    </div>
+    </div>
+</div>
+
+<!--Footer-->
+<div class="dashboard-footer">
+    <div class="footer-text">© The Brown Noser</div>
 </div>
