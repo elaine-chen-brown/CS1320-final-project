@@ -28,20 +28,22 @@
     </ul>
     <hr>
     <div class="drafts-list">
+        {{#drafts}}
         <!--One Draft-->
-        <div class="draft-wrapper">
-            {{#drafts}}
-            <div class="draft-text-wrapper">
-                <div class="draft-title">{{draftTitle}}</div>
-                <div class="draft-blurb">{{draftBlurb}}</div>
-                <div class="draft-info">Create on {{draftDate}} by {{draftAuthor}}</div>
-            </div>
-            <div class="draft-ellipse">
-                <a href="#" style="text-decoration: none;color:black">...</a>
-            </div>
+        <div class="link-wrapper">
+            <a href="/write_new" style="text-decoration: none;color:black">
+                <div class="draft-wrapper">
+                    <div class="draft-text-wrapper">
+                        <div class="draft-title">{{draftTitle}}</div>
+                        <div class="draft-blurb">{{draftBlurb}}</div>
+                        <div class="draft-info">Create on {{draftDate}} by {{draftAuthor}}</div>
+                    </div>
+                </div>
+            </a>
         </div>
         <!---->
         <hr>
+        </a>
         {{/drafts}}
     </div>
 </div>
