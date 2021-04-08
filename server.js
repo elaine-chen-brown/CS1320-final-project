@@ -16,7 +16,8 @@ const archiveHandler = require('./controllers/archive.js');
 const issueHandler = require('./controllers/issue.js');
 
 const newHandler = require('./controllers/write_new.js');
-const publishHandler = require('./controllers/publish.js');
+const publishTopicalHandler = require('./controllers/publish_topical.js');
+const publishIssueHandler = require('./controllers/publish_issue.js');
 
 // set up express app
 const app = express();
@@ -54,9 +55,10 @@ app.get('/issue/:issueId', issueHandler.getIssue);
 
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
-app.get('/publish', publishHandler.display);
-app.post('/publish_issue', publishHandler.publishIssue);
-app.post('publish_topical', publishHandler.publishTopical);
+app.get('/publish_issue', publishIssueHandler.display);
+app.get('/publish_topical', publishTopicalHandler.display);
+app.post('/publish_issue', publishIssueHandler.publishIssue);
+app.post('publish_topical', publishTopicalHandler.publishTopical);
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
