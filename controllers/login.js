@@ -2,7 +2,7 @@
 
 const { response } = require("express");
 
-// handle a get request at '/join' endpoint.
+// handle a get request at '/admin/login' endpoint.
 function getLogin(request, response){
   response.render('login', {
     title: 'Login'
