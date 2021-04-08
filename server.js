@@ -15,6 +15,8 @@ const categoryHandler = require('./controllers/category.js');
 const archiveHandler = require('./controllers/archive.js');
 const issueHandler = require('./controllers/issue.js');
 
+// CMS handlers
+const loginHandler = require('./controllers/login.js');
 const newHandler = require('./controllers/write_new.js');
 const publishHandler = require('./controllers/publish.js');
 
@@ -52,6 +54,8 @@ app.get('/archive', archiveHandler.getRecentYear);
 app.get('/archive/:year', archiveHandler.getArchive);
 app.get('/issue/:issueId', issueHandler.getIssue);
 
+// CMS endpoints
+app.get('/admin/login', loginHandler.getLogin)
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
 app.get('/publish', publishHandler.display);

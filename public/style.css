@@ -239,6 +239,7 @@
     font-size: 34px;
     font-weight: bold;
     color: black;
+    line-height: 1;
 }
 
 .featured-category {
@@ -281,6 +282,7 @@
 .list-title {
     font-size: 18px;
     font-weight: bold;
+    line-height: 1.5;
 }
 
 .list-blurb {
@@ -895,3 +897,5 @@
         font-size: 20px;
     }
 }
+
+/* CMS STYLING */
