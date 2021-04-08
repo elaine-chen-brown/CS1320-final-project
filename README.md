@@ -35,6 +35,9 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/7
+- removed subscribe bar (maybe need to change spacing around search bar now?)
+
 #### 4/5 
 - updated editnoser.sql to fix some symbols I missed last time
 - also added columns to authors table for authorImage and authorBio
