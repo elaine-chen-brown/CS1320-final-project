@@ -79,6 +79,14 @@ function publishIssue(req, res) {
         })
     }
 
+    var pushIssue = function pushIssue(issueid, date, leadid) {
+        return new Promise((resolve, reject) => {
+            Draft.newIssue(issueid, date, leadid, (err, data) => {
+                //
+            })
+        })
+    }
+
     getIssue().then(issuenum => {
         var issueid = issuenum.issueid + 1;
         var date = new Date().getTime();

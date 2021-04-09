@@ -77,6 +77,10 @@
             <input type="text" id="teaser" name="teaser"> <br/>
 
             {{!-- Need to add photo upload and caption --}}
+            <input type="file" id="photoFile" name="photoFile" accept="image/*"> <br/>
+        
+            <label for="photoCaption">Photo caption: </label>
+            <input type="text" id="photoCaption" name="photoCaption"> <br/>
 
             <label for="content">Article body: </label><br/>
             <textarea id="content" name="content"></textarea> <br/>
@@ -89,6 +93,32 @@
         {{ message }}
     </div>
 </body>
+
+<script>
+    const handleImageUpload = event => {
+        const files = event.target.files;
+        const formData = new FormData();
+        formData.append('myFile', files[0]);
+
+        //add checks for filetype 
+        fetch('/saveImage', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.path)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
+    document.querySelector('#photoFile').addEventListener('change', event => {
+        handleImageUpload(event);
+    });
+
+</script>
 
 <style>
     /*

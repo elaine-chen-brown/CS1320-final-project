@@ -3,6 +3,7 @@ const Category = require("../app/models/category.model.js");
 const Author = require("../app/models/author.model.js");
 
 const { response } = require("express");
+const { fileupload } = require("express-fileupload");
 
 function display(req, res) {
     var getCategories = function getCategories(req, res) {

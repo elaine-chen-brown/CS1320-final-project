@@ -1,5 +1,6 @@
 // import dependencies
 const express = require('express');
+const fileupload = require('express-fileupload')
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
@@ -29,6 +30,7 @@ const app = express();
 const port = 8080;
 
 app.use(express.json());
+app.use(fileupload());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -70,7 +72,25 @@ app.post('/write_new', newHandler.handleNew);
 app.get('/publish_issue', publishIssueHandler.display);
 app.get('/publish_topical', publishTopicalHandler.display);
 app.post('/publish_issue', publishIssueHandler.publishIssue);
-app.post('publish_topical', publishTopicalHandler.publishTopical);
+app.post('/publish_topical', publishTopicalHandler.publishTopical);
+
+app.post('/saveImage', async (req, res) => {
+    try {
+        if (!req.files) {
+            console.log("no files");
+        }
+        else {
+            let photo = req.files.myFile;
+            photo.mv('./public/images/drafts' + photo.name);
+        }
+    } catch (err) {
+        console.log(err);
+        res.render('write_new', {
+            title: 'New article',
+            message: 'Unable to upload image'
+        });
+    }
+});
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
