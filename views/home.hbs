@@ -65,7 +65,7 @@
         </a>
 
         <!--Listed articles-->
-        <div class="list-articles-wrapper">
+        <div class="list-articles-wrapper" id="article-container">
 
             <!-- Layout for possible horizontal bar of articles
             <div class="three-articles-wrapper">
@@ -85,7 +85,7 @@
             <div class="list-article-wrapper">
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/featured.png'">
+                        <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
                     </div>
                     <div class="list-text-wrapper">
                         <div class="list-title bold hover"> {{ articleTitle }} </div>
@@ -124,6 +124,108 @@
 </div>
 
 <!--Footer-->
-<div class="footer">
+<div class="footer" id="footer">
     <div class="footer-text">© The Brown Noser</div>
 </div>
+<input type = "hidden" id = "featuredLink" value = {{featuredLink}} />
+
+<script>
+    let featuredId = document.getElementById("featuredLink").value.replace("/article/", "");
+    function makeObserver() {
+        let options = {
+            root:null,
+            rootMargins: "0px",
+            threshold: 0.5,
+        };
+        const observer = new IntersectionObserver(handleIntersect, options);
+        observer.observe(document.getElementById("footer"));
+    }
+    document.addEventListener("DOMContentLoaded", makeObserver);
+    function handleIntersect(entries) {
+        if (entries[0].isIntersecting) {
+            console.log("intersecting");
+            loadData();
+        }
+    }
+    let offset = 10;
+    function loadData() {
+        let container = document.getElementById("article-container");
+        console.log("fetching more data");
+        
+        let url = `/loadNew/${featuredId}/${offset}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length == 0){
+                    document.removeEventListener("DOMContentLoaded", makeObserver);
+                }
+                data.forEach(article => {
+                    let articleHtml = displayArticle(article);
+                    container.appendChild(articleHtml);
+                });
+            })
+        // increment offset after each call to fetch more data (start 5 so first call is 10)
+        offset = offset + 10;
+    }
+    function createElementByClass(elemName, clss){
+        let element = document.createElement(elemName);
+        element.className = clss;
+        return element;
+    }
+    function displayArticle(article) {
+        let articleLink = `/article/${article.articleid}`;
+        let articleImageLink =  `/images/images/${article.photoFilename}`
+        var outerLink = document.createElement('a');
+        outerLink.href = articleLink;
+        outerLink.style = "text-decoration: none;color:black";
+
+        let articleWrapper = createElementByClass('div', "list-article-wrapper");
+        let listArticle = createElementByClass('div', "list-article");
+        let imageWrapper = createElementByClass('div', "list-image-wrapper");
+        let articleImage = createElementByClass('img', "list-image");
+        articleImage.src = articleImageLink;
+        articleImage.alt = "article picture"; 
+        articleImage.onerror = function() {this.onerror=null; this.src='/images/article-pic.png'};
+        let textWrapper = createElementByClass('div', "list-text-wrapper");
+        let textTitle = createElementByClass('div', "list-title bold hover");
+        textTitle.innerHTML = article.headline;
+        let textBlurb = createElementByClass('div', "list-blurb");
+        textBlurb.innerHTML = article.teaser;
+        var readMore = createElementByClass('div', "read-more-wrapper");
+        var moreLink = createElementByClass('a', "read-more brown");
+        moreLink.innerHTML = "Read more";
+        var hr = document.createElement('hr');
+
+        outerLink.appendChild(articleWrapper);
+        articleWrapper.appendChild(listArticle);
+        articleWrapper.appendChild(readMore);
+        articleWrapper.appendChild(hr);
+
+        listArticle.appendChild(imageWrapper);
+        listArticle.appendChild(textWrapper);
+
+        imageWrapper.appendChild(articleImage);
+        textWrapper.appendChild(textTitle);
+        textWrapper.appendChild(textBlurb);
+        readMore.appendChild(moreLink);
+        return outerLink; 
+        //above makes this structure
+        //<a href={{ articleLink }} style="text-decoration: none;color:black">
+            //<div class="list-article-wrapper">
+                //<div class="list-article">
+                    //<div class="list-image-wrapper">
+                        //<img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/featured.png'">
+                    //</div>
+                    //<div class="list-text-wrapper">
+                        //<div class="list-title bold hover"> {{ articleTitle }} </div>
+                        //<div class="list-blurb">{{ articleBlurb }}</div>
+                    //</div>
+                //</div>
+                //<div class="read-more-wrapper">
+                    //<a href={{ articleLink }} class="read-more brown">Read more</a>
+                //</div>
+                //<hr>
+            //</div>
+        //</a>
+    }
+</script>

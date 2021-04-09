@@ -95,6 +95,29 @@ function getHome(request, response){
   
 }
 
+function loadArticles(request, response) {
+    var nextArticles = function getNextArticles(featuredId, offset) {
+        return new Promise((resolve, reject) => {
+            Home.findNextArticleSet(featuredId, offset, (err, data) => {
+                console.log(featuredId, offset);
+                if (err) {
+                    if (err.kind === "not_found") {
+                        reject(`Not found next articles`);
+                    } else {
+                        reject("Error retrieving next articles");
+                    }
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+    nextArticles(parseInt(request.params.featuredId), parseInt(request.params.offset)).then(articles => {
+        response.send(articles);
+    })
+}
+
 // TO DO: replace with values gotten from database queries
 // let listArticles = [
 //   {
@@ -129,5 +152,6 @@ function getHome(request, response){
 // ]
 
 module.exports = {
-    getHome
+    getHome,
+    loadArticles
 };
