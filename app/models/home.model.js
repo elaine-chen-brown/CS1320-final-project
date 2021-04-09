@@ -41,7 +41,7 @@ Home.findRecentFeatured = (result) => {
 
 // get 50 recent articles that don't include the top featured article
 Home.findRecentArticles = (featuredId, result) => {
-    sql.query("SELECT * FROM articles WHERE articleid <> ? ORDER BY publishDate DESC, articleid limit 10", featuredId, (err, res) => {
+    sql.query("SELECT * FROM articles WHERE articleid <> ? ORDER BY publishDate DESC, articleid limit 15", featuredId, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

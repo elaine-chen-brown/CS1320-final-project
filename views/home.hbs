@@ -131,7 +131,7 @@
 
 <script>
     let featuredId = document.getElementById("featuredLink").value.replace("/article/", "");
-    function makeObserver() {
+    {{!-- function makeObserver() {
         let options = {
             root:null,
             rootMargins: "0px",
@@ -141,31 +141,74 @@
         observer.observe(document.getElementById("footer"));
     }
     document.addEventListener("DOMContentLoaded", makeObserver);
-    function handleIntersect(entries) {
+    function handleIntersect(entries, self) {
         if (entries[0].isIntersecting) {
             console.log("intersecting");
-            loadData();
+            //loadData().then(entriesRemain => {
+            //    console.log(entriesRemain);
+            //    if (!entriesRemain) {
+            //        self.unobserve(entries[0].target);
+            //    }
+            //})
+            //let areArticlesLeft = loadData();
+            loadData().then(areArticlesLeft => {
+                console.log(areArticlesLeft);
+                if (!areArticlesLeft) {
+                    self.unobserve(entries[0].target);
+                    console.log("unobserving");
+                }
+            })
+            
         }
-    }
-    let offset = 10;
-    function loadData() {
+    } --}}
+    //////////////////////////////////////////////////
+    const config = {
+            root:null,
+            rootMargins: "0px",
+            threshold: 0.5,
+        };
+    let observer = new IntersectionObserver(function (entries, self) {
+        if (entries[0].isIntersecting) {
+            console.log("intersecting");
+            loadData().then(areArticlesLeft => {
+                console.log(areArticlesLeft);
+                if (!areArticlesLeft) {
+                    self.unobserve(entries[0].target);
+                    console.log("unobserving");
+                }
+            })
+        }
+    }, config);
+    observer.observe(document.getElementById("footer"));
+    let offset = 15;
+    async function loadData() {
         let container = document.getElementById("article-container");
         console.log("fetching more data");
         
         let url = `/loadNew/${featuredId}/${offset}`;
-        fetch(url)
+        let areArticlesLeft = await fetch(url)
             .then(response => response.json())
             .then(data => {
-                if (data.length == 0){
-                    document.removeEventListener("DOMContentLoaded", makeObserver);
+                console.log(data);
+                if (data.length == 0) {
+                    console.log("getting 0");
+                    observer.unobserve(document.getElementById("footer"));
                 }
                 data.forEach(article => {
                     let articleHtml = displayArticle(article);
                     container.appendChild(articleHtml);
                 });
-            })
+                return true;
+            }, reason => {
+                console.log("IN EXTRA CASE");
+                console.log(reason);
+                return false;
+            }
+            )
         // increment offset after each call to fetch more data (start 5 so first call is 10)
         offset = offset + 10;
+        console.log(areArticlesLeft);
+        return areArticlesLeft;
     }
     function createElementByClass(elemName, clss){
         let element = document.createElement(elemName);

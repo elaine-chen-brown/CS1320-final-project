@@ -35,6 +35,10 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/9
+- infinite scroll stops sending requests when articles run out
+- changed to preload 15 then get 10 at a time
+
 #### 4/8
 - package for doing social media sharing
 - facebook + twitter error bc hosting locally - need to setup hosting before testing those

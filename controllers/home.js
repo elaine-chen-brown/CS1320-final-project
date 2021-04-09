@@ -102,6 +102,7 @@ function loadArticles(request, response) {
                 console.log(featuredId, offset);
                 if (err) {
                     if (err.kind === "not_found") {
+                        resolve([]);
                         reject(`Not found next articles`);
                     } else {
                         reject("Error retrieving next articles");
