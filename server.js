@@ -62,6 +62,8 @@ app.get('/archive', archiveHandler.getRecentYear);
 app.get('/archive/:year', archiveHandler.getArchive);
 app.get('/issue/:issueId', issueHandler.getIssue);
 
+app.get('/loadNew/:featuredId/:offset', homeHandler.loadArticles);
+
 // CMS endpoints
 app.get('/admin/login', loginHandler.getLogin)
 app.get('/admin/dashboard', dashboardHandler.getDashboard);

@@ -39,6 +39,8 @@
 - package for doing social media sharing
 - facebook + twitter error bc hosting locally - need to setup hosting before testing those
 - added meta tags for displaying preview nicely (need hosting to test if they work)
+- change home queries to also sort by id to make paged queries work
+- infinite scroll on home page (still need to fix behavior when runs out of articles)
 
 #### 4/7
 - removed subscribe bar (maybe need to change spacing around search bar now?)
