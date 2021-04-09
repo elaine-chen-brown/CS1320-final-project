@@ -63,6 +63,7 @@ app.get('/archive/:year', archiveHandler.getArchive);
 app.get('/issue/:issueId', issueHandler.getIssue);
 
 app.get('/loadNew/:featuredId/:offset', homeHandler.loadArticles);
+app.get('/loadCategoryArticles/:categoryId/:offset', categoryHandler.loadArticles);
 
 // CMS endpoints
 app.get('/admin/login', loginHandler.getLogin)

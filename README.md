@@ -38,6 +38,7 @@
 #### 4/9
 - infinite scroll stops sending requests when articles run out
 - changed to preload 15 then get 10 at a time
+- added infinite scroll to category pages
 
 #### 4/8
 - package for doing social media sharing
