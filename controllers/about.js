@@ -24,7 +24,8 @@ function getAbout(request, response){
     }
     var findActiveStaff = function getActiveStaff() {
         return new Promise((resolve, reject) => {
-            About.getActiveStaff((err, data) => {
+            //call with offset of 0
+            About.getActiveStaff(0, (err, data) => {
                 if (err) {
                     if (err.kind === "not_found") {
                         reject(`Didn't find authors`);
@@ -64,31 +65,30 @@ function getAbout(request, response){
     })
 }
 
-// TO DO: replace with values gotten from database queries
-// let staffMembers = [
-//   {
-//     staffPhoto: "images/lover.png",
-//     staffName: "Lover Taylor",
-//     staffRole: "Writer",
-//     staffBlurb: "This is some info about staff writer Taylor from her Lover era aka her best era ever. No contest. This is a fact.",
-//     authorLink: "/author"
-//   },
-//   {
-//     staffPhoto: "images/red.png",
-//     staffName: "Red Taylor",
-//     staffRole: "Writer",
-//     staffBlurb: "This is some info about staff writer Taylor from her Red era aka her second best era ever. Stay Stay Stay is a bop.",
-//     authorLink: "/author"
-//   },
-//   {
-//     staffPhoto: "images/fearless.png",
-//     staffName: "Fearless Taylor",
-//     staffRole: "Editor",
-//     staffBlurb: "This is some info about editor Taylor who is Fearless. Love Story was iconic. So was You Belong With Me. Never forget.",
-//     authorLink: "/author"
-//   }
-// ]
+function loadAuthors(request, response) {
+    var nextAuthors = function getNextAuthors(offset) {
+        return new Promise((resolve, reject) => {
+            About.getActiveStaff(offset, (err, data) => {
+                console.log(offset);
+                if (err) {
+                    if (err.kind === "not_found") {
+                        resolve([]);
+                    } else {
+                        reject("Error retrieving next authors");
+                    }
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+    nextAuthors(parseInt(request.params.offset)).then(authors => {
+        response.send(authors);
+    })
+}
 
 module.exports = {
-    getAbout
+    getAbout,
+    loadAuthors
 };

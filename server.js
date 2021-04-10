@@ -64,6 +64,7 @@ app.get('/issue/:issueId', issueHandler.getIssue);
 
 app.get('/loadNew/:featuredId/:offset', homeHandler.loadArticles);
 app.get('/loadCategoryArticles/:categoryId/:offset', categoryHandler.loadArticles);
+app.get('/loadAboutAuthors/:offset', aboutHandler.loadAuthors);
 
 // CMS endpoints
 app.get('/admin/login', loginHandler.getLogin)

@@ -53,7 +53,7 @@
     <div class="bottom-wrapper">
         <div class="bottom-title">STAFF</div>
         <hr>
-        <div class="staff-cols-wrapper">
+        <div class="staff-cols-wrapper" id="authorContainer">
             {{#staffMembers}}
             <!--One Staff Member-->
             <div class="staff-member-wrapper">
@@ -71,6 +71,96 @@
 </div>
 
 <!--Footer-->
-<div class="footer">
+<div class="footer" id="footer">
     <div class="footer-text">© The Brown Noser</div>
 </div>
+
+<script>
+    offset = 16;
+    // create observer
+    const config = {
+            root:null,
+            rootMargins: "0px",
+            threshold: 0.5,
+        };
+    let observer = new IntersectionObserver(function (entries, self) {
+        if (entries[0].isIntersecting) {
+            console.log("intersecting");
+            loadData();
+        }
+    }, config);
+    observer.observe(document.getElementById("footer"));
+
+    // fetch new data
+    async function loadData() {
+        let container = document.getElementById("authorContainer");
+        console.log("fetching more data");
+        
+        let url = `/loadAboutAuthors/${offset}`;
+        console.log(url);
+        console.log(offset);
+        await fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.length == 0) {
+                    console.log("getting 0");
+                    observer.unobserve(document.getElementById("footer"));
+                }
+                data.forEach(author => {
+                    let authorHtml = displayAuthor(author);
+                    container.appendChild(authorHtml);
+                });
+            });
+        // increment offset after each call to fetch more data
+        console.log(offset);
+        offset = offset + 16;
+    }
+    function createElementByClass(elemName, clss){
+        let element = document.createElement(elemName);
+        element.className = clss;
+        return element;
+    }
+
+    function displayAuthor(author) {
+        let staffWrapper = createElementByClass('div', "staff-member-wrapper");
+        let staffImageWrapper = createElementByClass('div', "staff-image-wrapper");
+        let image = createElementByClass('img', "staff-image");
+        image.src = (author.authorImage)? author.authorImage : "/images/lover.png";
+        image.alt = "staff photo";
+        let textWrapper = createElementByClass('div', "staff-text-wrapper");
+        let staffName = createElementByClass('div', "staff-name");
+        let authorLink = document.createElement('a');
+        authorLink.href = `/author/${author.authorid}`;
+        authorLink.style = "text-decoration:none;color:#392520";
+        authorLink.innerHTML = author.author;
+        let staffRole = createElementByClass('div', "staff-role");
+        staffRole.innerHTML = author.title;
+        let blurb = document.createElement('div');
+        blurb.innerHTML = author.authorBio;
+
+        staffWrapper.appendChild(staffImageWrapper);
+        staffWrapper.appendChild(textWrapper);
+
+        staffImageWrapper.appendChild(image);
+
+        textWrapper.appendChild(staffName);
+        textWrapper.appendChild(staffRole);
+        textWrapper.appendChild(blurb);
+
+        staffName.appendChild(authorLink);
+        return staffWrapper;
+    }
+    //<div class="staff-member-wrapper">
+        //<div class="staff-image-wrapper">
+            //<img src={{ staffPhoto }} alt="staff photo" class="staff-image">
+        //</div>
+        //<div class="staff-text-wrapper">
+            //<div class="staff-name">
+                //<a href={{authorLink}} style="text-decoration:none;color:#392520">{{ staffName }}</a>
+            //</div>
+            //<div class="staff-role">{{ staffRole }}</div>
+            //<div>{{ staffBlurb }} </div>
+        //</div>
+    //</div>
+</script>
