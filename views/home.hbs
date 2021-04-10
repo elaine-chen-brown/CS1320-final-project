@@ -131,36 +131,6 @@
 
 <script>
     let featuredId = document.getElementById("featuredLink").value.replace("/article/", "");
-    {{!-- function makeObserver() {
-        let options = {
-            root:null,
-            rootMargins: "0px",
-            threshold: 0.5,
-        };
-        const observer = new IntersectionObserver(handleIntersect, options);
-        observer.observe(document.getElementById("footer"));
-    }
-    document.addEventListener("DOMContentLoaded", makeObserver);
-    function handleIntersect(entries, self) {
-        if (entries[0].isIntersecting) {
-            console.log("intersecting");
-            //loadData().then(entriesRemain => {
-            //    console.log(entriesRemain);
-            //    if (!entriesRemain) {
-            //        self.unobserve(entries[0].target);
-            //    }
-            //})
-            //let areArticlesLeft = loadData();
-            loadData().then(areArticlesLeft => {
-                console.log(areArticlesLeft);
-                if (!areArticlesLeft) {
-                    self.unobserve(entries[0].target);
-                    console.log("unobserving");
-                }
-            })
-            
-        }
-    } --}}
     //////////////////////////////////////////////////
     const config = {
             root:null,
@@ -170,13 +140,7 @@
     let observer = new IntersectionObserver(function (entries, self) {
         if (entries[0].isIntersecting) {
             console.log("intersecting");
-            loadData().then(areArticlesLeft => {
-                console.log(areArticlesLeft);
-                if (!areArticlesLeft) {
-                    self.unobserve(entries[0].target);
-                    console.log("unobserving");
-                }
-            })
+            loadData();
         }
     }, config);
     observer.observe(document.getElementById("footer"));
@@ -198,17 +162,9 @@
                     let articleHtml = displayArticle(article);
                     container.appendChild(articleHtml);
                 });
-                return true;
-            }, reason => {
-                console.log("IN EXTRA CASE");
-                console.log(reason);
-                return false;
-            }
-            )
+            });
         // increment offset after each call to fetch more data (start 5 so first call is 10)
         offset = offset + 10;
-        console.log(areArticlesLeft);
-        return areArticlesLeft;
     }
     function createElementByClass(elemName, clss){
         let element = document.createElement(elemName);

@@ -39,8 +39,8 @@ Category.findById = (categoryId, result) => {
   };
 
   // get all the article ids associated with a given sectionid
-Category.findArticleIds = (categoryId, result) => {
-    sql.query("SELECT articleid FROM articles WHERE sectionid = ? ORDER BY publishDate DESC", categoryId, (err, res) => {
+Category.findArticles = (categoryId, offset, result) => {
+    sql.query("SELECT * FROM articles WHERE sectionid = ? ORDER BY publishDate DESC, articleid LIMIT ?,15", [categoryId, offset], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
