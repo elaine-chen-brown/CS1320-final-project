@@ -83,7 +83,7 @@ app.post('/saveImage', async (req, res) => {
         }
         else {
             let photo = req.files.myFile;
-            photo.mv('./public/images/drafts' + photo.name);
+            photo.mv('./public/images/drafts/' + photo.name);
         }
     } catch (err) {
         console.log(err);
