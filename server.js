@@ -61,6 +61,7 @@ app.get('/category/:categoryId', categoryHandler.getCategory);
 app.get('/archive', archiveHandler.getRecentYear);
 app.get('/archive/:year', archiveHandler.getArchive);
 app.get('/issue/:issueId', issueHandler.getIssue);
+app.get('/topical/:year', issueHandler.getTopicalYear)
 
 app.get('/loadNew/:featuredId/:offset', homeHandler.loadArticles);
 app.get('/loadCategoryArticles/:categoryId/:offset', categoryHandler.loadArticles);

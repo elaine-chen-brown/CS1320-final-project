@@ -40,6 +40,7 @@
     <!--Main Content Section-->
     <div class="main-content-wrapper">
         <!--Featured article-->
+        {{#if isNonTopical}}
         <a href={{ featuredLink }} style="text-decoration:none">
         <div class="featured-article">
             <div class="featured-image-wrapper">
@@ -63,6 +64,7 @@
             <hr>
         </div>
         </a>
+        {{/if}}
 
         <!--Listed articles-->
         <div class="list-articles-wrapper">

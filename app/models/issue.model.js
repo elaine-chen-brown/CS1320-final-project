@@ -46,4 +46,14 @@ Issue.getLatest = (result) => {
     })
 }
 
+Issue.findTopicalForYear = (year, result) => {
+    sql.query("SELECT * FROM articles WHERE issueid = 0 AND from_unixtime(publishDate, '%Y')=? ORDER BY publishDate", year, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        result(null,res);
+    });
+}
+
 module.exports = Issue;
