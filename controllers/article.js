@@ -54,6 +54,22 @@ function getArticle(request, response){
                 })
             })
         }
+        var updateViews = function updateViews(articleid) {
+            return new Promise((resolve, reject) => {
+                Article.updateViews(articleid, (err, data) => {
+                    if (err) {
+                        if (err.kind === "not_found") {
+                            reject(`Not updated for article id ${articleid}.`);
+                        } else {
+                            reject("Error updating views for Article with id " + articleid);
+                        }
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            })
+        }
         findAuthor(request.params.articleId).then(items => {
             let articleTitle = data.headline;
             let articleAuthor = items[0].author;
@@ -77,41 +93,44 @@ function getArticle(request, response){
                 `<meta property=\"og:url\" content=${shareUrl}></meta>` + 
                 "<meta name=\"twitter:card\" content=\"summary_large_image\"></meta>"
             console.log(shareTitle);
-            findRelated(request.params.articleId, articleCategoryName).then(related => {
-                function processDate(unix_timestamp){
-                    // put into milliseconds
-                    var date = new Date(unix_timestamp * 1000);
-                    return moment(date).format('Do MMMM YYYY');
-                }
-                var buildArticle = function buildArticle(articleEntry){
-                    let date = processDate(articleEntry.publishDate);
-                    article_to_add = {
-                        articleImage: `/images/images/${articleEntry.photoFilename}`,
-                        articleTitle: articleEntry.headline,
-                        articleLink: `/article/${articleEntry.articleid}`,
-                        articleDate: date
+            updateViews(request.params.articleId).then(updated => {
+                console.log("views updated: "+ updated);
+                findRelated(request.params.articleId, articleCategoryName).then(related => {
+                    function processDate(unix_timestamp){
+                        // put into milliseconds
+                        var date = new Date(unix_timestamp * 1000);
+                        return moment(date).format('Do MMMM YYYY');
                     }
-                    return article_to_add;
-                }
-                let relatedArticles = related.map(buildArticle);
-                response.render('article', {
-                    title: 'Article',
-                    articleTitle: articleTitle,
-                    articleAuthor: articleAuthor,
-                    authorLink: authorLink,
-                    articleDate: articleDate, 
-                    photoCaption: photoCaption,
-                    articleText: articleText,
-                    suggestedArticles: relatedArticles,
-                    categoryLink: categoryLink,
-                    articleCategoryName: articleCategoryName,
-                    articleImage: articleImage,
-                    isHTML: isHTML,
-                    shareUrl: shareUrl,
-                    shareTitle: shareTitle,
-                    socialMetas: socialMetas
-                });
-            })
+                    var buildArticle = function buildArticle(articleEntry){
+                        let date = processDate(articleEntry.publishDate);
+                        article_to_add = {
+                            articleImage: `/images/images/${articleEntry.photoFilename}`,
+                            articleTitle: articleEntry.headline,
+                            articleLink: `/article/${articleEntry.articleid}`,
+                            articleDate: date
+                        }
+                        return article_to_add;
+                    }
+                    let relatedArticles = related.map(buildArticle);
+                    response.render('article', {
+                        title: 'Article',
+                        articleTitle: articleTitle,
+                        articleAuthor: articleAuthor,
+                        authorLink: authorLink,
+                        articleDate: articleDate, 
+                        photoCaption: photoCaption,
+                        articleText: articleText,
+                        suggestedArticles: relatedArticles,
+                        categoryLink: categoryLink,
+                        articleCategoryName: articleCategoryName,
+                        articleImage: articleImage,
+                        isHTML: isHTML,
+                        shareUrl: shareUrl,
+                        shareTitle: shareTitle,
+                        socialMetas: socialMetas
+                    });
+                })
+            }) 
         })     
     }
 })

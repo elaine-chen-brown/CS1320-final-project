@@ -42,6 +42,7 @@
 - add breadcrumbs to issue page
 - breadcrumb archive link goes back to correct year
 - added year to issues headline on archive page
+- setup to be able to update views count when article is loaded (currently commented out in article.model)
 
 #### 4/10
 - support for topical articles in the archives
