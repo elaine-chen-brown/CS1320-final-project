@@ -5,14 +5,13 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
     <script>
-      tinymce.init({
-        selector: '#content'
-      });
-      $(document).ready(function () {
+
+
+    $(document).ready(function () {
         $('.limited').selectize({
             sortField: 'text'
         });
-      });
+    });
     </script>
 </head>
 
@@ -116,6 +115,12 @@
 
     document.querySelector('#photoFile').addEventListener('change', event => {
         handleImageUpload(event);
+    });
+
+    tinymce.init({
+        selector: '#content',
+        plugins: 'image',
+        //images_upload_handler: handleImageUpload
     });
 
 </script>

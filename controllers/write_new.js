@@ -67,6 +67,7 @@ function display(req, res) {
 }
 
 function handleNew(req, res) {
+    console.log(req.body);
     var saveDraft = function saveDraft() {
         return new Promise((resolve, reject) => {
             Draft.save(req.body, (err, data) => {

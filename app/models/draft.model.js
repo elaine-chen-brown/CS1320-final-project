@@ -31,7 +31,7 @@ Draft.save = (articleInfo, result) => {
 
     var type = articleInfo.type;
 
-    var photoUploadId;
+    var photoUploadId = 0;
     var photoName = articleInfo.photoFile;
     var photoCaption = articleInfo.photoCaption;
 
@@ -119,6 +119,21 @@ Draft.save = (articleInfo, result) => {
             }
         })    
     }
+    else {
+        sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoFilename, photoCaption) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoName, photoCaption], (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+            else {
+                console.log(res);
+                result(null, res);
+                return;
+            }
+        });
+    }
+
 }
 
 Draft.getAll = (result) => {
