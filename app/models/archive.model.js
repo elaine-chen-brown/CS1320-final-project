@@ -7,7 +7,7 @@ const Archive = function(archive) {
 
 // get all the years that have articles in the database
 Archive.findYears = (result) => {
-    sql.query("SELECT DISTINCT FROM_UNIXTIME(publishDate, '%Y') AS year FROM articles WHERE publishDate IS NOT NULL ORDER BY year", (err, res) => {
+    sql.query("SELECT DISTINCT FROM_UNIXTIME(publishDate, '%Y') AS year FROM articles WHERE publishDate IS NOT NULL ORDER BY year DESC", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
