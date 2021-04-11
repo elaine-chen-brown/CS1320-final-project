@@ -105,7 +105,7 @@ function getRecentYear(request, response){
     findTimeLineYears().then(years => {
         console.log(years);
         console.log(years.length)
-        let recentYear = years[years.length - 1].year;
+        let recentYear = years[0].year;
         response.redirect(`/archive/${recentYear}`);
     })
 }

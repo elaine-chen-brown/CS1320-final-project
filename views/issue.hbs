@@ -39,6 +39,14 @@
 <div class="page-content-wrapper" role="main">
     <!--Main Content Section-->
     <div class="main-content-wrapper">
+        <!--Breadcrumbs-->
+        <div class="breadcrumbs-wrapper brown">
+            {{#if isNonTopical}}
+            <a class="brown" href="/archive">Archive</a> / Issue {{issueNum}}
+            {{else}}
+            <a class="brown" href="/archive">Archive</a> / Topical {{year}}
+            {{/if}}
+        </div>
         <!--Featured article-->
         {{#if isNonTopical}}
         <a href={{ featuredLink }} style="text-decoration:none">

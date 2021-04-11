@@ -38,7 +38,8 @@
 #### 4/11 
 - cleaned up sidebar on issue page for issues and topicals
 - displays issue num and date for issue or year for topicals 
-- reverse direction of archive year list
+- reverse direction of archive year list (and fix how recent year is picked)
+- add breadcrumbs to issue page
 
 #### 4/10
 - support for topical articles in the archives
