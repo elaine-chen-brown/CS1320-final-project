@@ -95,14 +95,12 @@
 
     <!--Side Bar-->
     <div class="sidebar-wrapper">
-        <div class="smaller-sidebar-title popular-title">Probably want this somewhere but not here</div>
+        {{#if isNonTopical}}
         <div class="smaller-sidebar-title popular-title"> Issue Number: {{issueNum}} </div>
         <div class="smaller-sidebar-title popular-title"> Published: {{issueDate}} </div>
-        {{!-- <ul class="popular-searches">
-            {{#popularSearches}}
-            <div><a href={{ searchLink }} class="unstyled-link" style="font-size:20px">{{ searchTerm }}</a></div>
-            {{/popularSearches}}
-        </ul> --}}
+        {{else}}
+        <div class="smaller-sidebar-title popular-title"> Topical Articles From Year {{year}} </div>
+        {{/if}}
     </div>
 
 </div>

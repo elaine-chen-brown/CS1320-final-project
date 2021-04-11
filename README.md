@@ -35,6 +35,10 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/11 
+- cleaned up sidebar on issue page for issues and topicals
+- displays issue num and date for issue or year for topicals 
+
 #### 4/10
 - support for topical articles in the archives
 - lists entry for topical articles in the list of issues, if applicable
