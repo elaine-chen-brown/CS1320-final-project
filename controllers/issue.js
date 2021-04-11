@@ -74,7 +74,7 @@ function getIssue(req, res){
                     }
                     let articles = otherArticles.map(buildArticle);
                     let date = processDate(leadArticle.publishDate);
-                    let year = date.split(',')[2];
+                    let year = (date.split(',')[2]).trim();
                     res.render('issue', {
                         title: 'Issue',
                         featuredPic: `/images/images/${leadArticle.photoFilename}`,
@@ -85,7 +85,8 @@ function getIssue(req, res){
                         issueArticles: articles,
                         issueNum: leadArticle.issueid,
                         issueDate: date,
-                        isNonTopical: true
+                        isNonTopical: true,
+                        lastArchiveLink: `/archive/${year}`
                       });
                 })
             })
@@ -124,7 +125,8 @@ function getTopicalYear(req, res){
                 issueNum: 0,
                 issueDate: 0,
                 isNonTopical: false,
-                year: req.params.year
+                year: req.params.year,
+                lastArchiveLink: `/archive/${req.params.year}`
               });
         }
     })

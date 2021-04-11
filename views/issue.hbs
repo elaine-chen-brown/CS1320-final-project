@@ -42,9 +42,9 @@
         <!--Breadcrumbs-->
         <div class="breadcrumbs-wrapper brown">
             {{#if isNonTopical}}
-            <a class="brown" href="/archive">Archive</a> / Issue {{issueNum}}
+            <a class="brown" href={{lastArchiveLink}}>Archive</a> / Issue {{issueNum}}
             {{else}}
-            <a class="brown" href="/archive">Archive</a> / Topical {{year}}
+            <a class="brown" href={{lastArchiveLink}}>Archive</a> / Topical {{year}}
             {{/if}}
         </div>
         <!--Featured article-->
