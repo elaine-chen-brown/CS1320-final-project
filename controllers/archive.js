@@ -50,10 +50,19 @@ function getArchive(request, response){
                 let date = processDate(issue.publishDate);
                 return {
                     issueDate: date,
-                    issueLink: `/issue/${issue.issueid}`
+                    issueLink: `/issue/${issue.issueid}`,
+                    issueNum: issue.issueid
                 }
             }
+            // put all topical articles in one section at the end
             let archiveList = issues.map(getIssueLabel);
+            let archiveTopicalFiltered = archiveList.filter(issue => issue.issueNum != 0);
+            console.log(archiveTopicalFiltered);
+            // if topical articles were filtered, add topical article entry
+            if (archiveTopicalFiltered.length < archiveList.length){
+                archiveTopicalFiltered.push({issueDate:"Topical Articles", issueLink: `/topical/${request.params.year}`, issueNum: 0})
+                archiveList = archiveTopicalFiltered;
+            }
             // TODO: not sure what the best way to handle columns is
             let archiveList1 = [];
             let archiveList2 = [];

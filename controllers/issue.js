@@ -83,7 +83,8 @@ function getIssue(req, res){
                         featuredLink: `/article/${leadArticle.articleid}`,
                         issueArticles: articles,
                         issueNum: leadArticle.issueid,
-                        issueDate: date
+                        issueDate: date,
+                        isNonTopical: true
                       });
                 })
             })
@@ -91,25 +92,48 @@ function getIssue(req, res){
     })
 }
 
+function getTopicalYear(req, res){
+    Issue.findTopicalForYear(req.params.year, (err,data) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(404).send({
+                    message: `Not found Issue with id ${req.params.issueId}.`
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving Issue with id " + req.params.issueId
+                });
+            }
+        }
+        else {
+            var buildArticle = function buildArticle(articleEntry){
+                article_to_add = {
+                    articleImage: `/images/images/${articleEntry.photoFilename}`,
+                    articleTitle: articleEntry.headline,
+                    articleBlurb: articleEntry.teaser,
+                    articleLink: `/article/${articleEntry.articleid}`,
+                    publishDate: articleEntry.publishDate
+                }
+                return article_to_add;
+            }
+            let topicalArticles = data.map(buildArticle);
+            res.render('issue', {
+                title: 'Issue',
+                issueArticles: topicalArticles,
+                issueNum: 0,
+                issueDate: 0,
+                isNonTopical: false
+              });
+        }
+    })
+}
+
 // TO DO: write an event handler for the search form (in search.hbs)
 
-// TO DO: replace with values gotten from database queries
-let issueArticles = [
-  {
-    articleImage: "/images/list-test.png",
-    articleTitle: "This is the title of the first search result!",
-    articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "/article",
-  },
-  {
-    articleImage: "/images/list-test.png",
-    articleTitle: "This is the title of the second search result!",
-    articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-    articleLink: "/article",
-  },
-]
+
 
 
 module.exports = {
-    getIssue
+    getIssue,
+    getTopicalYear
 };
