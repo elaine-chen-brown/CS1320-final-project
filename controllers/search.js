@@ -74,6 +74,7 @@ function getSearch(req, res){
       res.render('search', {
         title: 'Search', 
         searchTerm: 'Showing search results for "' + searchTerm +'"',
+        found: true,
         searchResults: searchResults,
         authorResults: authorResults,
       });
@@ -81,6 +82,7 @@ function getSearch(req, res){
       res.render('search', {
         title: 'Search',
         searchTerm: 'Showing search results for "' + searchTerm +'"',
+        found: true,
         searchResults: searchResults,
         authorResults: ""
       });
@@ -90,8 +92,7 @@ function getSearch(req, res){
     res.render('search', {
       title: 'Search', 
       searchTerm: 'No search results found for "' + searchTerm + '"',
-      searchResults: [],
-      authorResults: ""
+      found: false
     });
   })
 }

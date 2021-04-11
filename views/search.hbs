@@ -62,27 +62,29 @@
             </a>
             <!---->
             {{/authorResults}}
-
-            {{#searchResults}}
-            <!--One article-->
-            <a href={{ articleLink }} style="text-decoration:none;color:black">
-            <div class="list-article-wrapper">
-                <div class="list-article">
-                    <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="article picture" class="list-image">
+            
+            {{#if found}}
+                {{#searchResults}}
+                <!--One article-->
+                <a href={{ articleLink }} style="text-decoration:none;color:black">
+                <div class="list-article-wrapper">
+                    <div class="list-article">
+                        <div class="list-image-wrapper">
+                            <img src={{ articleImage }} alt="article picture" class="list-image">
+                        </div>
+                        <div class="list-text-wrapper">
+                            <div class="list-title bold hover">{{ articleTitle }}</div>
+                            <div class="list-blurb">{{ articleBlurb }}</div>
+                        </div>
                     </div>
-                    <div class="list-text-wrapper">
-                        <div class="list-title bold hover">{{ articleTitle }}</div>
-                        <div class="list-blurb">{{ articleBlurb }}</div>
+                    <div class="read-more-wrapper">
+                        <div class="read-more brown">Read more</div>
                     </div>
                 </div>
-                <div class="read-more-wrapper">
-                    <div class="read-more brown">Read more</div>
-                </div>
-            </div>
-            </a>
-            <!---->
-            {{/searchResults}}
+                </a>
+                <!---->
+                {{/searchResults}}
+            {{/if}}
         </div>
     </div>
 
