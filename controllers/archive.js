@@ -79,6 +79,7 @@ function getArchive(request, response){
                 timelineYears: yearsList,
                 archiveList1: archiveList1,
                 archiveList2: archiveList2,
+                year: request.params.year
             });
         })
         

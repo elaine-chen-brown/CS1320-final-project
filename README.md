@@ -41,6 +41,7 @@
 - reverse direction of archive year list (and fix how recent year is picked)
 - add breadcrumbs to issue page
 - breadcrumb archive link goes back to correct year
+- added year to issues headline on archive page
 
 #### 4/10
 - support for topical articles in the archives
