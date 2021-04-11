@@ -4,14 +4,16 @@ const { response } = require("express");
 
 //display the page, with list of unpublished articles as well as date picker
 function display(req, res) {
-    var getDrafts = function getDrafts(req, res) {
+
+    var getDrafts = function getDrafts() {
         return new Promise((resolve, reject) => {
-            Draft.getAll((err, data) => {
+            Draft.getAllTopical((err, data) => {
                 if (err) {
                     if (err.kind === "no_drafts") {
                         res.render('publish_topical', {
                             title: 'Publish', 
-                            message: 'No drafts'
+                            message: 'No drafts',
+                            canPublish: false
                         });
                     }
                     else {
@@ -40,7 +42,8 @@ function display(req, res) {
         res.render('publish_topical', {
             title: 'Publish',
             message: '',
-            drafts: drafts
+            articles: drafts,
+            canPublish: true
         });
     }).catch(error => {
         console.log(error);
@@ -49,12 +52,30 @@ function display(req, res) {
 
 
 function publishTopical(req, res) {
-    var drafts = req.body.draft;
-    var publish = function publish(req, res) {
+    //var drafts = req.body.draft;
+    var publish = function publish(articleid, issueid, date) {
         return new Promise((resolve, reject) => {
-            //Draft.publish
+            Draft.publish(articleid, issueid, date, (err, data) => {
+                if (err) {
+                    reject("unable to publish article");
+                }
+                else {
+                    resolve(data);
+                }
+            })
         })
     }
+
+    var date = new Date().getTime();
+    var issueid = 0;
+    drafts.forEach(articleid => {
+        publish(articleid, issueid, date).then(success => {
+            res.render('publish_topical', {
+                title: 'Publish',
+                message: 'Article(s) published successfully!',
+            })
+        })
+    })
 }
 
 module.exports = {

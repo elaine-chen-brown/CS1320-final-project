@@ -136,8 +136,23 @@ Draft.save = (articleInfo, result) => {
 
 }
 
-Draft.getAll = (result) => {
-    sql.query("SELECT * FROM drafts", (err, res) => {
+Draft.getAllTopical = (result) => {
+    sql.query("SELECT * FROM drafts WHERE type = 'topical'", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            result(null, res);
+            return;
+        }
+        result({ kind: "no_drafts" }, null);
+    })
+}
+
+Draft.getIssue = (result) => {
+    sql.query("SELECT * FROM drafts WHERE type = 'issue'", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

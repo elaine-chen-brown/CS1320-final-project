@@ -1,31 +1,33 @@
 const Draft = require("../app/models/draft.model.js");
-const Issue = require("../app/models/issue.model.js");
 
 const { response } = require("express");
+const Issue = require("../app/models/issue.model.js");
 
-//display the page, with list of unpublished articles as well as date picker
-function display(req, res) {
-    var getDrafts = function getDrafts(req, res) {
-        return new Promise((resolve, reject) => {
-            Draft.getAll((err, data) => {
-                if (err) {
-                    if (err.kind === "no_drafts") {
-                        res.render('publish_issue', {
-                            title: 'Publish', 
-                            message: 'No drafts'
-                        });
-                    }
-                    else {
-                        console.log(err);
-                        reject("unable to retrieve drafts");
-                    }
+var getIssue = function getIssue(req, res) {
+    return new Promise((resolve, reject) => {
+        Draft.getIssue((err, data) => {
+            if (err) {
+                if (err.kind === "no_drafts") {
+                    res.render('publish_issue', {
+                        title: 'Publish', 
+                        message: 'No drafts',
+                        canPublish: false
+                    });
                 }
                 else {
-                    resolve(data);
+                    console.log(err);
+                    reject("unable to retrieve drafts");
                 }
-            })
+            }
+            else {
+                resolve(data);
+            }
         })
-    }
+    })
+}
+
+//display the page, with list of unpublished articles
+function display(req, res) {
     
     var buildList = function buildList(result) {
         draft_to_add = {
@@ -36,12 +38,13 @@ function display(req, res) {
         return draft_to_add;
     }
 
-    getDrafts().then(result => {
+    getIssue().then(result => {
         let drafts = result.map(buildList);
         res.render('publish_issue', {
             title: 'Publish',
             message: '',
-            drafts: drafts
+            articles: drafts,
+            canPublish: true
         });
     }).catch(error => {
         console.log(error);
@@ -50,16 +53,15 @@ function display(req, res) {
 
 //push all articles to db, remove from drafts
 function publishIssue(req, res) {
-    var drafts = req.body.draft;
+    var leadid = req.body.featured;
 
-    var getIssue = function getIssue() {
+    var getIssueNum = function getIssueNum() {
         return new Promise((resolve, reject) => {
             Issue.getLatest((err, data) => {
                 if (err) {
-                    reject("unable to get latest issue number");
+                    reject("unable to get issue number");
                 }
                 else {
-                    console.log(data);
                     resolve(data);
                 }
             })
@@ -82,25 +84,44 @@ function publishIssue(req, res) {
     var pushIssue = function pushIssue(issueid, date, leadid) {
         return new Promise((resolve, reject) => {
             Draft.newIssue(issueid, date, leadid, (err, data) => {
-                //
+                if (err) {
+                    reject("unable to publish issue");
+                }
+                else {
+                    resolve(data);
+                }
             })
         })
     }
 
-    getIssue().then(issuenum => {
-        var issueid = issuenum.issueid + 1;
+    getIssueNum().then(result => {
+        result = JSON.parse(JSON.stringify(result))[0];
+        var issueid = parseInt(result.latestid) + 1;
         var date = new Date().getTime();
-        drafts.forEach(articleid => {
-            console.log(articleid);
-            publish(articleid, issueid, date).then(result => {
+        console.log(leadid);
+
+        getIssue().then(drafts => {
+            drafts.forEach(draft => {
+                articleid = draft.articleid;
+                /*
+                publish(articleid, issueid, date).then(success => {
+                    res.render('publish_issue', {
+                        title: 'Publish',
+                        message: 'Article successfully published!'
+                    })
+                }) //catch
+                */
+            });
+            /*
+            pushIssue(issueid, leadid, date).then(success => {
                 res.render('publish_issue', {
                     title: 'Publish',
                     message: 'Issue successfully published!'
                 })
-            })
+            }) //catch
+            */
         })
-        
-    })
+    }) //catch
 }
 
 module.exports = {

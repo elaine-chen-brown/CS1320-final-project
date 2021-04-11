@@ -46,12 +46,12 @@
     <div class="main" role="main">
         <form role="form" method="post">
             <label for="headline">Headline: </label>
-            <input type="text" id="headline" name="headline"> <br/>
+            <input type="text" id="headline" name="headline" required> <br/>
 
             <label for="author">Author name: </label>
             {{!-- <input type="text" id="author" name="author"><br/> --}}
 
-            <select class="limited" id="author" name="author" placeholder>
+            <select class="limited" id="author" name="author" required>
                 <option value="">Select a name...</option>
                 {{#authors}}
                 <option value='{{authorid}},{{authorname}}'>{{authorname}}</option>
@@ -59,7 +59,7 @@
             </select> <br/> 
 
             <label for="category">Category: </label>
-            <select class="limited" name="category" id="category">
+            <select class="limited" name="category" id="category" required>
                 <option value="">Select a category...</option>
                 {{#categories}}
                 <option value='{{categoryid}},{{category}}'>{{category}}</option>
@@ -73,7 +73,7 @@
             </select>
 
             <label for="teaser">Article teaser: </label>
-            <input type="text" id="teaser" name="teaser"> <br/>
+            <input type="text" id="teaser" name="teaser" required> <br/>
 
             {{!-- Need to add photo upload and caption --}}
             <input type="file" id="photoFile" name="photoFile" accept="image/*"> <br/>

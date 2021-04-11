@@ -18,7 +18,9 @@
                     <label for="{{articleid}}">{{headline}}</label> <br>
                     <label for="{{articleid}}">{{author}}</label> <br> <br>
                 {{/drafts}}
-                <input type="submit" value="Publish">
+                {{#if canPublish}}
+                    <input type="submit" value="Publish">
+                {{/if}}
             </form>
         </div>
 

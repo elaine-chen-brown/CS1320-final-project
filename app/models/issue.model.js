@@ -36,7 +36,7 @@ Issue.findNonFeaturedArticles = (featuredId, issueId, result) => {
 };
 
 Issue.getLatest = (result) => {
-    sql.query("SELECT MAX(issueid) from issues", (err, res) => {
+    sql.query("SELECT MAX(issueid) AS latestid FROM issues", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
