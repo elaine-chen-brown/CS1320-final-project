@@ -90,6 +90,11 @@
 }
 
 /* Extras section */
+.extras-wrapper {
+    display: flex;
+    align-items: center;
+}
+
 .extras-text {
     text-decoration: none;
     color: black;
