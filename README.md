@@ -45,6 +45,31 @@
 - changed to preload 15 then get 10 at a time
 - added infinite scroll to category pages
 
+#### CMS Frontend Notes
+- Current functionality
+    - Dashboard
+        - "Article" link under create directs to write_new
+        - "Article" link under edit directs to edit
+    - Edit
+        - Published and/or draft articles listed
+        - Clicking an article directs to write_new
+        - "Write new" button directs to write_new
+- TODO for backend
+    - dashboard.hbs
+        - Fill in href values depending on which links you want to use
+        - Note: can take out some if we don't use them, like ones having to do with issues
+    - dashboard.js
+        - Handle logout
+    - edit.js
+        - Replace static values with values gotten from database queries
+    - login.js
+        - Handle login
+
+#### 04/08 
+- added login, dashboard, and edit pages
+- implemented routing and links between pages
+- restyled write_new to match
+
 #### 4/8
 - package for doing social media sharing
 - facebook + twitter error bc hosting locally - need to setup hosting before testing those
@@ -71,6 +96,12 @@
 - added folder with the images temporarily so we can see what it looks like
 - some look kinda funny bc the caption is included with the image
 - some of them have independent captions - maybe need some kind of setup for using those
+
+#### 04/01
+- fixed archive display
+- added author search results display
+- added ARIA landmarks to all pages
+- wrote outline of how category underlining could be done
 
 #### 3/30 home page articles
 - has featured article and recent articles ordered by date
@@ -124,34 +155,3 @@
 - make sure mysql installed
 - create new database (named noser_edit or change value in the config)
 - use editnoser.sql to load the database (run from where where mysql is installed: mysql -u root -p noser_edited < "path\to\sqlfile")
-
-#### 04/01
-- fixed archive display
-- added author search results display
-- added ARIA landmarks to all pages
-- wrote outline of how category underlining could be done
-
-#### 04/08 
-- added login, dashboard, and edit pages
-- implemented routing and links between pages
-- restyled write_new to match
-
-#### CMS Frontend Notes
-- Current functionality
-    - Dashboard
-        - "Article" link under create directs to write_new
-        - "Article" link under edit directs to edit
-    - Edit
-        - Published and/or draft articles listed
-        - Clicking an article directs to write_new
-        - "Write new" button directs to write_new
-- TODO for backend people
-    - dashboard.hbs
-        - Fill in href values depending on which links you want to use
-        - Note: can take out some if we don't use them, like ones having to do with issues
-    - dashboard.js
-        - Handle logout
-    - edit.js
-        - Replace static values with values gotten from database queries
-    - login.js
-        - Handle login
