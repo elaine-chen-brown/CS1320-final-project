@@ -1,3 +1,8 @@
+body, html{
+    margin:0;
+    padding:0;
+  }
+
 /* Fonts */
 @font-face {
     font-family: road-race;
@@ -227,13 +232,12 @@
 }
 
 .featured-image-wrapper{
-    display: flex;
-    justify-content: center;
+    position: relative;
 }
 
 .featured-image {
-    max-height: 400px;
     width: 100%;
+    height: auto;
 }
 
 .featured-text-wrapper {
@@ -303,7 +307,7 @@
 }
 
 .sidebar-article {
-    margin-bottom: 4%;
+    margin-bottom: 18%;
 }
 
 .sidebar-image {
@@ -803,10 +807,14 @@
         grid-template-columns: auto;
         margin: auto;
         width: 80%;
+        padding-left: 30%;
     }
 
     .issue-lists-wrapper {
-        margin-bottom: 4%;
+        margin-bottom: 6%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto;
     }
 
     .issue-list {
@@ -900,6 +908,11 @@
     /* Text resizing */
     .archive-item {
         font-size: 20px;
+    }
+
+    /* Archive column styling */
+    .issues-wrapper {
+        padding-left: 22%;
     }
 }
 

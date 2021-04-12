@@ -6,15 +6,17 @@
             <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
         </div>
         <div class="extras-wrapper">
+            <div class="centering-wrapper">
             <div class="extras-options">
-                <a href="/about" class="extras-text">About</a>
-                <a href="/archive" class="extras-text">Archive</a>
-                <a href="/join" class="extras-text">Join Us</a>
+                <a href="/about" class="extras-text" tabindex="2">About</a>
+                <a href="/archive" class="extras-text" tabindex="3">Archive</a>
+                <a href="/join" class="extras-text" tabindex="4">Join Us</a>
             </div>
             <div class="search" role="search">
                 <form action="/search">
-                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey">
+                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey" tabindex="5">
                 </form>
+            </div>
             </div>
         </div>
     </div>
@@ -84,17 +86,19 @@
         </div>
     </div>
     <!--Sidebar Section-->
-    <div class="suggested-wrapper">
-        <div class="smaller-sidebar-title">SUGGESTED</div>
+    <div class="sidebar-wrapper">
+        <div class="sidebar-title">SUGGESTED</div>
         {{#suggestedArticles}}
-        <!--Suggested article-->
-            <div class="suggested-article">
-                <img src={{ articleImage }} alt="article picture" class="suggested-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
-                <div class="suggested-text">
-                    <div class="suggested-title hover"><a href={{ articleLink }} class="link">{{ articleTitle }}</a></div>
-                    <div class="suggested-date">{{ articleDate }}</div>
-                </div>
+        <!--Sidebar article-->
+        <a href={{ articleLink }} style="text-decoration:none;color:black">
+        <div class="sidebar-article">
+            <img src={{ articleImage }} alt="most viewed article picture" class="sidebar-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
+            <div class="sidebar-text-wrapper">
+                <div class="sidebar-category category">{{ articleCategory }}</div>
+                <div class="sidebar-blurb bold">{{ articleTitle }}</div>
             </div>
+        </div>
+        </a>
         <!---->
         {{/suggestedArticles}}
     </div>

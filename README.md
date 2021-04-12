@@ -35,6 +35,14 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/12 styling fixes
+- Make search box vertically centered
+- Get rid of black box around suggested
+- Increase spacing between articles in most viewed column
+- Footer needs to render across entire screen
+- Archive renders poorly on smaller screens
+- Featured image gets stretched out on large screens
+
 #### 4/11 
 - cleaned up sidebar on issue page for issues and topicals
 - displays issue num and date for issue or year for topicals 
