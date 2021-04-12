@@ -39,9 +39,9 @@
 
 <div class="one-col-page-wrapper" role="main">
      <!--Breadcrumbs-->
-    <div class="breadcrumbs-wrapper brown bread-margin">
+    {{!-- <div class="breadcrumbs-wrapper brown bread-margin">
         Previous / <span class="underline">About Us</span>
-    </div>
+    </div> --}}
     <!--Sub-banner-->
     <div class="sub-banner brown">
         ABOUT US
@@ -139,7 +139,13 @@
         let staffRole = createElementByClass('div', "staff-role");
         staffRole.innerHTML = author.title;
         let blurb = document.createElement('div');
-        blurb.innerHTML = author.authorBio;
+        if (author.authorBio) {
+            blurb.innerHTML = author.authorBio;
+        } else {
+            let first_name = (author.author).split(" ")[0];
+            blurb.innerHTML = `${first_name} is a ${author.title} at The Noser.`
+        }
+        
 
         staffWrapper.appendChild(staffImageWrapper);
         staffWrapper.appendChild(textWrapper);

@@ -21,6 +21,7 @@ function getIssue(req, res){
         }
         else {
             console.log(data);
+            let realIssueNumber = data.number;
             var findLeadArticle = function getLeadArticle(entry) {
                 return new Promise((resolve, reject) => {
                     Article.findById(entry.leadStory, (err, data) => {
@@ -83,7 +84,7 @@ function getIssue(req, res){
                         featuredBlurb: leadArticle.teaser,
                         featuredLink: `/article/${leadArticle.articleid}`,
                         issueArticles: articles,
-                        issueNum: leadArticle.issueid,
+                        issueNum: realIssueNumber,
                         issueDate: date,
                         isNonTopical: true,
                         lastArchiveLink: `/archive/${year}`
