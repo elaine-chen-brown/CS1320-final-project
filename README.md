@@ -42,6 +42,7 @@
 - put default image for search results and removed popular searches header
 - still need to remove column maybe??
 - change keyword search to use full text search so entire phrase doesnt have to match
+- infinite scroll keyword search results
 
 #### 4/12 styling fixes
 - Make search box vertically centered

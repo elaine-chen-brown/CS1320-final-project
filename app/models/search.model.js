@@ -7,8 +7,8 @@ const Search = function(search) {
 
 
 // search by keyword
-Search.findByKeyword = (keyword, result) => {
-  sql.query("SELECT articleid, headline, teaser, photoFilename FROM articles WHERE MATCH(headline, body) against (?)", keyword, (err, res) => {
+Search.findByKeyword = (keyword, offset, result) => {
+  sql.query("SELECT articleid, headline, teaser, photoFilename FROM articles WHERE MATCH(headline, body) against (?) LIMIT ?,15", [keyword, offset], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

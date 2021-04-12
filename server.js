@@ -66,6 +66,7 @@ app.get('/topical/:year', issueHandler.getTopicalYear)
 app.get('/loadNew/:featuredId/:offset', homeHandler.loadArticles);
 app.get('/loadCategoryArticles/:categoryId/:offset', categoryHandler.loadArticles);
 app.get('/loadAboutAuthors/:offset', aboutHandler.loadAuthors);
+app.get('/loadSearchArticles/:keyword/:offset', searchHandler.loadArticles);
 
 // CMS endpoints
 app.get('/admin/login', loginHandler.getLogin)

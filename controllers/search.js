@@ -27,7 +27,7 @@ function getSearch(req, res){
     }
     var getSearchResults = function getSearchResults() {
         return new Promise((resolve, reject) => {
-            Search.findByKeyword(searchTerm, (err, data) => {
+            Search.findByKeyword(searchTerm, 0, (err, data) => {
                 if (err) {
                     if (err.kind == 'not_found') {
                         reject("Not found");
@@ -79,6 +79,7 @@ function getSearch(req, res){
             }
             let articlesExist = (searchResults.length == 0) ? false : true;
             let authorsExist = (authorResults.length == 0) ? false: true;
+            let linkSearchTerm = (searchTerm.split(" ")).join("+");
             res.render('search', {
                 title: 'Search', 
                 searchTerm: resultPhrase,
@@ -86,6 +87,7 @@ function getSearch(req, res){
                 articlesExist: articlesExist,
                 searchResults: searchResults,
                 authorResults: authorResults,
+                keyword: linkSearchTerm
             });
             // }).catch(error => {
             //     console.log(error);
@@ -110,7 +112,32 @@ function getSearch(req, res){
     // })
 }
 
+function loadArticles(request, response) {
+    var nextArticles = function getNextArticles(keyword, offset) {
+        return new Promise((resolve, reject) => {
+            // spaces removed to pass through in link
+            let keywordWithSpaces = (keyword.split("+").join(" "));
+            Search.findByKeyword(keywordWithSpaces, offset, (err, data) => {
+                console.log(offset);
+                if (err) {
+                    if (err.kind === "not_found") {
+                        resolve([]);
+                    } else {
+                        reject("Error retrieving next articles");
+                    }
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+    nextArticles(request.params.keyword, parseInt(request.params.offset)).then(articles => {
+        response.send(articles);
+    })
+}
 
 module.exports = {
-    getSearch
+    getSearch,
+    loadArticles
 };
