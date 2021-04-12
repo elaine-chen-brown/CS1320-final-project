@@ -74,7 +74,7 @@
                 <div class="list-article-wrapper">
                     <div class="list-article">
                         <div class="list-image-wrapper">
-                            <img src={{ articleImage }} alt="article picture" class="list-image">
+                            <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
                         </div>
                         <div class="list-text-wrapper">
                             <div class="list-title bold hover">{{ articleTitle }}</div>
@@ -93,14 +93,14 @@
     </div>
 
     <!--Side Bar-->
-    <div class="sidebar-wrapper">
+    {{!-- <div class="sidebar-wrapper">
         <div class="smaller-sidebar-title popular-title">POPULAR SEARCHES</div>
         <ul class="popular-searches">
             {{#popularSearches}}
             <div><a href={{ searchLink }} class="unstyled-link" style="font-size:20px">{{ searchTerm }}</a></div>
             {{/popularSearches}}
         </ul>
-    </div>
+    </div> --}}
 
 </div>
 
