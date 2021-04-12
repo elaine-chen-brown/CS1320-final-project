@@ -51,6 +51,7 @@
         <div class="list-articles-wrapper">
             <p class="search-term-description brown" style="font-size:30px;margin-left:30px;">{{ searchTerm }}</p>
             
+            {{#if authorsExist}}
             {{#authorResults}}
             <!--One Author-->
             <a href={{authorLink}} style="text-decoration:none;color:black;">
@@ -64,8 +65,9 @@
             </a>
             <!---->
             {{/authorResults}}
+            {{/if}}
             
-            {{#if found}}
+            {{#if articlesExist}}
                 {{#searchResults}}
                 <!--One article-->
                 <a href={{ articleLink }} style="text-decoration:none;color:black">

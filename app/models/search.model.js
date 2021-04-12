@@ -13,13 +13,9 @@ Search.findByKeyword = (keyword, result) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
-      return;
     }
-    if (res.length) {
-      result(null, res);
-      return;
-    }
-    result({kind: "not_found"}, null);
+    //return empty rather than erroring
+    result(null, res);
   });
 };
 
@@ -32,11 +28,13 @@ Search.findByAuthor = (authorName, result) => {
       result(err, null);
       return;
     }
-    if (res.length) {
-      result(null, res);
-      return;
-    }
-    result({kind: "not_found"}, null);
+    // if (res.length) {
+    //   result(null, res);
+    //   return;
+    // }
+    // result({kind: "not_found"}, null);
+    // return empty rather than error
+    result(null, res);
   });
 };
 

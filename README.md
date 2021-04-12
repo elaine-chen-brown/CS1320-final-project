@@ -35,6 +35,11 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/12 search
+- fix null object rendering of author results
+- fix authors not appearing if no articles returned (ie sol kim search)
+- changed queries to return empty rather than error
+
 #### 4/12 styling fixes
 - Make search box vertically centered
 - Get rid of black box around suggested
