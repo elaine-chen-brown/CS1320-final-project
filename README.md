@@ -39,6 +39,9 @@
 - fix null object rendering of author results
 - fix authors not appearing if no articles returned (ie sol kim search)
 - changed queries to return empty rather than error
+- put default image for search results and removed popular searches header
+- still need to remove column maybe??
+- change keyword search to use full text search so entire phrase doesnt have to match
 
 #### 4/12 styling fixes
 - Make search box vertically centered
