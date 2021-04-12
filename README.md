@@ -45,6 +45,7 @@
 - setup to be able to update views count when article is loaded (currently commented out in article.model)
 - fixed authorBios not loading on about page
 - breadcrumbs: took out from about, archive, join us, added to category, mad home clickable from article
+- switch to displaying issue number not issue id
 
 #### 4/10
 - support for topical articles in the archives
