@@ -48,7 +48,7 @@ function getAbout(request, response){
                     staffPhoto: "/images/lover.png",
                     staffName: authorEntry.author,
                     staffRole: authorEntry.title,
-                    staffBlurb: `${first_name} is a ${title} at The Noser. This is a blurb about ${first_name} as an author.`,
+                    staffBlurb: `${first_name} is a ${title} at The Noser.`,
                     authorLink: `/author/${authorEntry.authorid}`
                 }
                 return author_to_add;
