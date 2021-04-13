@@ -2,13 +2,17 @@
 
 const { response } = require("express");
 
-// handle a get request at '/admin/edit' endpoint.
+// handle a get request at '/edit' endpoint.
 function getEdit(request, response){
-  response.render('edit', {
+  if (request.session.loggedin) {
+    response.render('edit', {
     title: 'Edit Articles',
     drafts: drafts
   });
-}
+	} else {
+		response.send('Please login to view this page!');
+	}
+};
 
 // TODO: Replace with values gotten from database queries
 drafts = [

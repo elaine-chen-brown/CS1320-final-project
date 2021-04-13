@@ -35,6 +35,17 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/13
+- login
+    - works for dashboard and edit pages (protected if not logged in)
+    - login with right username (test) and password (test) directs to dashboard
+- to use
+    - edit database with commands at top of sql file (reloading with the file should also work but I haven't tried it yet, so might be best not to break anything)
+- to do still:
+    - handle logout
+    - protect other author portal pages (write_new, publish_issue, publish_topical)
+
+
 #### 4/12 search + error handling
 - fix null object rendering of author results
 - fix authors not appearing if no articles returned (ie sol kim search)
@@ -94,7 +105,7 @@
     - edit.js
         - Replace static values with values gotten from database queries
     - login.js
-        - Handle login
+        - Handle login v
 
 #### 04/08 
 - added login, dashboard, and edit pages
