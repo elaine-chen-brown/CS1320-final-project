@@ -43,7 +43,7 @@
 - still need to remove column maybe??
 - change keyword search to use full text search so entire phrase doesnt have to match
 - infinite scroll keyword search results
-- handle unfound article, author, category
+- handle unfound article, author, category, archive year
 
 #### 4/12 styling fixes
 - Make search box vertically centered

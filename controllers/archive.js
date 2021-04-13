@@ -81,6 +81,16 @@ function getArchive(request, response){
                 archiveList2: archiveList2,
                 year: request.params.year
             });
+        }).catch(error => {
+            if (error.kind === "not_found") {
+                response.status(404).send({
+                    message: `Not found Archive year ${request.params.year}.`
+                });
+            } else {
+                response.status(500).send({
+                    message: "Error retrieving archive year " + request.params.year
+                });
+            }
         })
         
     })
