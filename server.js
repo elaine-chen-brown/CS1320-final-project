@@ -4,6 +4,10 @@ const fileupload = require('express-fileupload')
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
+const session = require('express-session')
+
+// import database connection
+const sql = require('./app/models/db.js');
 
 // import handlers
 const homeHandler = require('./controllers/home.js');
@@ -67,10 +71,38 @@ app.get('/loadCategoryArticles/:categoryId/:offset', categoryHandler.loadArticle
 app.get('/loadAboutAuthors/:offset', aboutHandler.loadAuthors);
 app.get('/loadSearchArticles/:keyword/:offset', searchHandler.loadArticles);
 
+// Login Handling
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
+app.get('/login', loginHandler.getLogin)
+
+app.post('/auth', function(request, response) {
+	var username = request.body.username;
+	var password = request.body.password;
+	if (username && password) {
+		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+			if (results.length > 0) {
+				request.session.loggedin = true;
+				request.session.username = username;
+				response.redirect('/dashboard');
+			} else {
+                response.send('Incorrect Username and/or Password!');
+			}			
+			response.end();
+		});
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
+});
+
 // CMS endpoints
-app.get('/admin/login', loginHandler.getLogin)
-app.get('/admin/dashboard', dashboardHandler.getDashboard);
-app.get('/admin/edit', editHandler.getEdit);
+app.get('/dashboard', dashboardHandler.getDashboard);
+app.get('/edit', editHandler.getEdit);
 
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
@@ -96,6 +128,7 @@ app.post('/saveImage', async (req, res) => {
         });
     }
 });
+
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));
