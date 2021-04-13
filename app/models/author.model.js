@@ -40,23 +40,23 @@ Author.getAllActive = (result) => {
 }
 
 Author.findById = (authorId, result) => {
-  sql.query("SELECT * FROM authors WHERE authorid = ?", authorId, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(err, null);
-      return;
-    }
-
-    if (res.length) {
-      console.log("found author: ", res[0]);
-      result(null, res[0]);
-      return;
-    }
-
-    // not found Author with the id
-    result({ kind: "not_found" }, null);
-  });
-};
+    sql.query("SELECT * FROM authors WHERE authorid = ?", authorId, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(err, null);
+        return;
+      }
+  
+      if (res.length) {
+        console.log("found author: ", res);
+        result(null, res);
+        return;
+      }
+  
+      // not found Author with the id
+      result({ kind: "not_found" }, null);
+    });
+  };
 
 Author.findArticles = (authorId, result) => {
     sql.query("SELECT * FROM authorassociations WHERE authorid = ?",authorId, (err, res) => {

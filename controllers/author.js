@@ -20,6 +20,7 @@ function findAuthor(req, res) {
       }
       else {
         console.log("found author");
+        data = data[0];
         //res.send(data);
         // fill in data for loading author 
         // TODO fix image and socials
