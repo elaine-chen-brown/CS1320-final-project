@@ -54,7 +54,6 @@ app.get('/article', articleHandler.getArticle); // do we need this?
 app.get('/article/:articleId', articleHandler.getArticle);
 app.get('/about', aboutHandler.getAbout);
 app.get('/join', joinHandler.getJoin);
-app.get('/author', authorHandler.getAuthor); 
 app.get('/author/:authorId', authorHandler.findAuthor); //should probably change this to keyword at some point to have better article links
 // app.get('/category', categoryHandler.getCategory); // don't need this anymore I think?
 app.get('/category/:categoryId', categoryHandler.getCategory);

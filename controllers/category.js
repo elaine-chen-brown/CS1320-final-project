@@ -105,6 +105,16 @@ function getCategory(req, res){
                         sportsStyle: sectionStyle[8]
                     })
                 })
+            }).catch(error => {
+                if (error.kind === "not_found") {
+                    res.status(404).send({
+                        message: `Not found Category with id ${req.params.categoryId}.`
+                    });
+                } else {
+                    res.status(500).send({
+                        message: "Error retrieving Category with id " + req.params.categoryId
+                    });
+                }
             })
         }
     })

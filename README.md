@@ -35,7 +35,7 @@
 
 ### Note: feel free to restructure stuff if you want!
 
-#### 4/12 search
+#### 4/12 search + error handling
 - fix null object rendering of author results
 - fix authors not appearing if no articles returned (ie sol kim search)
 - changed queries to return empty rather than error
@@ -43,6 +43,7 @@
 - still need to remove column maybe??
 - change keyword search to use full text search so entire phrase doesnt have to match
 - infinite scroll keyword search results
+- handle unfound article, author, category
 
 #### 4/12 styling fixes
 - Make search box vertically centered
