@@ -22,9 +22,11 @@ Home.findMostViewed = (numToGet, result) => {
     });
 };
 
-// get the featured article from the most recent issue (join with lead story articleid from top issue sorted desc by issue)
+// get the featured article from the most recent issue or the most recent topical article (whichever is newer)
+// inner query gets the articleid of the most recent issue's featured article
+// then combines with topical articles (issueid 0), orders by date and takes top
 Home.findRecentFeatured = (result) => {
-    sql.query("SELECT * FROM articles a INNER JOIN (SELECT leadStory FROM issues GROUP BY issueid ORDER BY issueid DESC LIMIT 1) b ON a.articleid = b.leadStory", (err, res) => {
+    sql.query("SELECT * from articles WHERE issueid=0 OR articleid IN (SELECT articleid FROM articles a INNER JOIN (SELECT leadStory FROM issues GROUP BY issueid ORDER BY issueid DESC LIMIT 1) b ON a.articleid = b.leadStory) ORDER BY publishDate DESC LIMIT 1", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

@@ -35,6 +35,9 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/13 
+- changed sql query so featured article on home page is the recent issue's featured article or the most recent topical article (whichever is newer)
+
 #### 4/13
 - login
     - works for dashboard and edit pages (protected if not logged in)
