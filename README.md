@@ -44,6 +44,8 @@
 - to do still:
     - handle logout
     - protect other author portal pages (write_new, publish_issue, publish_topical)
+    - better security (hash password + salt)
+    - implement forgot password
 
 
 #### 4/12 search + error handling
