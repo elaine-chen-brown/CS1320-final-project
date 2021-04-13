@@ -24,7 +24,7 @@ About.getBlurb = (accountId, result) => {
 };
 
 About.getActiveStaff = (offset, result) => {
-    sql.query("SELECT * FROM authors WHERE isRetired = 1 ORDER BY title, author, authorid LIMIT ?,16", offset, (err, res) => {
+    sql.query("SELECT * FROM authors WHERE isRetired = 0 ORDER BY title, author, authorid LIMIT ?,16", offset, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(err, null);
