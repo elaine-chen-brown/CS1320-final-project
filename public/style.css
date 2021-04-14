@@ -1199,3 +1199,16 @@ body, html{
         font-size: 38px;
     }
 }
+
+.car-container {
+    width:500px;
+}
+
+.issuu {
+    min-width:300px;
+    min-height: 300px;
+    width: 100%;
+}
+.car2 {
+    max-width: 500px;
+}

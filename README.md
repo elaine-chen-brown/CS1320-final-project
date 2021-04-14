@@ -39,7 +39,7 @@
 - author default image changed
 - add background image for about page (I darkened it but it's still a tiny bit busy of a background for the text?)
 - add gif to join us page
-- examples of embeddings on join us page
+- set up sample issuu embedding on issue page and archive page
 
 #### 4/14
 - all pages protected

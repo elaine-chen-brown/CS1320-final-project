@@ -66,19 +66,19 @@ function getArchive(request, response){
             // TODO: not sure what the best way to handle columns is
             let archiveList1 = [];
             let archiveList2 = [];
-            if (archiveList.length > 4){
-                archiveList1 = archiveList.slice(0,4);
-                archiveList2 = archiveList.slice(4,);
-            }
-            else {
-                archiveList1 = archiveList;
-            }
+            // if (archiveList.length > 4){
+            //     archiveList1 = archiveList.slice(0,4);
+            //     archiveList2 = archiveList.slice(4,);
+            // }
+            // else {
+            //     archiveList1 = archiveList;
+            // }
             // let archiveList1 = archiveList;
             response.render('archive', {
                 title: 'Archive',
                 timelineYears: yearsList,
-                archiveList1: archiveList1,
-                archiveList2: archiveList2,
+                archiveList1: archiveList,
+                archiveList2: [],
                 year: request.params.year
             });
         }).catch(error => {
