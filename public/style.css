@@ -587,7 +587,14 @@ body, html{
 /* JOIN US PAGE */
 /* TO DO: Replace this with the actual background photo the Noser wants to use */
 .join-image {
-    background-image: url("images/join.png");
+    background-image: url("/images/paxson-dance.gif");
+    /* background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(/images/about-pic.jpg);*/
+    background-size: cover; 
 }
 
 .join-text {

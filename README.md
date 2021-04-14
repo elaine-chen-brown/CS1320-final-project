@@ -38,6 +38,7 @@
 #### 4/14
 - author default image changed
 - add background image for about page (I darkened it but it's still a tiny bit busy of a background for the text?)
+- add gif to join us page
 
 #### 4/14
 - all pages protected
