@@ -43,9 +43,8 @@
     - works for dashboard and edit pages (protected if not logged in)
     - login with right username (test) and password (test) directs to dashboard
 - to use
-    - edit database with commands at top of sql file (reloading with the file should also work but I haven't tried it yet, so might be best not to break anything)
+    - reload sql file to include login table
 - to do still:
-    - handle logout
     - protect other author portal pages (write_new, publish_issue, publish_topical)
     - better security (hash password + salt)
     - implement forgot password
