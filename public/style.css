@@ -4,6 +4,45 @@ body, html{
   }
 
 /* Fonts */
+/* Their fonts */
+
+/* for banner name and about, archive, and join us headers */
+@font-face {
+    font-family: abril;
+    src: url(fonts/Abril_Display_Regular.otf);
+}
+
+/* for article headlines and staff list author names */
+@font-face {
+    font-family: utopiaa;
+    src: url(fonts/UtopiaStd-Semibold.otf);
+}
+
+/* for article text and basic text */
+@font-face {
+    font-family: adobe;
+    src: url(fonts/AdobeTextPro-Regular.ttf);
+}
+
+/* for category names (in grey) and photo captions */
+@font-face {
+    font-family: franklin;
+    src: url(fonts/Franklin\ Gothic\ Regular.ttf);
+}
+
+/* for author bylines */
+@font-face {
+    font-family: nimbus-bold;
+    src: url(fonts/nimbus-sans-l.bold.otf);
+}
+
+/* for about, archive, and join us buttons */
+@font-face {
+    font-family: nimbus-reg;
+    src: url(fonts/nimbus-sans-l.regular.otf);
+}
+
+/* Our fonts */
 @font-face {
     font-family: road-race;
     src: url(road-race/Road\ Race\ Rough.otf);
@@ -64,7 +103,7 @@ body, html{
 /* Top banner */
 .banner {
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 78% 22%;
     padding-top: 2%;
 }
 
@@ -77,13 +116,15 @@ body, html{
 }
 
 .logo-image {
-    height: 100px;
-    margin-right: 1%;
+    height: 60px;
+    margin-right: 4%;
+    margin-bottom: 2%;
 }
 
 .title-text {
     font-size: 48px;
-    font-family: road-race;
+    font-family: 'abril';
+    /*font-family: road-race;*/
     color: rgb(57,37,32);
 }
 
@@ -99,6 +140,7 @@ body, html{
     font-weight: bold;
     margin: 2%;
     font-size: 16px;
+    font-family: 'nimbus-reg';
 }
 
 .extras-text:hover {
@@ -120,6 +162,10 @@ body, html{
     padding: 2%;
     margin-right: 0;
     width: 235px;
+}
+
+.search-term-description {
+    font-family: 'adobe';
 }
 
 .email {
@@ -187,6 +233,11 @@ body, html{
     text-decoration: none;
 }
 
+.category {
+    font-family: 'franklin';
+    color:rgba(175, 174, 174, 0.7);
+}
+
 /* FOOTER */
 .footer {
     background-color: #3A2B03;
@@ -205,7 +256,8 @@ body, html{
 
 /* HOME PAGE */
 .page-content-wrapper {
-    font-family: pt-serif;
+    /*font-family: pt-serif;*/
+    font-family: 'adobe';
     margin: 2%;
     display: grid;
     grid-template-columns: 75% 25%;
@@ -242,6 +294,7 @@ body, html{
     font-weight: bold;
     color: black;
     line-height: 1;
+    font-family: 'utopiaa';
 }
 
 .featured-category {
@@ -285,6 +338,7 @@ body, html{
     font-size: 18px;
     font-weight: bold;
     line-height: 1.5;
+    font-family: 'utopiaa';
 }
 
 .list-blurb {
@@ -297,6 +351,8 @@ body, html{
 }
 .sidebar-title {
     font-size: 30px;
+    font-family: 'abril';
+    margin-bottom: 2%;
 }
 
 .sidebar-article {
@@ -310,6 +366,11 @@ body, html{
 
 .sidebar-text-wrapper {
     line-height: 1.5;
+    font-family: 'adobe';
+}
+
+.sidebar-blurb {
+    font-family: 'utopiaa';
 }
 
 /* Three Articles Bar */
@@ -406,29 +467,34 @@ body, html{
 
 .article-title {
     font-size: 34px;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    font-family: 'utopiaa';
+    margin-bottom: 1%;
 }
 
 .top-text-wrapper {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1%;
+    /* font-size: 25px; */
+    font-family: 'nimbus-bold';
+    font-size: 22px;
 }
 
 .article-date {
     color: #626262;
-    font-size: 25px;
 }
 
 .article-author {
-    font-size: 25px;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 /* add white-space to make line breaks render */
 .article-text {
-    font-family: 'pt-serif';
-    font-size: 18px;
+    /*font-family: 'pt-serif';
+    font-size: 18px;*/
+    font-family: 'adobe';
+    font-size: 20px;
     line-height: 2;
     white-space: pre-line;
 }
@@ -505,6 +571,7 @@ body, html{
 
 .sub-banner {
     font-size: 40px;
+    font-family: 'abril';
     padding: 2%;
     text-align: center;
     font-weight: bolder;
@@ -529,10 +596,12 @@ body, html{
 .about-text {
     color: white;
     font-family: 'pt-serif';
-    font-size: 24px;
+    /*font-size: 24px;*/
     text-align: center;
     vertical-align: middle;
     padding: 10%;
+    font-family: 'adobe';
+    font-size: 30px;
 }
 
 /* Staff Section */
@@ -541,6 +610,7 @@ body, html{
     color: 392520;
     font-weight: bold;
     margin-left: 1%;
+    font-family: 'abril';
 }
 
 .bottom-wrapper {
@@ -565,11 +635,14 @@ body, html{
 
 .staff-text-wrapper {
     margin-left: 8%;
-    font-family: 'pt-serif';
+    /* font-family: 'pt-serif';*/
+    font-family: 'adobe';
+    padding-top: 4%;
 }
 
 .staff-name {
     font-size: 22px;
+    font-family: 'utopiaa';
     color: #392520;
     font-weight: bolder;
 }
@@ -581,7 +654,8 @@ body, html{
 }
 
 .staff-blurb {
-    font-size: 14px;
+    /*font-size: 14px;*/
+    font-size: 18px;
 }
 
 /* JOIN US PAGE */
