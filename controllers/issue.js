@@ -22,6 +22,8 @@ function getIssue(req, res){
         else {
             console.log(data);
             let realIssueNumber = data.number;
+            let issuuLink = data.issuuLink;
+            let hasIssuu = (data.issuuLink) ? true : false;
             var findLeadArticle = function getLeadArticle(entry) {
                 return new Promise((resolve, reject) => {
                     Article.findById(entry.leadStory, (err, data) => {
@@ -87,7 +89,9 @@ function getIssue(req, res){
                         issueNum: realIssueNumber,
                         issueDate: date,
                         isNonTopical: true,
-                        lastArchiveLink: `/archive/${year}`
+                        lastArchiveLink: `/archive/${year}`,
+                        hasIssuu: hasIssuu,
+                        issuuLink: issuuLink
                       });
                 })
             })

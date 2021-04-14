@@ -112,8 +112,10 @@
         <div class="smaller-sidebar-title popular-title"> Topical Articles From Year {{year}} </div>
         {{/if}}
         <br>
+        {{#if hasIssuu}}
         <div class="smaller-sidebar-title popular-title"> View Print Version </div>
-        <iframe class="issuu" src="https://issuu.com/thebrownnoser/docs/april_2018_noser" title="Issuu preview" ></iframe>
+        <iframe class="issuu" src={{issuuLink}} title="Issuu preview" ></iframe>
+        {{/if}}
     </div>
 
 </div>

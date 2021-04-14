@@ -43,6 +43,9 @@
 #### 4/14
 - changed to their fonts and new logo
 - password saved as hash value
+- added some issuu links to database in issues table
+- scroll of issuu previews on archive page
+- individual issuu preview on issue page (they start in 2018ish and I still havent put all of the older ones in)
 
 #### 4/14
 - author default image changed

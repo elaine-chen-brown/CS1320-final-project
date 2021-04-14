@@ -8,7 +8,7 @@ const Issue = function(issue) {
 
 // get the featured article id from a given issue number
 Issue.findFeaturedArticleId = (issueId, result) => {
-    sql.query("SELECT leadStory,number FROM issues WHERE issueid = ?", issueId, (err, res) => {
+    sql.query("SELECT leadStory,number, issuuLink FROM issues WHERE issueid = ?", issueId, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -48,6 +48,16 @@ Issue.getLatest = (result) => {
 
 Issue.findTopicalForYear = (year, result) => {
     sql.query("SELECT * FROM articles WHERE issueid = 0 AND from_unixtime(publishDate, '%Y')=? ORDER BY publishDate", year, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+        }
+        result(null,res);
+    });
+}
+
+Issue.findIssuuLink = (issueId, result) => {
+    sql.query("SELECT * FROM issues WHERE ", year, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

@@ -22,8 +22,9 @@ Archive.findYears = (result) => {
     });
 };
 
+// get the issueids, dates, and preview links from all the issues from one year
 Archive.findYearIssues = (year, result) => {
-    sql.query("SELECT DISTINCT issueid, publishDate FROM articles WHERE from_unixtime(publishDate, '%Y')=? ORDER BY publishDate", year, (err, res) => {
+    sql.query("SELECT DISTINCT a.issueid, a.publishDate, b.issuuLink FROM articles a INNER JOIN issues b ON a.issueid = b.issueid WHERE from_unixtime(a.publishDate, '%Y')=? ORDER BY a.publishDate", year, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);

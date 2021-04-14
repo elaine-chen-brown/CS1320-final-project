@@ -73,18 +73,24 @@
                 </ul>
             </div>
             <div class="archive-image-wrapper">
+                {{#if hasIssuu}}
                 <div class="car2">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <iframe src="https://issuu.com/thebrownnoser/docs/april_2018_noser" title="Issuu preview" width="500" height="375"></iframe>
+                    <iframe src={{firstIssuu}} title="Issuu Preview" width="500" height="375"></iframe>
                     </div>
+                    {{#issuesWithLinks}}
                     <div class="carousel-item">
+                    <iframe src={{issuuLink}} title="Issuu preview" width="500" height="375"></iframe>
+                    </div>
+                    {{/issuesWithLinks}}
+                    {{!-- <div class="carousel-item">
                     <img class="d-block w-100" src="/images/red.png" alt="Second slide">
                     </div>
                     <div class="carousel-item">
                     <iframe src="https://issuu.com/thebrownnoser/docs/april_2018_noser" title="Issuu preview" width="500" height="375"></iframe>
-                    </div>
+                    </div> --}}
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -94,9 +100,10 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
-            </div>
-            </div>
-            </div>
+                </div>
+                </div>
+                </div>
+                {{/if}}
         </div>
     </div>
 </div>
