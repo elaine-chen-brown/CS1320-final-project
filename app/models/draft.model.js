@@ -177,11 +177,11 @@ Draft.publish = (articleid, issueid, date, result) => {
             //insert general info into articles and delete
             //https://stackoverflow.com/questions/1612267/move-sql-data-from-one-table-to-another 
             // Don't actually need to insert articleid
-            let queryBody = `BEGIN TRANSACTION;
-            INSERT INTO articles (headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption)
-            SELECT (headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption)
-            FROM drafts WHERE articleid = ?;
-            DELETE FROM drafts WHERE articleid = ?;
+            let queryBody = `START TRANSACTION; 
+            INSERT INTO articles (headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption) 
+            SELECT headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption
+            FROM drafts WHERE articleid = ?; 
+            DELETE FROM drafts WHERE articleid = ?; 
             COMMIT;`;
             sql.query(queryBody, [articleid, articleid], (err, res) => {
                 if (err) {

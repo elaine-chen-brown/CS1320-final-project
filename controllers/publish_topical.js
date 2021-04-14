@@ -42,7 +42,7 @@ function display(req, res) {
         res.render('publish_topical', {
             title: 'Publish',
             message: '',
-            articles: drafts,
+            drafts: drafts,
             canPublish: true
         });
     }).catch(error => {
@@ -52,7 +52,11 @@ function display(req, res) {
 
 
 function publishTopical(req, res) {
-    //var drafts = req.body.draft;
+    var drafts = req.body.draft;
+    if (typeof drafts == 'string') {
+        drafts = [parseInt(drafts)];
+    }
+    //console.log(drafts);
     var publish = function publish(articleid, issueid, date) {
         return new Promise((resolve, reject) => {
             Draft.publish(articleid, issueid, date, (err, data) => {
@@ -69,6 +73,7 @@ function publishTopical(req, res) {
     var date = new Date().getTime();
     var issueid = 0;
     drafts.forEach(articleid => {
+        articleid = parseInt(articleid);
         publish(articleid, issueid, date).then(success => {
             res.render('publish_topical', {
                 title: 'Publish',

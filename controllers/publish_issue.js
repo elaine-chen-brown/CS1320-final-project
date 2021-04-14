@@ -3,32 +3,32 @@ const Draft = require("../app/models/draft.model.js");
 const { response } = require("express");
 const Issue = require("../app/models/issue.model.js");
 
-var getIssue = function getIssue(req, res) {
-    return new Promise((resolve, reject) => {
-        Draft.getIssue((err, data) => {
-            if (err) {
-                if (err.kind === "no_drafts") {
-                    res.render('publish_issue', {
-                        title: 'Publish', 
-                        message: 'No drafts',
-                        canPublish: false
-                    });
-                }
-                else {
-                    console.log(err);
-                    reject("unable to retrieve drafts");
-                }
-            }
-            else {
-                resolve(data);
-            }
-        })
-    })
-}
-
 //display the page, with list of unpublished articles
 function display(req, res) {
     
+    var getIssue = function getIssue() {
+        return new Promise((resolve, reject) => {
+            Draft.getIssue((err, data) => {
+                if (err) {
+                    if (err.kind === "no_drafts") {
+                        res.render('publish_issue', {
+                            title: 'Publish', 
+                            message: 'No drafts',
+                            canPublish: false
+                        });
+                    }
+                    else {
+                        console.log(err);
+                        reject("unable to retrieve drafts");
+                    }
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+
     var buildList = function buildList(result) {
         draft_to_add = {
             articleid: result.articleid,
@@ -54,6 +54,20 @@ function display(req, res) {
 //push all articles to db, remove from drafts
 function publishIssue(req, res) {
     var leadid = req.body.featured;
+
+    var getIssue = function getIssue(req, res) {
+        return new Promise((resolve, reject) => {
+            Draft.getIssue((err, data) => {
+                if (err) {
+                    console.log(err);
+                    reject("unable to retrieve drafts");
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
 
     var getIssueNum = function getIssueNum() {
         return new Promise((resolve, reject) => {
