@@ -70,7 +70,7 @@ function publishTopical(req, res) {
         })
     }
 
-    var date = new Date().getTime();
+    var date = Math.round(new Date().getTime() / 1000);
     var issueid = 0;
     drafts.forEach(articleid => {
         articleid = parseInt(articleid);
@@ -78,6 +78,11 @@ function publishTopical(req, res) {
             res.render('publish_topical', {
                 title: 'Publish',
                 message: 'Article(s) published successfully!',
+            })
+        }).catch(error => {
+            res.render('publish_topical', {
+                title: 'Publish',
+                message: 'Error publishing articles'
             })
         })
     })

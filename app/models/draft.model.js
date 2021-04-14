@@ -1,5 +1,6 @@
 const sql = require("./db.js");
 const fs = require('fs');
+const { Console } = require("console");
 
 const Draft = function(article) {
     this.articleid = article.articleid;
@@ -167,29 +168,78 @@ Draft.getIssue = (result) => {
 }
 
 Draft.publish = (articleid, issueid, date, result) => {
-    console.log(articleid);
     sql.query("SELECT * FROM drafts WHERE articleid = ?", articleid, (err, res) => {
         if (err) {
             console.log(err);
+            result(err, null);
             return;
         }
         if (res.length) {
             //insert general info into articles and delete
             //https://stackoverflow.com/questions/1612267/move-sql-data-from-one-table-to-another 
-            // Don't actually need to insert articleid
-            let queryBody = `START TRANSACTION; 
-            INSERT INTO articles (headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption) 
-            SELECT headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption
-            FROM drafts WHERE articleid = ?; 
-            DELETE FROM drafts WHERE articleid = ?; 
-            COMMIT;`;
+            let queryBody = "INSERT INTO articles (headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption) SELECT headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption FROM drafts WHERE articleid = ?"
             sql.query(queryBody, [articleid, articleid], (err, res) => {
                 if (err) {
                     console.log(err);
+                    result(err, null);
                     return;
                 }
                 else {
-                    sql.query("INSERT INTO articles (accountid, issueid, inputType, publishDate) VALUES (?, ?, ?, ?) WHERE articleid = MAX(articleid)", [3, issueid, 'html', date], (err, data) => {
+                    console.log("Successfully inserted");
+                    sql.query("SELECT MAX(articleid) AS newid FROM articles", (err, res2) => {
+                        if (err) {
+                            console.log(err);
+                            result(err, null);
+                            return;
+                        }
+                        else {
+                            newid = JSON.parse(JSON.stringify(res2))[0].newid;
+                            sql.query("UPDATE articles set issueid = ?, inputType = ?, publishDate = ? WHERE articleid = ?", [issueid, 'html', date, newid], (err, data) => {
+                                if (err) {
+                                    console.log(err);
+                                    result(err, null);
+                                    return;
+                                }
+                                else {
+                                    console.log("Successfully updated");
+                                    sql.query("SELECT authorid FROM DRAFTS WHERE articleid = ?", articleid, (err, res3) => {
+                                        if (err) {
+                                            console.log(err);
+                                            result(err, null);
+                                            return;
+                                        }
+                                        else {
+                                            authorid = JSON.parse(JSON.stringify(res3))[0].authorid;
+                                            sql.query("INSERT INTO authorassociations VALUES(?, ?)", [newid, authorid], (err, res) => {
+                                                if (err) {
+                                                    console.log(err);
+                                                    result(err, null);
+                                                    return;
+                                                }
+                                                else {
+                                                    console.log("Successfully inserted into authorassociations");
+                                                    console.log(res);
+                                                    sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
+                                                        if (err) {
+                                                            console.log(err);
+                                                            result(err, null);
+                                                            return;
+                                                        }
+                                                        else {
+                                                            console.log("Successfully deleted from drafts");
+                                                            result(null, 'success');
+                                                        }
+                                                    })
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        }
+
+                    })
+                    /*sql.query("UPDATE articles SET issueid = ?, inputType = 'html', publishDate = ?) WHERE articleid = (SELECT MAX(articleid) FROM articles AS maxid)", [issueid, 'html', date], (err, data) => {
                         if (err) {
                             console.log(err);
                             return;
@@ -223,7 +273,7 @@ Draft.publish = (articleid, issueid, date, result) => {
                                 }
                             })
                         }
-                    })
+                    })*/
                 }
             })
         }
