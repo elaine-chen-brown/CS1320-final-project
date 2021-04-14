@@ -63,10 +63,6 @@
     - login with right username (test) and password (test) directs to dashboard
 - to use
     - reload sql file to include login table
-- to do still:
-    - better security (hash password + salt)
-    - implement forgot password
-
 
 #### 4/12 search + error handling
 - fix null object rendering of author results
