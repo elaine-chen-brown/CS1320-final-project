@@ -35,6 +35,10 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### 4/14
+- all pages protected
+- logout implemented
+
 #### 4/13 
 - changed sql query so featured article on home page is the recent issue's featured article or the most recent topical article (whichever is newer)
 
@@ -45,7 +49,6 @@
 - to use
     - reload sql file to include login table
 - to do still:
-    - protect other author portal pages (write_new, publish_issue, publish_topical)
     - better security (hash password + salt)
     - implement forgot password
 
