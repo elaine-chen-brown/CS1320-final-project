@@ -100,6 +100,11 @@ app.post('/auth', function(request, response) {
 	}
 });
 
+app.post('/logout', function(request, response) {
+	request.session.loggedin = false;
+	response.redirect('/login');
+});
+
 // CMS endpoints
 app.get('/dashboard', dashboardHandler.getDashboard);
 app.get('/edit', editHandler.getEdit);

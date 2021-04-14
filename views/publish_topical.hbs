@@ -1,12 +1,20 @@
 <body>
-    <div class="navigation" role="navigation">
-        <ul class="navlist">
-            <li class="navitem"><a href="/write_new">New article</a></li>
-            <li class="navitem"><a href="#">Edit article</a></li>
-            <li class="navitem"><a href="/publish_issue">Pubish new issue</a></li>
-            <li class="navitem"><a href="#">Publish topical article</a></li>
-            <li class="navitem"><a href="#">Delete article</a></li>
-        </ul>
+    <!--Dashboard Banner-->
+    <div class="dashboard-banner">
+        <div class="dashboard-logo">
+            <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
+            <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+        </div>
+        <div class="dashboard-buttons">
+            <div class="logout-button-wrapper">
+                <form action="logout" method="post">
+                    <input class="logout-button" type="submit" value="Logout">
+               </form>
+            </div>
+            <div class="dashboard-profile">
+                <img src="/images/red.png" alt="profile pic icon" class="dashboard-propic">
+            </div>
+        </div>
     </div>
 
     <div class="main" role="main">
@@ -32,9 +40,10 @@
 
 
 <style>
-    body {
+    .main {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        padding-left: 2%;
     }
 
     .navigation {
@@ -63,10 +72,5 @@
     a {
         text-decoration: none;
         color: white;
-    }
-
-    .main {
-        display: flex;
-        flex-direction: column;
     }
 </style>

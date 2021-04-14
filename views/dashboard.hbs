@@ -6,7 +6,10 @@
     </div>
     <div class="dashboard-buttons">
         <div class="logout-button-wrapper">
-            <button class="logout-button" onclick="logout()">Logout</button>
+            <!--<button class="logout-button" type="submit">Logout</button>-->
+            <form action="logout" method="post">
+                <input class="logout-button" type="submit" value="Logout">
+            </form>
         </div>
         <div class="dashboard-profile">
             <img src="/images/red.png" alt="profile pic icon" class="dashboard-propic">
@@ -50,7 +53,5 @@
 <script>
     function logout () {
         alert("hiiii")
-        localStorage.removeItem('token')
-        localStorage.removeItem('user')
     }
 </script>

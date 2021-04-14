@@ -57,13 +57,6 @@ body, html{
 
 /* HEADER */
 .header {
-    /* styling for if we want fixed top banner */
-    /*
-    position:fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    */
     background-color: white;
     font-family: pt-serif;
 }
@@ -1050,7 +1043,7 @@ body, html{
 .dashboard-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .logout-button-wrapper {
