@@ -35,8 +35,14 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### To use login
+- Reload editnoser.sql file
+- username: thenoser
+- password: thebrowndailynoser19
+
 #### 4/14
 - changed to their fonts and new logo
+- password saved as hash value
 
 #### 4/14
 - author default image changed
