@@ -219,7 +219,8 @@ Draft.publish = (articleid, issueid, date, result) => {
                                                 else {
                                                     console.log("Successfully inserted into authorassociations");
                                                     console.log(res);
-                                                    sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
+                                                    result(null, res);
+                                                    /*sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
                                                         if (err) {
                                                             console.log(err);
                                                             result(err, null);
@@ -229,7 +230,7 @@ Draft.publish = (articleid, issueid, date, result) => {
                                                             console.log("Successfully deleted from drafts");
                                                             result(null, 'success');
                                                         }
-                                                    })
+                                                    })*/
                                                 }
                                             })
                                         }
@@ -237,43 +238,7 @@ Draft.publish = (articleid, issueid, date, result) => {
                                 }
                             })
                         }
-
                     })
-                    /*sql.query("UPDATE articles SET issueid = ?, inputType = 'html', publishDate = ?) WHERE articleid = (SELECT MAX(articleid) FROM articles AS maxid)", [issueid, 'html', date], (err, data) => {
-                        if (err) {
-                            console.log(err);
-                            return;
-                        }
-                        else {
-                            console.log("Successfully inserted");
-
-                            //insert info into authorassociations
-                            sql.query("SELECT authorid FROM drafts WHERE articleid = ?", articleid, (err, res) => {
-                                if (err) {
-                                    console.log(err);
-                                    return;
-                                }
-                                if (res.length) {
-                                    sql.query("SELECT MAX(articleid) FROM articles"), (err, res2) => {
-                                        if (err) {
-                                            console.log(err);
-                                            return;
-                                        }
-                                        else {
-                                            sql.query("INSERT INTO authorassociations VALUES (?, ?)", [res2.articleid, res.authorid], (err, res) => {
-                                                if (err) {
-                                                    console.log(err);
-                                                }
-                                                else {
-                                                    console.log("Successfully inserted into authorassociations");
-                                                }
-                                            })
-                                        }
-                                    }    
-                                }
-                            })
-                        }
-                    })*/
                 }
             })
         }
@@ -282,6 +247,7 @@ Draft.publish = (articleid, issueid, date, result) => {
 
 //so that it's only called once for an issue
 Draft.newIssue = (issueid, date, leadid, result) => {
+    console.log(issueid);
     var number = issueid - 42; //might need to change this
     sql.query("INSERT INTO issues VALUES (?, 3, ?, ?, ?)", [issueid, number, date, leadid], (err, res) => {
         if (err) {

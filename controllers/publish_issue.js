@@ -108,32 +108,42 @@ function publishIssue(req, res) {
         })
     }
 
+    var publishAll = function publishAll(drafts, issueid, date) {
+        return new Promise((resolve, reject) => {
+            drafts.forEach(draft => {
+                articleid = draft.articleid;
+                //console.log(articleid);
+                //console.log(draft.body);
+                publish(articleid, issueid, date).then(success => {
+                    console.log("article published");
+                    return;
+                }).catch(error => {
+                    console.log(error);
+                    reject("unable to publish article");
+                })
+            })
+            console.log("published all");
+            resolve('success');
+        })   
+    }
+
     getIssueNum().then(result => {
         result = JSON.parse(JSON.stringify(result))[0];
         var issueid = parseInt(result.latestid) + 1;
-        var date = new Date().getTime();
-        console.log(leadid);
+        var date = Math.round(new Date().getTime() / 1000);
 
         getIssue().then(drafts => {
-            drafts.forEach(draft => {
-                articleid = draft.articleid;
-                /*
-                publish(articleid, issueid, date).then(success => {
+            /*publishAll(drafts, issueid, date).then(success => {
+                //console.log("published all");
+                console.log(issueid);
+                console.log(leadid);
+                pushIssue(issueid, leadid, date).then(success => {
                     res.render('publish_issue', {
                         title: 'Publish',
-                        message: 'Article successfully published!'
+                        message: 'Issue successfully published!'
                     })
-                }) //catch
-                */
-            });
-            /*
-            pushIssue(issueid, leadid, date).then(success => {
-                res.render('publish_issue', {
-                    title: 'Publish',
-                    message: 'Issue successfully published!'
                 })
-            }) //catch
-            */
+            })*/
         })
     }) //catch
 }
