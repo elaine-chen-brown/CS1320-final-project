@@ -44,11 +44,13 @@ function getAbout(request, response){
             var buildAuthor = function buildAuthor(authorEntry){
                 let first_name = (authorEntry.author).split(" ")[0];
                 let title = authorEntry.title.toLowerCase();
+                let staffPhoto = (authorEntry.authorImage) ? authorEntry.authorImage : "/images/author-default.png";
+                let staffBlurb = (authorEntry.authorBio) ? authorEntry.authorBio : `${first_name} is a ${title} at The Noser.`;
                 author_to_add = {
-                    staffPhoto: "/images/lover.png",
+                    staffPhoto: staffPhoto,
                     staffName: authorEntry.author,
                     staffRole: authorEntry.title,
-                    staffBlurb: `${first_name} is a ${title} at The Noser.`,
+                    staffBlurb: staffBlurb,
                     authorLink: `/author/${authorEntry.authorid}`
                 }
                 return author_to_add;

@@ -36,6 +36,9 @@
 ### Note: feel free to restructure stuff if you want!
 
 #### 4/14
+- author default image changed
+
+#### 4/14
 - all pages protected
 - logout implemented
 
