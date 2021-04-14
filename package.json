@@ -18,6 +18,7 @@
   "homepage": "https://github.com/elaine-chen-brown/CS1320-final-project#readme",
   "dependencies": {
     "cookie-parser": "^1.4.5",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-generator": "^4.16.0",

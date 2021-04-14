@@ -35,6 +35,15 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### To use login
+- Reload editnoser.sql file
+- username: thenoser
+- password: thebrowndailynoser19
+
+#### 4/14
+- changed to their fonts and new logo
+- password saved as hash value
+
 #### 4/14
 - author default image changed
 - add background image for about page (I darkened it but it's still a tiny bit busy of a background for the text?)
@@ -54,10 +63,6 @@
     - login with right username (test) and password (test) directs to dashboard
 - to use
     - reload sql file to include login table
-- to do still:
-    - better security (hash password + salt)
-    - implement forgot password
-
 
 #### 4/12 search + error handling
 - fix null object rendering of author results
