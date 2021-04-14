@@ -517,7 +517,13 @@ body, html{
 
 /* TO DO: Replace this with the actual background photo the Noser wants to use */
 .about-image {
-    background-image: url("images/red.png");
+    background-image: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url(/images/about-pic.jpg);
+    background-size: cover;
 }
 
 .about-text {
