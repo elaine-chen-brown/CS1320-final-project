@@ -686,8 +686,9 @@ body, html{
 .author-banner {
     font-size: 40px;
     padding: 2%;
-    font-family: 'pt-serif';
-    font-weight: bold;
+    /*font-family: 'pt-serif';
+    font-weight: bold;*/
+    font-family: 'abril';
     margin-left: 4%;
 }
 
