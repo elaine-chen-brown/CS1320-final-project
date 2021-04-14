@@ -36,6 +36,9 @@
 ### Note: feel free to restructure stuff if you want!
 
 #### 4/14
+- changed to their fonts and new logo
+
+#### 4/14
 - author default image changed
 - add background image for about page (I darkened it but it's still a tiny bit busy of a background for the text?)
 - add gif to join us page
