@@ -5,7 +5,7 @@ const Issue = require("../app/models/issue.model.js");
 
 //display the page, with list of unpublished articles
 function display(req, res) {
-    //if (req.session.loggedin) {
+    if (req.session.loggedin) {
         var getIssue = function getIssue() {
             return new Promise((resolve, reject) => {
                 Draft.getIssue((err, data) => {
@@ -49,14 +49,14 @@ function display(req, res) {
         }).catch(error => {
             console.log(error);
         })
-    // } else {
-	// 	res.send('Please login to view this page!');
-	// }
+    } else {
+		res.send('Please login to view this page!');
+	}
 }
 
 //push all articles to db, remove from drafts
 function publishIssue(req, res) {
-    //if (req.session.loggedin) {
+    if (req.session.loggedin) {
         var leadid = parseInt(req.body.featured);
 
         var getIssue = function getIssue(req, res) {
@@ -161,9 +161,9 @@ function publishIssue(req, res) {
         }).catch (error => {
             console.log(error);
         })
-    // } else {
-	// 	res.send('Please login to view this page!');
-	// }
+    } else {
+		res.send('Please login to view this page!');
+	}
 }
 
 module.exports = {
