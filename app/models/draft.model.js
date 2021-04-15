@@ -47,20 +47,20 @@ Draft.save = (articleInfo, result) => {
                 return;
             }
             else {
-                if (!res) {
+                let parsedRes = JSON.parse(JSON.stringify(res))[0];
+                if (parseInt(parsedRes.photoId) == 0) {
                     console.log("res from drafts");
-                    const result = JSON.parse(JSON.stringify(res))[0];
-                    photoUploadId = parseInt(result.photoId) + 1;
+                    photoUploadId = parseInt(parsedRes.photoId) + 1;
                     var newPhotoName = photoUploadId + "." + extension;
-                    var oldPath = '../../public/images/drafts/' + photoName;
-                    var newPath = '../../public/images/drafts/' + newPhotoName;
+                    var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
+                    var newPath = __dirname + '/../../public/images/drafts/' + newPhotoName;
                     fs.rename(oldPath, newPath, function(err) {
                         if (err) {
                             console.log(err);
                             return;
                         }
                         else {
-                            console.log("Successfully renamed photo");
+                            console.log("Successfully renamed photo to ", newPhotoName);
                             photoName = newPhotoName;
                             sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoFilename, photoCaption) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoName, photoCaption], (err, res) => {
                                 if (err) {
@@ -86,8 +86,8 @@ Draft.save = (articleInfo, result) => {
                         }
                         else {
                             console.log("res from articles");
-                            const result = JSON.parse(JSON.stringify(res))[0];
-                            photoUploadId = parseInt(result.photoId) + 1;
+                            let photoRes = JSON.parse(JSON.stringify(res))[0];
+                            photoUploadId = parseInt(photoRes.photoId) + 1;
                             var newPhotoName = photoUploadId + "." + extension;
                             var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
                             var newPath = __dirname + '/../../public/images/drafts/' + newPhotoName;
@@ -97,7 +97,7 @@ Draft.save = (articleInfo, result) => {
                                     return;
                                 }
                                 else {
-                                    console.log("Successfully renamed photo");
+                                    console.log("Successfully renamed photo to ", newPhotoName);
                                     photoName = newPhotoName;
                                     sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoFilename, photoCaption) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoName, photoCaption], (err, res) => {
                                         if (err) {
@@ -185,23 +185,35 @@ Draft.publish = (articleid, issueid, date, result) => {
                     return;
                 }
                 else {
-                    console.log("Successfully inserted");
-                    sql.query("SELECT MAX(articleid) AS newid FROM articles", (err, res2) => {
+                    //console.log("Successfully inserted");
+                    //console.log(res);
+                    var newid = res.insertId;
+
+                    sql.query("SELECT photoFilename AS photoName FROM drafts WHERE articleid = ?", articleid, (err, res) => {
                         if (err) {
                             console.log(err);
                             result(err, null);
                             return;
                         }
-                        else {
-                            newid = JSON.parse(JSON.stringify(res2))[0].newid;
-                            sql.query("UPDATE articles set issueid = ?, inputType = ?, publishDate = ? WHERE articleid = ?", [issueid, 'html', date, newid], (err, data) => {
+                        if (res.length) {
+                            let photoFilename = JSON.parse(JSON.stringify(res))[0].photoName;
+                            var oldPath = __dirname + '/../../public/images/drafts/' + photoFilename;
+                            var newPath = __dirname + '/../../public/images/images/' + photoFilename;
+                            fs.rename(oldPath, newPath, function(err) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                            })
+                        }
+                    })
+                        sql.query("UPDATE articles set issueid = ?, inputType = ?, publishDate = ? WHERE articleid = ?", [issueid, 'html', date, newid], (err, data) => {
                                 if (err) {
                                     console.log(err);
                                     result(err, null);
                                     return;
                                 }
                                 else {
-                                    console.log("Successfully updated");
+                                    //console.log("Successfully updated");
                                     sql.query("SELECT authorid FROM DRAFTS WHERE articleid = ?", articleid, (err, res3) => {
                                         if (err) {
                                             console.log(err);
@@ -217,10 +229,9 @@ Draft.publish = (articleid, issueid, date, result) => {
                                                     return;
                                                 }
                                                 else {
-                                                    console.log("Successfully inserted into authorassociations");
-                                                    console.log(res);
-                                                    result(null, res);
-                                                    /*sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
+                                                    //console.log("Successfully inserted into authorassociations");
+                                                    result(null, newid);
+                                                    sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
                                                         if (err) {
                                                             console.log(err);
                                                             result(err, null);
@@ -230,15 +241,15 @@ Draft.publish = (articleid, issueid, date, result) => {
                                                             console.log("Successfully deleted from drafts");
                                                             result(null, 'success');
                                                         }
-                                                    })*/
+                                                    })
                                                 }
                                             })
                                         }
                                     })
                                 }
                             })
-                        }
-                    })
+                        //}
+                    //})
                 }
             })
         }
@@ -246,59 +257,22 @@ Draft.publish = (articleid, issueid, date, result) => {
 }
 
 //so that it's only called once for an issue
-Draft.newIssue = (issueid, date, leadid, result) => {
-    console.log(issueid);
+Draft.newIssue = (issueid, leadid, date, result) => {
+    //console.log(issueid);
+    //console.log(leadid);
     var number = issueid - 42; //might need to change this
-    sql.query("INSERT INTO issues VALUES (?, 3, ?, ?, ?)", [issueid, number, date, leadid], (err, res) => {
+    console.log(leadid);
+    sql.query("INSERT INTO issues (issueid, accountid, number, publishDate, leadStory) VALUES (?, ?, ?, ?, ?)", [issueid, 3, number, date, leadid], (err, res) => {
         if (err) {
             console.log(err);
+            result(err, null);
+            return;
         }
         else {
             console.log("Successfully inserted new issue");
+            result(null, res);
         }
     })
 }
 
 module.exports = Draft;
-
-
-
-
-/*
-            Old photo stuff keeping for reference
-
-            //generate photoUploadId and corresponding photoFilename
-            var photoUploadId = 0;
-            var newPhotoFilename = "";
-            sql.query("SELECT MAX(photoUploadId) FROM articles", (err, res) => {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    photoUploadId = res.photoUploadId + 1;
-                    newPhotoFilename = photoUploadId.toString() + ".jpg"; //any way for us to check the photo type of original image?
-                }
-            });
-
-            //move photo
-            //https://stackoverflow.com/questions/8579055/how-do-i-move-files-in-node-js
-            sql.query("SELECT photoFilename FROM drafts WHERE articleid = ?", articleid, (err, res) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                if (res.length) {
-                    var oldPath = '/public/images/drafts/' + res.photoFilename;
-                    var newPath = '/public/images/images/' + res.photoFilename;
-                    fs.rename(oldPath, newPath, function(err) {
-                        if (err) {
-                            console.log(err);
-                        }
-                        else {
-                            console.log("Successfully moved");
-                        }
-                    })
-                }
-                //not found error handling
-            })
-            */

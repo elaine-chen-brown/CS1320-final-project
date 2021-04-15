@@ -4,7 +4,7 @@ const { response } = require("express");
 
 //display the page, with list of unpublished articles as well as date picker
 function display(req, res) {
-    if (req.session.loggedin) {
+    //if (req.session.loggedin) {
         var getDrafts = function getDrafts() {
             return new Promise((resolve, reject) => {
                 Draft.getAllTopical((err, data) => {
@@ -48,14 +48,14 @@ function display(req, res) {
         }).catch(error => {
             console.log(error);
         })
-    } else {
-		res.send('Please login to view this page!');
-	}
+    // } else {
+	// 	res.send('Please login to view this page!');
+	// }
 }
 
 
 function publishTopical(req, res) {
-    if (req.session.loggedin) {
+    //if (req.session.loggedin) {
         var drafts = req.body.draft;
         if (typeof drafts == 'string') {
             drafts = [parseInt(drafts)];
@@ -79,10 +79,7 @@ function publishTopical(req, res) {
         drafts.forEach(articleid => {
             articleid = parseInt(articleid);
             publish(articleid, issueid, date).then(success => {
-                res.render('publish_topical', {
-                    title: 'Publish',
-                    message: 'Article(s) published successfully!',
-                })
+                console.log("published article");
             }).catch(error => {
                 res.render('publish_topical', {
                     title: 'Publish',
@@ -90,9 +87,13 @@ function publishTopical(req, res) {
                 })
             })
         })
-    } else {
-		res.send('Please login to view this page!');
-	}
+        res.render('publish_topical', {
+            title: 'Publish',
+            message: 'Article(s) published successfully!',
+        })
+    // } else {
+	// 	res.send('Please login to view this page!');
+	// }
 }
 
 module.exports = {

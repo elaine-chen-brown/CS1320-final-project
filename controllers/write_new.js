@@ -6,7 +6,7 @@ const { response } = require("express");
 const { fileupload } = require("express-fileupload");
 
 function display(req, res) {
-    if (req.session.loggedin) {
+    //if (req.session.loggedin) {
         var getCategories = function getCategories(req, res) {
             return new Promise((resolve, reject) => {
                 //should ideally get account id from req -- do we even need different accounts?
@@ -65,13 +65,13 @@ function display(req, res) {
         }).catch(error => {
             console.log("error fetcing categories");
         })
-    } else {
-		res.send('Please login to view this page!');
-	}
+    // } else {
+	// 	res.send('Please login to view this page!');
+	// }
 }
 
 function handleNew(req, res) {
-    if (req.session.loggedin) {
+    //if (req.session.loggedin) {
         console.log(req.body);
         var saveDraft = function saveDraft() {
             return new Promise((resolve, reject) => {
@@ -96,9 +96,9 @@ function handleNew(req, res) {
                 message: 'Unable to save, please try again.'
             })
         })
-    } else {
-		res.send('Please login to view this page!');
-	} 
+    // } else {
+	// 	res.send('Please login to view this page!');
+	// } 
 }
 
 module.exports = {

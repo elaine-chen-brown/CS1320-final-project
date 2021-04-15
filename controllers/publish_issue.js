@@ -5,7 +5,7 @@ const Issue = require("../app/models/issue.model.js");
 
 //display the page, with list of unpublished articles
 function display(req, res) {
-    if (req.session.loggedin) {
+    //if (req.session.loggedin) {
         var getIssue = function getIssue() {
             return new Promise((resolve, reject) => {
                 Draft.getIssue((err, data) => {
@@ -49,15 +49,15 @@ function display(req, res) {
         }).catch(error => {
             console.log(error);
         })
-    } else {
-		res.send('Please login to view this page!');
-	}
+    // } else {
+	// 	res.send('Please login to view this page!');
+	// }
 }
 
 //push all articles to db, remove from drafts
 function publishIssue(req, res) {
-    if (req.session.loggedin) {
-        var leadid = req.body.featured;
+    //if (req.session.loggedin) {
+        var leadid = parseInt(req.body.featured);
 
         var getIssue = function getIssue(req, res) {
             return new Promise((resolve, reject) => {
@@ -114,20 +114,24 @@ function publishIssue(req, res) {
 
         var publishAll = function publishAll(drafts, issueid, date) {
             return new Promise((resolve, reject) => {
+                var featuredid;
+                let promises = [];
                 drafts.forEach(draft => {
                     articleid = draft.articleid;
-                    //console.log(articleid);
-                    //console.log(draft.body);
-                    publish(articleid, issueid, date).then(success => {
-                        console.log("article published");
-                        return;
-                    }).catch(error => {
-                        console.log(error);
-                        reject("unable to publish article");
-                    })
+                    promises.push(
+                        publish(articleid, issueid, date).then(insertid => {
+                            //console.log("article published");
+                            if (draft.articleid == leadid) {
+                                console.log("insertid: ", insertid)
+                                featuredid = insertid;
+                            }
+                        }).catch(error => {
+                            console.log(error);
+                            reject("unable to publish article");
+                        })
+                    );
                 })
-                console.log("published all");
-                resolve('success');
+                Promise.all(promises).then((result) => resolve(featuredid));
             })   
         }
 
@@ -137,22 +141,29 @@ function publishIssue(req, res) {
             var date = Math.round(new Date().getTime() / 1000);
 
             getIssue().then(drafts => {
-                /*publishAll(drafts, issueid, date).then(success => {
+                publishAll(drafts, issueid, date).then(featuredid => {
                     //console.log("published all");
-                    console.log(issueid);
-                    console.log(leadid);
-                    pushIssue(issueid, leadid, date).then(success => {
+                    console.log("result: ", result);
+                    pushIssue(issueid, featuredid, date).then(success => {
                         res.render('publish_issue', {
                             title: 'Publish',
                             message: 'Issue successfully published!'
                         })
+                    }).catch(error => {
+                        console.log(error);
                     })
-                })*/
+                }).catch(error => {
+                    console.log(error);
+                })
+            }).catch(error => {
+                console.log(error);
             })
-        }) //catch
-    } else {
-		res.send('Please login to view this page!');
-	}
+        }).catch (error => {
+            console.log(error);
+        })
+    // } else {
+	// 	res.send('Please login to view this page!');
+	// }
 }
 
 module.exports = {
