@@ -84,6 +84,7 @@ function getArticle(request, response){
         let categoryLink = `/category/${data.sectionid}`;
         let articleCategoryName = data.section;
         let articleImage = `/images/images/${data.photoFilename}`;
+        let hasPhoto = (data.photoFilename) ? true : false;
         let isHTML = (data.inputType == 'html') ? true : false;
         let shareUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
         // let shareTitle = articleTitle.replace(/ /g, "-");
@@ -133,7 +134,8 @@ function getArticle(request, response){
                         isHTML: isHTML,
                         shareUrl: shareUrl,
                         shareTitle: shareTitle,
-                        socialMetas: socialMetas
+                        socialMetas: socialMetas,
+                        hasPhoto: hasPhoto
                     });
                 }).catch(error => {
                     // author not found
@@ -152,7 +154,8 @@ function getArticle(request, response){
                         isHTML: isHTML,
                         shareUrl: shareUrl,
                         shareTitle: shareTitle,
-                        socialMetas: socialMetas
+                        socialMetas: socialMetas,
+                        hasPhoto: hasPhoto
                     });
                 })    
             })

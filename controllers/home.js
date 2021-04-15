@@ -58,13 +58,15 @@ function getHome(request, response){
         findTopFeatured().then(featuredArticle => {
             findOtherArticles(featuredArticle.articleid).then(otherArticles => {
                 var buildArticle = function buildArticle(articleEntry){
+                    let hasPhoto = (articleEntry.photoFilename) ? true : false;
                     article_to_add = {
                         // articleImage: "/images/list-test.png",
                         articleImage: `/images/images/${articleEntry.photoFilename}`,
                         articleTitle: articleEntry.headline,
                         articleLink: `/article/${articleEntry.articleid}`,
                         articleCategory: articleEntry.section,
-                        articleBlurb: articleEntry.teaser
+                        articleBlurb: articleEntry.teaser,
+                        hasPhoto: hasPhoto
                     }
                     return article_to_add;
                 }

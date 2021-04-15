@@ -56,10 +56,12 @@
                 </div>
             </div>
             <!--Article image-->
+            {{#if hasPhoto}}
             <div class="featured-image-wrapper">
                 <img src={{ articleImage }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
             </div>
             <div class="article-caption"> {{ photoCaption }} </div>
+            {{/if}}
             <!--Article text-->
             <div class="article-text">
                 {{#if isHTML}}

@@ -72,6 +72,7 @@
             <!--One article-->
             <a href={{ articleLink }} style="text-decoration: none;color:black">
             <div class="list-article-wrapper">
+                {{#if hasPhoto}}
                 <div class="list-article">
                     <div class="list-image-wrapper">
                         <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
@@ -81,6 +82,12 @@
                         <div class="list-blurb">{{ articleBlurb }}</div>
                     </div>
                 </div>
+                {{else}}
+                    <div class="list-text-wrapper">
+                        <div class="list-title bold hover"> {{ articleTitle }} </div>
+                        <div class="list-blurb">{{ articleBlurb }}</div>
+                    </div>
+                {{/if}}
                 <div class="read-more-wrapper">
                     <div class="read-more brown">Read more</div>
                 </div>
@@ -186,17 +193,28 @@
         var hr = document.createElement('hr');
 
         outerLink.appendChild(articleWrapper);
-        articleWrapper.appendChild(listArticle);
-        articleWrapper.appendChild(readMore);
-        articleWrapper.appendChild(hr);
+        if (article.photoFilename){
+            articleWrapper.appendChild(listArticle);
+            articleWrapper.appendChild(readMore);
+            articleWrapper.appendChild(hr);
 
-        listArticle.appendChild(imageWrapper);
-        listArticle.appendChild(textWrapper);
+            listArticle.appendChild(imageWrapper);
+            listArticle.appendChild(textWrapper);
 
-        imageWrapper.appendChild(articleImage);
-        textWrapper.appendChild(textTitle);
-        textWrapper.appendChild(textBlurb);
-        readMore.appendChild(moreLink);
+            imageWrapper.appendChild(articleImage);
+            textWrapper.appendChild(textTitle);
+            textWrapper.appendChild(textBlurb);
+            readMore.appendChild(moreLink);
+        } else {
+            // if no image take out image wrapper and put text wrapper directly on article wrapper
+            articleWrapper.appendChild(textWrapper);
+            articleWrapper.appendChild(readMore);
+            articleWrapper.appendChild(hr);
+
+            textWrapper.appendChild(textTitle);
+            textWrapper.appendChild(textBlurb);
+            readMore.appendChild(moreLink);
+        }
         return outerLink; 
         //above makes this structure
         //<a href={{ articleLink }} style="text-decoration: none;color:black">
