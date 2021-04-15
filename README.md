@@ -35,11 +35,23 @@
 
 ### Note: feel free to restructure stuff if you want!
 
+#### To use login
+- Reload editnoser.sql file
+- username: thenoser
+- password: thebrowndailynoser19
+
+#### 4/14
+- changed to their fonts and new logo
+- password saved as hash value
+- added some issuu links to database in issues table
+- scroll of issuu previews on archive page
+- individual issuu preview on issue page (they start in 2018ish and I still havent put all of the older ones in)
+
 #### 4/14
 - author default image changed
 - add background image for about page (I darkened it but it's still a tiny bit busy of a background for the text?)
 - add gif to join us page
-- examples of embeddings on join us page
+- set up sample issuu embedding on issue page and archive page
 
 #### 4/14
 - all pages protected
@@ -54,10 +66,6 @@
     - login with right username (test) and password (test) directs to dashboard
 - to use
     - reload sql file to include login table
-- to do still:
-    - better security (hash password + salt)
-    - implement forgot password
-
 
 #### 4/12 search + error handling
 - fix null object rendering of author results

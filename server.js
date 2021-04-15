@@ -4,7 +4,8 @@ const fileupload = require('express-fileupload')
 const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
-const session = require('express-session')
+const session = require('express-session');
+var crypto = require('crypto');
 
 // import database connection
 const sql = require('./app/models/db.js');
@@ -84,8 +85,9 @@ app.get('/login', loginHandler.getLogin)
 app.post('/auth', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
+	var hashPwd = crypto.createHash('sha1').update(password).digest('hex');
 	if (username && password) {
-		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, hashPwd], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.username = username;
