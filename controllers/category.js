@@ -61,11 +61,14 @@ function getCategory(req, res){
             findArticles(data).then(mainarticles => {
                 findPopularArticles().then(popularArticles => {
                     var buildArticle = function buildArticle(articleEntry){
+                        let hasPhoto = (articleEntry.photoFilename) ? true : false;
                         article_to_add = {
                             articleImage: `/images/images/${articleEntry.photoFilename}`,
                             articleTitle: articleEntry.headline,
                             articleLink: `/article/${articleEntry.articleid}`,
-                            articleCategory: articleEntry.section
+                            articleCategory: articleEntry.section,
+                            articleBlurb: articleEntry.teaser,
+                            hasPhoto: hasPhoto,
                         }
                         return article_to_add;
                     }

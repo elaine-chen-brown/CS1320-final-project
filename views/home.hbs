@@ -107,7 +107,9 @@
         <!--Sidebar article-->
         <a href={{ articleLink }} style="text-decoration:none;color:black">
         <div class="sidebar-article">
+            {{#if hasPhoto}}
             <img src={{ articleImage }} alt="most viewed article picture" class="sidebar-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
+            {{/if}}
             <div class="sidebar-text-wrapper">
                 <div class="sidebar-category category">{{ articleCategory }}</div>
                 <div class="sidebar-blurb bold">{{ articleTitle }}</div>

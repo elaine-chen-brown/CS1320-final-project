@@ -47,6 +47,7 @@
 
 #### 4/15
 - remove default image for articles from article and home pages
+- remove default image for most viewed (home and category) and category page
 
 #### 4/14
 
