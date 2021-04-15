@@ -1,6 +1,7 @@
 const sql = require("./db.js");
 const fs = require('fs');
 const { Console } = require("console");
+const { resolve6 } = require("dns");
 
 const Draft = function(article) {
     this.articleid = article.articleid;
@@ -137,6 +138,21 @@ Draft.save = (articleInfo, result) => {
 
 }
 
+Draft.getAll = (result) => {
+    sql.query("SELECT * FROM drafts", (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            result(null, res);
+            return;
+        }
+        result({ kind: "no_drafts" }, null);
+    })
+}
+
 Draft.getAllTopical = (result) => {
     sql.query("SELECT * FROM drafts WHERE type = 'topical'", (err, res) => {
         if (err) {
@@ -206,50 +222,48 @@ Draft.publish = (articleid, issueid, date, result) => {
                             })
                         }
                     })
-                        sql.query("UPDATE articles set issueid = ?, inputType = ?, publishDate = ? WHERE articleid = ?", [issueid, 'html', date, newid], (err, data) => {
+                    sql.query("UPDATE articles set issueid = ?, inputType = ?, publishDate = ? WHERE articleid = ?", [issueid, 'html', date, newid], (err, data) => {
+                        if (err) {
+                            console.log(err);
+                            result(err, null);
+                            return;
+                        }
+                        else {
+                            //console.log("Successfully updated");
+                            sql.query("SELECT authorid FROM DRAFTS WHERE articleid = ?", articleid, (err, res3) => {
                                 if (err) {
                                     console.log(err);
                                     result(err, null);
                                     return;
                                 }
                                 else {
-                                    //console.log("Successfully updated");
-                                    sql.query("SELECT authorid FROM DRAFTS WHERE articleid = ?", articleid, (err, res3) => {
+                                    authorid = JSON.parse(JSON.stringify(res3))[0].authorid;
+                                    sql.query("INSERT INTO authorassociations VALUES(?, ?)", [newid, authorid], (err, res) => {
                                         if (err) {
                                             console.log(err);
                                             result(err, null);
                                             return;
                                         }
                                         else {
-                                            authorid = JSON.parse(JSON.stringify(res3))[0].authorid;
-                                            sql.query("INSERT INTO authorassociations VALUES(?, ?)", [newid, authorid], (err, res) => {
+                                            //console.log("Successfully inserted into authorassociations");
+                                            result(null, newid);
+                                            sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
                                                 if (err) {
                                                     console.log(err);
                                                     result(err, null);
                                                     return;
                                                 }
                                                 else {
-                                                    //console.log("Successfully inserted into authorassociations");
-                                                    result(null, newid);
-                                                    sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
-                                                        if (err) {
-                                                            console.log(err);
-                                                            result(err, null);
-                                                            return;
-                                                        }
-                                                        else {
-                                                            console.log("Successfully deleted from drafts");
-                                                            result(null, 'success');
-                                                        }
-                                                    })
+                                                    console.log("Successfully deleted from drafts");
+                                                    result(null, 'success');
                                                 }
                                             })
                                         }
                                     })
                                 }
                             })
-                        //}
-                    //})
+                        }
+                    })
                 }
             })
         }
@@ -270,6 +284,19 @@ Draft.newIssue = (issueid, leadid, date, result) => {
         }
         else {
             console.log("Successfully inserted new issue");
+            result(null, res);
+        }
+    })
+}
+
+Draft.deleteDraft = (articleid, result) => {
+    sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
+        if (err) {
+            console.log(err);
+            result(err, null);
+            return;
+        }
+        else {
             result(null, res);
         }
     })

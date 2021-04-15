@@ -97,5 +97,50 @@ Article.updateViews = (articleId, result) => {
     result(null, false); // remove this line when putting query back in 
 }
 
+Article.getAll = (result) => {
+  sql.query("SELECT * FROM articles", (err, res) => {
+    if (err) {
+      console.log(err);
+      result(err, null);
+    }
+    else {
+      result(null, res);
+    }
+  })
+}
+
+Article.deletePublished = (articleId, result) => {
+  sql.query("SELECT * FROM issues WHERE leadStory = ?", articleId, (err, res) => {
+    if (err) {
+      console.log(err);
+      result(err, null);
+    }
+    else {
+      if (res.length) {
+        result({ kind: "cannot_delete_featured"}, null);
+      }
+      else {
+        sql.query("DELETE FROM articles WHERE articleid = ?", articleId, (err, res) => {
+          if (err) {
+            console.log("error: ", err);
+            result(err, null);
+          }
+          else {
+            sql.query("DELETE FROM authorassociations WHERE articleid = ?", articleId, (err, res) => {
+              if (err) {
+                console.log("error: ", err);
+                result(err, null);
+              }
+              else {
+                result(null, "success");
+              }
+            })
+          }
+        })
+      }
+    }
+  })
+  
+}
 
 module.exports = Article;

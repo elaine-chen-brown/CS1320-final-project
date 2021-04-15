@@ -1,0 +1,56 @@
+<head>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <script>
+
+
+    $(document).ready(function () {
+        $('.limited').selectize({
+            sortField: 'text'
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <!--Dashboard Banner-->
+    <div class="dashboard-banner">
+        <div class="dashboard-logo">
+            <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
+            <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+        </div>
+        <div class="dashboard-buttons">
+            <div class="logout-button-wrapper">
+                <form action="logout" method="post">
+                    <input class="logout-button" type="submit" value="Logout">
+               </form>
+            </div>
+            <div class="dashboard-profile">
+                <img src="/images/red.png" alt="profile pic icon" class="dashboard-propic">
+            </div>
+        </div>
+    </div>
+
+    <div class="main" role="main">
+        <div class="select">
+            <label for="toDelete">Select article to delete: </label>
+            <input type="text" id="toDelete" name="toDelete" required> <br/>
+
+            <select class="limited" id="articleToDelete" name="articleToDelete" required>
+                <option value="">Select an article...</option>
+                {{#articles}}
+                <option value='{{articleid}},{{db}}'>{{headline}}</option>
+                {{/articles}}
+            </select> <br/> 
+
+            <input type="submit" value="Delete">
+        </div>
+
+        <div class="result">
+            {{ message }}
+        </div>
+    </div>
+</body>
