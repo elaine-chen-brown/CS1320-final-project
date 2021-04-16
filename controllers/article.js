@@ -107,11 +107,13 @@ function getArticle(request, response){
                 }
                 var buildArticle = function buildArticle(articleEntry){
                     let date = processDate(articleEntry.publishDate);
+                    let hasPhoto = (articleEntry.photoFilename) ? true : false;
                     article_to_add = {
                         articleImage: `/images/images/${articleEntry.photoFilename}`,
                         articleTitle: articleEntry.headline,
                         articleLink: `/article/${articleEntry.articleid}`,
-                        articleDate: date
+                        articleDate: date,
+                        hasPhoto: hasPhoto,
                     }
                     return article_to_add;
                 }

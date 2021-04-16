@@ -48,6 +48,7 @@
 #### 4/15
 - remove default image for articles from article and home pages
 - remove default image for most viewed (home and category) and category page
+- remove default image for issue page, featured article (home + category), and suggested column
 
 #### 4/14
 

@@ -77,6 +77,7 @@ function getCategory(req, res){
                     // for now fill in featured as first article
                     // let featuredPic = "/images/sports.png";
                     let featuredPic = articleData[0].articleImage;
+                    let hasFeaturedPic = articleData[0].hasPhoto;
                     let featuredTitle = articleData[0].articleTitle;
                     let featuredCategory = data.section;
                     let featuredBlurb = articleData[0].articleBlurb;
@@ -90,6 +91,7 @@ function getCategory(req, res){
                     res.render('category', {
                         title: data.section, 
                         featuredPic: featuredPic,
+                        hasFeaturedPic: hasFeaturedPic,
                         featuredTitle: featuredTitle,
                         featuredCategory: featuredCategory,
                         featuredCategoryId: featuredCategoryId,

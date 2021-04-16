@@ -61,12 +61,14 @@ function getIssue(req, res){
             findLeadArticle(data).then(leadArticle => {
                 findNonLeadArticles(data).then(otherArticles => {
                     var buildArticle = function buildArticle(articleEntry){
+                        let hasPhoto = (articleEntry.photoFilename) ? true : false;
                         article_to_add = {
                             articleImage: `/images/images/${articleEntry.photoFilename}`,
                             articleTitle: articleEntry.headline,
                             articleBlurb: articleEntry.teaser,
                             articleLink: `/article/${articleEntry.articleid}`,
-                            publishDate: articleEntry.publishDate
+                            publishDate: articleEntry.publishDate,
+                            hasPhoto: hasPhoto
                         }
                         return article_to_add;
                     }

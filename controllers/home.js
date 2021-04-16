@@ -75,6 +75,7 @@ function getHome(request, response){
                 // TO DO: replace with values gotten from database queries
                 // let featuredPic = "/images/featured.png";
                 let featuredPic = `/images/images/${featuredArticle.photoFilename}`;
+                let hasFeaturedPic = (featuredArticle.photoFilename) ? true : false;
                 let featuredTitle = featuredArticle.headline;
                 let featuredCategory = featuredArticle.section;
                 let featuredBlurb = featuredArticle.teaser;
@@ -83,6 +84,7 @@ function getHome(request, response){
                 response.render('home', {
                     title: 'Home',
                     featuredPic: featuredPic,
+                    hasFeaturedPic: hasFeaturedPic,
                     featuredTitle: featuredTitle,
                     featuredCategory: featuredCategory,
                     featuredBlurb: featuredBlurb,

@@ -44,9 +44,11 @@
         <!--Featured article-->
         <a href={{ featuredLink }} style="text-decoration:none">
         <div class="featured-article">
+            {{#if hasFeaturedPic}}
             <div class="featured-image-wrapper">
                 <img src={{ featuredPic }} alt="Featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/featured.png'">
             </div>
+            {{/if}}
 
             <div class="featured-text-wrapper">
                 <div class="featured-title-wrapper">
