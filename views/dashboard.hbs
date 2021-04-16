@@ -19,20 +19,22 @@
 <!--Dashboard Content-->
 <div class="dashboard-content-wrapper">
     <div class="dashboard-option-wrapper">
-        <div class="dashboard-option-title">Create</div>
+        {{!-- <div class="dashboard-option-title">Create</div> --}}
+        <div class="dashboard-option-title">Manage Articles</div>
         <hr>
         <ul>
-            <li class="dashboard-option hover"><a href="/write_new" style="text-decoration:none;color:black">Article</a></li>
+            <li class="dashboard-option hover"><a href="/write_new" style="text-decoration:none;color:black">New Article</a></li>
+            {{!-- <li class="dashboard-option hover"><a href="/edit" style="text-decoration:none;color:black">Edit Article</a></li> --}}
+            <li class="dashboard-option hover"><a href="/delete" style="text-decoration:none;color:black">Delete Article</a></li>
         </ul>
     </div>
     <div class="dashboard-option-wrapper">
-        <div class="dashboard-option-title">Edit</div>
+        {{!-- <div class="dashboard-option-title">Edit</div> --}}
+        <div class="dashboard-option-title">Manage Authors</div>
         <hr>
         <ul>
-            <li class="dashboard-option hover"><a href="/edit" style="text-decoration:none;color:black">Article</a></li>
-            <li class="dashboard-option hover"><a href="/edit_author" style="text-decoration:none;color:black">Authors</a></li>
-            <li class="dashboard-option hover"><a href="/delete" style="text-decoration:none;color:black">Delete article</a></li>
-
+            <li class="dashboard-option hover"><a href="/new_author" style="text-decoration:none;color:black">New Author</a></li>
+            <li class="dashboard-option hover"><a href="/edit_author" style="text-decoration:none;color:black">Edit Author</a></li>
         </ul>
     </div>
     <div class="dashboard-option-wrapper">

@@ -1,11 +1,9 @@
 <head>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
     <script>
-
 
     $(document).ready(function () {
         $('.limited').selectize({
@@ -15,6 +13,7 @@
     </script>
 </head>
 
+<body>
 <!--Dashboard Banner-->
 <div class="dashboard-banner">
     <div class="dashboard-logo">
@@ -52,7 +51,7 @@
     {{/if}}
 
     {{#if found}}
-    <form action="/:edit" method="post">
+    <form action="/save_author" method="post">
         <label for="name">Author name: </label>
         <input type="hidden" id= "id" name="id" value='{{authorid}}'>
         <input type="text" id="name" name="name" value='{{authorname}}'><br/>
@@ -66,6 +65,9 @@
 
         <label for="bio">Author bio: </label>
         <input type="textarea" id="bio" name="bio" value='{{bio}}'><br/>
+
+        <label for="authorPhoto">Upload photo: </label>
+        <input type="file" id="authorPhoto" name="authorPhoto" accept="image/*"> <br/>
 
         <label for="insta">Instagram: </label>
         <input type="text" id="insta" name="insta" value='{{insta}}'><br/>
@@ -88,3 +90,32 @@
 <div class="dashboard-footer">
     <div class="footer-text">© The Brown Noser</div>
 </div>
+</body>
+
+<script>
+    const handleImageUpload = event => {
+        const files = event.target.files;
+        const formData = new FormData();
+        formData.append('myFile', files[0]);
+
+        //const data = {formdata: formData, where: 'edit_author'};
+        //console.log(data);
+        fetch('/saveAuthorImage', {
+            method: 'POST',
+            body: formData
+            //body: JSON.stringify(data);
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.path)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
+    document.querySelector('#authorPhoto').addEventListener('change', event => {
+        handleImageUpload(event);
+    });
+
+</script>

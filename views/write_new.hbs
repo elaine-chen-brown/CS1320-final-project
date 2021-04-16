@@ -88,10 +88,10 @@
         const formData = new FormData();
         formData.append('myFile', files[0]);
 
-        //add checks for filetype 
         fetch('/saveImage', {
             method: 'POST',
-            body: formData
+            body: formData,
+            params: 'write_new'
         })
         .then(response => response.json())
         .then(data => {

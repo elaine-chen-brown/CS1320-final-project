@@ -126,6 +126,9 @@ app.post('/publish_topical', publishTopicalHandler.publishTopical);
 app.get('/delete', deleteHandler.display);
 app.post('/delete', deleteHandler.deleteArticle);
 app.get('/edit_author', editAuthorHandler.display);
+app.post('/edit_author', editAuthorHandler.editAuthor);
+app.post('/save_author', editAuthorHandler.saveChanges);
+
 app.post('/saveImage', async (req, res) => {
     try {
         if (!req.files) {
@@ -143,63 +146,24 @@ app.post('/saveImage', async (req, res) => {
         });
     }
 });
-/*
-app.post('/:edit_author', async (req, res) => {
-	if (req.params.edit_author == 'edit_author'){
-		var authorid = req.body.editAuthor;
 
-		var getDetails = function getDetails(authorid) {
-			return new Promise((resolve, reject) => {
-				Author.findById(authorid, (err, data) => {
-					if (err) {
-						reject('error');
-					}
-					else {
-						resolve(data);
-					}
-				})
-			})
-		}
-
-		getDetails(authorid).then(result => {
-			result = JSON.parse(JSON.stringify(result))[0];
-			res.render('edit_author', {
-				title: 'Edit Author',
-				authorid: authorid,
-				authorname: result.author,
-				bio: result.authorBio,
-				insta: result.authorInsta,
-				twitter: result.authorTwitter,
-				found: true,
-				search: false
-			})
-		}).catch(error => {
-			console.log(error);
-		})
-	}
-	else {
-		var saveDetails = function saveDetails() {
-			return new Promise((resolve, reject) => {
-				Author.editAuthor(req.body, (err, data) => {
-					if (err) {
-						reject('error updating');
-					}
-					else {
-						resolve(data);
-					}
-				})
-			})
-		}
-
-		saveDetails().then(result => {
-			res.render('edit_author', {
-				title: 'Edit Author',
-				message: 'Saved!'
-			})
-		})
-	}
+app.post('/saveAuthorImage', async (req, res) => {
+    try {
+        if (!req.files) {
+            console.log("no files");
+        }
+        else {
+            let photo = req.files.myFile;
+            photo.mv('./public/images/authors/' + photo.name);
+        }
+    } catch (err) {
+        console.log("error: ", err);
+        res.render('edit_author', {
+            title: 'Edit Author',
+            message: 'Unable to upload image'
+        });
+    }
 });
-*/
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

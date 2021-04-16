@@ -1,4 +1,5 @@
 const sql = require("./db.js");
+const fs = require('fs');
 
 // constructor - follows current db schema
 const Author = function(author) {
@@ -93,6 +94,7 @@ Author.getAll = (result) => {
 }
 
 Author.editAuthor = (info, result) => {
+  //console.log(info);
   var authorid = info.id;
   var authorname = info.name;
   var retired = info.retired;
@@ -100,8 +102,7 @@ Author.editAuthor = (info, result) => {
   var twitter = info.twitter;
   var bio = info.bio;
   //var title = info.title;
-  //var picture = info.picture;
-  console.log(info.id);
+  var photoName = info.authorPhoto;
   sql.query("UPDATE authors SET author = ?, isRetired = ?, authorInsta = ?, authorTwitter = ?, authorBio = ? WHERE authorid = ?", [authorname, retired, insta, twitter, bio, authorid], (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -109,8 +110,33 @@ Author.editAuthor = (info, result) => {
       return;
     }
     else {
-      result(null, res);
-      return;
+      if (photoName) {
+        var extension = photoName.split(".");
+        extension = extension[extension.length - 1];
+        var newPhotoName = authorid + "." + extension;
+        var oldPath = __dirname + '/../../public/images/authors/' + photoName;
+        var newPath = __dirname + '/../../public/images/authors/' + newPhotoName;
+        fs.rename(oldPath, newPath, function(err) {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          else {
+            console.log("Successfully renamed photo to ", newPhotoName);
+            sql.query("UPDATE authors SET authorImage = ? WHERE authorid = ?", [newPhotoName, authorid], (err, res) => {
+              if (err) {
+                console.log(err);
+                result(err, null);
+                return;
+              }
+              else {
+                result(null, res);
+                return;
+              }
+            })
+          }
+        })
+      }
     }
   })
 }

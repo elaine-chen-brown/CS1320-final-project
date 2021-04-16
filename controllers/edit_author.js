@@ -71,7 +71,25 @@ function editAuthor(req, res) {
 }
 
 function saveChanges(req, res) {
-    console.log(req);
+    var saveDetails = function saveDetails() {
+        return new Promise((resolve, reject) => {
+            Author.editAuthor(req.body, (err, data) => {
+                if (err) {
+                    reject('error updating');
+                }
+                else {
+                    resolve(data);
+                }
+            })
+        })
+    }
+
+    saveDetails().then(result => {
+        res.render('edit_author', {
+            title: 'Edit Author',
+            message: 'Saved!'
+        })
+    })
 }
 
 module.exports = {
