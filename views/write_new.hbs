@@ -5,8 +5,6 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
     <script>
-
-
     $(document).ready(function () {
         $('.limited').selectize({
             sortField: 'text'
@@ -66,7 +64,7 @@
             <label for="teaser">Article teaser: </label>
             <input type="text" id="teaser" name="teaser" required> <br/>
 
-            {{!-- Need to add photo upload and caption --}}
+            <label for="photoFile">Upload photo: </label>
             <input type="file" id="photoFile" name="photoFile" accept="image/*"> <br/>
         
             <label for="photoCaption">Photo caption: </label>

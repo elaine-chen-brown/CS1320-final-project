@@ -10,7 +10,12 @@ function display(req, res) {
             return new Promise((resolve, reject) => {
                 Draft.getAll((err, data) => {
                     if (err) {
-                        return;
+                        if (err.kind == 'no_drafts') {
+                            reject('error');
+                        }
+                        else {
+                            console.log("error: ", err);
+                        }
                     }
                     else {
                         resolve(data);
@@ -23,7 +28,7 @@ function display(req, res) {
             return new Promise((resolve, reject) => {
                 Article.getAll((err, data) => {
                     if (err) {
-                        return;
+                        reject('error');
                     }
                     else {
                         resolve(data);
@@ -50,16 +55,27 @@ function display(req, res) {
             return article_to_add;
         }
 
-        getDrafts().then(drafts => {
-            getPublished().then(published => {
+        getPublished().then(published => {
+            let articlesList = published.map(buildArticlesList);
+            getDrafts().then(drafts => {
                 let draftsList = drafts.map(buildDraftsList);
-                let articlesList = published.map(buildArticlesList);
                 let all = draftsList.concat(articlesList);
                 res.render('delete', {
                     title: 'Delete',
                     articles: all,
                     message: ''
                 })
+            }).catch(error => {
+                res.render('delete', {
+                    title: 'Delete',
+                    articles: articlesList,
+                    message: ''
+                })
+            })
+        }).catch(error => {
+            res.render('delete', {
+                title: 'Delete',
+                message: 'error getting list of articles'
             })
         })
     }

@@ -126,8 +126,25 @@ app.post('/publish_topical', publishTopicalHandler.publishTopical);
 app.get('/delete', deleteHandler.display);
 app.post('/delete', deleteHandler.deleteArticle);
 app.get('/edit_author', editAuthorHandler.display);
-//app.post('/:edit_author', editAuthorHandler.editAuthor);
-app.post('/:edit_author', function(req, res) {
+app.post('/saveImage', async (req, res) => {
+    try {
+        if (!req.files) {
+            console.log("no files");
+        }
+        else {
+            let photo = req.files.myFile;
+            photo.mv('./public/images/drafts/' + photo.name);
+        }
+    } catch (err) {
+        console.log("error: ", err);
+        res.render('write_new', {
+            title: 'New article',
+            message: 'Unable to upload image'
+        });
+    }
+});
+/*
+app.post('/:edit_author', async (req, res) => {
 	if (req.params.edit_author == 'edit_author'){
 		var authorid = req.body.editAuthor;
 
@@ -161,7 +178,6 @@ app.post('/:edit_author', function(req, res) {
 		})
 	}
 	else {
-		console.log("saving");
 		var saveDetails = function saveDetails() {
 			return new Promise((resolve, reject) => {
 				Author.editAuthor(req.body, (err, data) => {
@@ -182,27 +198,8 @@ app.post('/:edit_author', function(req, res) {
 			})
 		})
 	}
-})
-//app.post('/edit_author/:save', editAuthorHandler.saveChanges); //how do I do thisssssssss
-
-app.post('/saveImage', async (req, res) => {
-    try {
-        if (!req.files) {
-            console.log("no files");
-        }
-        else {
-            let photo = req.files.myFile;
-            photo.mv('./public/images/drafts/' + photo.name);
-        }
-    } catch (err) {
-        console.log(err);
-        res.render('write_new', {
-            title: 'New article',
-            message: 'Unable to upload image'
-        });
-    }
 });
-
+*/
 
 // listen on given port
 app.listen(port, () => console.log(`Server listening on http://localhost:${port}`));

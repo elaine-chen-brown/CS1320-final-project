@@ -92,6 +92,8 @@ Draft.save = (articleInfo, result) => {
                             var newPhotoName = photoUploadId + "." + extension;
                             var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
                             var newPath = __dirname + '/../../public/images/drafts/' + newPhotoName;
+                            console.log("oldpath: ", oldPath);
+                            console.log("newpath: ", newPath);
                             fs.rename(oldPath, newPath, function(err) {
                                 if (err) {
                                     console.log(err);
@@ -201,8 +203,6 @@ Draft.publish = (articleid, issueid, date, result) => {
                     return;
                 }
                 else {
-                    //console.log("Successfully inserted");
-                    //console.log(res);
                     var newid = res.insertId;
 
                     sql.query("SELECT photoFilename AS photoName FROM drafts WHERE articleid = ?", articleid, (err, res) => {
@@ -215,6 +215,8 @@ Draft.publish = (articleid, issueid, date, result) => {
                             let photoFilename = JSON.parse(JSON.stringify(res))[0].photoName;
                             var oldPath = __dirname + '/../../public/images/drafts/' + photoFilename;
                             var newPath = __dirname + '/../../public/images/images/' + photoFilename;
+                            console.log("oldpath: ", oldPath);
+                            console.log("newpath: ", newPath);
                             fs.rename(oldPath, newPath, function(err) {
                                 if (err) {
                                     console.log(err);
