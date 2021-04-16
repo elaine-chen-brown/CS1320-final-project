@@ -55,10 +55,9 @@ function editAuthor(req, res) {
 
     getDetails(authorid).then(result => {
         result = JSON.parse(JSON.stringify(result))[0];
-        console.log(result);
-        console.log(result.author);
         res.render('edit_author', {
             title: 'Edit Author',
+            authorid: authorid,
             authorname: result.author,
             bio: result.authorBio,
             insta: result.authorInsta,

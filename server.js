@@ -26,6 +26,8 @@ const loginHandler = require('./controllers/login.js');
 const dashboardHandler = require('./controllers/dashboard.js');
 const editHandler = require('./controllers/edit.js');
 const editAuthorHandler = require('./controllers/edit_author.js');
+const Author = require("./app/models/author.model.js");
+
 
 const newHandler = require('./controllers/write_new.js');
 const publishTopicalHandler = require('./controllers/publish_topical.js');
@@ -124,7 +126,63 @@ app.post('/publish_topical', publishTopicalHandler.publishTopical);
 app.get('/delete', deleteHandler.display);
 app.post('/delete', deleteHandler.deleteArticle);
 app.get('/edit_author', editAuthorHandler.display);
-app.post('/edit_author', editAuthorHandler.editAuthor);
+//app.post('/:edit_author', editAuthorHandler.editAuthor);
+app.post('/:edit_author', function(req, res) {
+	if (req.params.edit_author == 'edit_author'){
+		var authorid = req.body.editAuthor;
+
+		var getDetails = function getDetails(authorid) {
+			return new Promise((resolve, reject) => {
+				Author.findById(authorid, (err, data) => {
+					if (err) {
+						reject('error');
+					}
+					else {
+						resolve(data);
+					}
+				})
+			})
+		}
+
+		getDetails(authorid).then(result => {
+			result = JSON.parse(JSON.stringify(result))[0];
+			res.render('edit_author', {
+				title: 'Edit Author',
+				authorid: authorid,
+				authorname: result.author,
+				bio: result.authorBio,
+				insta: result.authorInsta,
+				twitter: result.authorTwitter,
+				found: true,
+				search: false
+			})
+		}).catch(error => {
+			console.log(error);
+		})
+	}
+	else {
+		console.log("saving");
+		var saveDetails = function saveDetails() {
+			return new Promise((resolve, reject) => {
+				Author.editAuthor(req.body, (err, data) => {
+					if (err) {
+						reject('error updating');
+					}
+					else {
+						resolve(data);
+					}
+				})
+			})
+		}
+
+		saveDetails().then(result => {
+			res.render('edit_author', {
+				title: 'Edit Author',
+				message: 'Saved!'
+			})
+		})
+	}
+})
 //app.post('/edit_author/:save', editAuthorHandler.saveChanges); //how do I do thisssssssss
 
 app.post('/saveImage', async (req, res) => {

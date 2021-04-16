@@ -54,6 +54,7 @@
     {{#if found}}
     <form action="/:edit" method="post">
         <label for="name">Author name: </label>
+        <input type="hidden" id= "id" name="id" value='{{authorid}}'>
         <input type="text" id="name" name="name" value='{{authorname}}'><br/>
 
         <label for="retired">Status: </label>
@@ -76,6 +77,10 @@
         
     </form>
     {{/if}}
+
+    <div class="result">
+        {{message}}
+    </div>
 </div>
 
 

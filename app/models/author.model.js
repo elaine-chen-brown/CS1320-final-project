@@ -92,14 +92,16 @@ Author.getAll = (result) => {
   })
 }
 
-Author.editAuthor = (info, authorid, result) => {
-  var authorname = info[0];
-  var retired = info[1];
-  var insta = info[2];
-  var twitter = info[3];
-  var bio = info[4];
-  //var title = info[5];
-  //var picture = info[6];
+Author.editAuthor = (info, result) => {
+  var authorid = info.id;
+  var authorname = info.name;
+  var retired = info.retired;
+  var insta = info.insta;
+  var twitter = info.twitter;
+  var bio = info.bio;
+  //var title = info.title;
+  //var picture = info.picture;
+  console.log(info.id);
   sql.query("UPDATE authors SET author = ?, isRetired = ?, authorInsta = ?, authorTwitter = ?, authorBio = ? WHERE authorid = ?", [authorname, retired, insta, twitter, bio, authorid], (err, res) => {
     if (err) {
       console.log("error: ", err);
