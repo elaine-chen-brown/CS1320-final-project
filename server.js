@@ -29,6 +29,7 @@ const editHandler = require('./controllers/edit.js');
 const newHandler = require('./controllers/write_new.js');
 const publishTopicalHandler = require('./controllers/publish_topical.js');
 const publishIssueHandler = require('./controllers/publish_issue.js');
+const deleteHandler = require('./controllers/delete.js');
 
 // set up express app
 const app = express();
@@ -119,6 +120,8 @@ app.get('/publish_issue', publishIssueHandler.display);
 app.get('/publish_topical', publishTopicalHandler.display);
 app.post('/publish_issue', publishIssueHandler.publishIssue);
 app.post('/publish_topical', publishTopicalHandler.publishTopical);
+app.get('/delete', deleteHandler.display);
+app.post('/delete', deleteHandler.deleteArticle);
 
 app.post('/saveImage', async (req, res) => {
     try {

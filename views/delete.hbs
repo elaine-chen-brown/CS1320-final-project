@@ -36,17 +36,17 @@
 
     <div class="main" role="main">
         <div class="select">
-            <label for="toDelete">Select article to delete: </label>
-            <input type="text" id="toDelete" name="toDelete" required> <br/>
+            <form role="form" method="post">
+                <label for="toDelete">Select article to delete: </label>
+                <select class="limited" id="toDelete" name="toDelete" required>
+                    <option value="">Select an article...</option>
+                    {{#articles}}
+                    <option value='{{articleid}},{{db}}'>{{headline}}</option>
+                    {{/articles}}
+                </select> <br/> 
 
-            <select class="limited" id="articleToDelete" name="articleToDelete" required>
-                <option value="">Select an article...</option>
-                {{#articles}}
-                <option value='{{articleid}},{{db}}'>{{headline}}</option>
-                {{/articles}}
-            </select> <br/> 
-
-            <input type="submit" value="Delete">
+                <input type="submit" value="Delete">
+            </form>
         </div>
 
         <div class="result">

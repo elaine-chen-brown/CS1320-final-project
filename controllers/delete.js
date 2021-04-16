@@ -71,9 +71,80 @@ function display(req, res) {
 function deleteArticle(req, res) {
     if (req.session.loggedin) {
         //get articleid and what db it belongs to then call appropriate delete function
-        console.log(req.body.articleToDelete);
+
+        var deleteDraft = function deleteDraft(articleid) {
+            return new Promise((resolve, reject) => {
+                Draft.deleteDraft(articleid, (err, data) => {
+                    if (err) {
+                        reject("error deleting");
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            })
+        }
+
+        var deletePublished = function deletePublished(articleid) {
+            return new Promise((resolve, rejeect) => {
+                Article.deletePublished(articleid, (err, data) => {
+                    if (err) {
+                        if (err.kind == "cannot_delete_featured") {
+                            res.render('delete', {
+                                title: 'Delete',
+                                message: 'Cannot delete featured article.'
+                            })
+                        }
+                        else {
+                            reject("error deleting");
+                        }
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            })
+        }
+
+        deleteInfo = req.body.toDelete.split(',');
+        articleid = deleteInfo[0];
+        db = deleteInfo[1];
+        console.log(articleid);
+        console.log(db);
+        if (db == "drafts") {
+            deleteDraft(articleid).then(success => {
+                res.render('delete', {
+                    title: 'Delete',
+                    message: 'Successfully deleted article!'
+                })
+            }).catch(error => {
+                res.render('delete', {
+                    title: 'Delete',
+                    message: 'Could not delete from drafts, please try again.'
+                })
+            })
+        }
+        else {
+            deletePublished(articleid).then(success => {
+                res.render('delete', {
+                    title: 'Delete',
+                    message: 'Successfully deleted article!'
+                })
+            }).catch(error => {
+                res.render('delete', {
+                    title: 'Delete',
+                    message: 'Could not delete from articles, please try again.'
+                })
+            })
+        }
+        
     }
     else {
 		res.send('Please login to view this page!');
 	}
+}
+
+module.exports = {
+    display,
+    deleteArticle
 }
