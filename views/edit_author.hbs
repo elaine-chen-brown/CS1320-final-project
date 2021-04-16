@@ -1,0 +1,85 @@
+<head>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <script>
+
+
+    $(document).ready(function () {
+        $('.limited').selectize({
+            sortField: 'text'
+        });
+    });
+    </script>
+</head>
+
+<!--Dashboard Banner-->
+<div class="dashboard-banner">
+    <div class="dashboard-logo">
+        <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
+        <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+    </div>
+    <div class="dashboard-buttons">
+        <div class="logout-button-wrapper">
+            <button class="logout-button">Logout</button>
+        </div>
+        <div class="dashboard-profile">
+            <img src="/images/red.png" alt="profile pic icon" class="dashboard-propic">
+        </div>
+    </div>
+</div>
+
+<!--Write New Button-->
+<div class="new-buttons-wrapper">
+    <button class="new-button"><a href="/write_new" style="text-decoration:none;color:black;">+ Write New</a></button>
+</div>
+
+<div>
+    {{#if search}}
+    <form method="post">
+        <label for="editAuthor">Select author: </label>
+        <select class="limited" id="editAuthor" name="editAuthor" required>
+        <option value="">Select an author...</option>
+        {{#authors}}
+        <option value={{authorid}}>{{authorname}}</option>
+        {{/authors}}
+        </select> <br/> 
+
+        <input type="submit" value="Go">
+    </form>
+    {{/if}}
+
+    {{#if found}}
+    <form action="/:edit" method="post">
+        <label for="name">Author name: </label>
+        <input type="text" id="name" name="name" value='{{authorname}}'><br/>
+
+        <label for="retired">Status: </label>
+        <select name="retired">
+            {{!-- fix this --}}
+            <option value="0">Active</option> 
+            <option value="1">Retired</option>
+        </select> <br/>
+
+        <label for="bio">Author bio: </label>
+        <input type="textarea" id="bio" name="bio" value='{{bio}}'><br/>
+
+        <label for="insta">Instagram: </label>
+        <input type="text" id="insta" name="insta" value='{{insta}}'><br/>
+
+        <label for="twitter">Twitter: </label>
+        <input type="text" id="twitter" name="twitter" value='{{twitter}}'><br/>
+
+        <input type="submit" value="Save">
+        
+    </form>
+    {{/if}}
+</div>
+
+
+<!--Footer-->
+<div class="dashboard-footer">
+    <div class="footer-text">© The Brown Noser</div>
+</div>

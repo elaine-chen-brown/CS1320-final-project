@@ -77,4 +77,40 @@ Author.findArticles = (authorId, result) => {
   };
 
 
+Author.getAll = (result) => {
+  sql.query("SELECT author, authorid FROM authors ORDER BY author ASC", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+    result({ kind: "not_found" }, null);
+  })
+}
+
+Author.editAuthor = (info, authorid, result) => {
+  var authorname = info[0];
+  var retired = info[1];
+  var insta = info[2];
+  var twitter = info[3];
+  var bio = info[4];
+  //var title = info[5];
+  //var picture = info[6];
+  sql.query("UPDATE authors SET author = ?, isRetired = ?, authorInsta = ?, authorTwitter = ?, authorBio = ? WHERE authorid = ?", [authorname, retired, insta, twitter, bio, authorid], (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    else {
+      result(null, res);
+      return;
+    }
+  })
+}
+
 module.exports = Author;

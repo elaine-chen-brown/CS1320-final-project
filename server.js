@@ -25,6 +25,7 @@ const issueHandler = require('./controllers/issue.js');
 const loginHandler = require('./controllers/login.js');
 const dashboardHandler = require('./controllers/dashboard.js');
 const editHandler = require('./controllers/edit.js');
+const editAuthorHandler = require('./controllers/edit_author.js');
 
 const newHandler = require('./controllers/write_new.js');
 const publishTopicalHandler = require('./controllers/publish_topical.js');
@@ -122,6 +123,9 @@ app.post('/publish_issue', publishIssueHandler.publishIssue);
 app.post('/publish_topical', publishTopicalHandler.publishTopical);
 app.get('/delete', deleteHandler.display);
 app.post('/delete', deleteHandler.deleteArticle);
+app.get('/edit_author', editAuthorHandler.display);
+app.post('/edit_author', editAuthorHandler.editAuthor);
+//app.post('/edit_author/:save', editAuthorHandler.saveChanges); //how do I do thisssssssss
 
 app.post('/saveImage', async (req, res) => {
     try {
