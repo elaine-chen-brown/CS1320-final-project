@@ -49,6 +49,8 @@
 - remove default image for articles from article and home pages
 - remove default image for most viewed (home and category) and category page
 - remove default image for issue page, featured article (home + category), and suggested column
+- make big search transparent so underline goes all the way across
+- remove default image on author page
 
 #### 4/14
 

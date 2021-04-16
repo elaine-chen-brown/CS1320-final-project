@@ -80,12 +80,14 @@ function getAuthorArticleIds(req, res, displayfunc ) {
                         }
                         else {
                             // TODO add images
+                            let hasPhoto = (data.photoFilename) ? true : false;
                             article_to_add = {
                                 articleImage: `/images/images/${data.photoFilename}`,
                                 articleTitle: data.headline,
                                 articleBlurb: data.teaser,
                                 articleLink: `/article/${entry.articleid}`,
-                                publishDate: data.publishDate
+                                publishDate: data.publishDate,
+                                hasPhoto: hasPhoto,
                             }
                             resolve(article_to_add);
                         }

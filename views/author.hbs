@@ -54,16 +54,26 @@
         <div class="list-articles-wrapper">
             {{#authorArticles}}
             <!--One article-->
-            <a href={{ articleLink }} style="text-decoration:none;color:black">
+            <a href={{ articleLink }} style="text-decoration: none;color:black">
             <div class="list-article-wrapper">
+                {{#if hasPhoto}}
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="Article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
+                        <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
                     </div>
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover">{{ articleTitle }}</div>
+                        <div class="list-title bold hover"> {{ articleTitle }} </div>
                         <div class="list-blurb">{{ articleBlurb }}</div>
                     </div>
+                </div>
+                {{else}}
+                    <div class="list-text-wrapper">
+                        <div class="list-title bold hover"> {{ articleTitle }} </div>
+                        <div class="list-blurb">{{ articleBlurb }}</div>
+                    </div>
+                {{/if}}
+                <div class="read-more-wrapper">
+                    <div class="read-more brown">Read more</div>
                 </div>
                 <hr>
             </div>
