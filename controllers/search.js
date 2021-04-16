@@ -58,10 +58,17 @@ function getSearch(req, res){
         if (result.isRetired) {
             title = title + " (Retired)";
         }
+
+        if (result.authorImage != null) {
+            var pic = "/images/authors/" + result.authorImage;
+        }
+        else {
+            var pic = "/images/author-default.png";
+        }
         author_to_add = {
             authorName: result.author,
             authorLink: `/author/${result.authorid}`,
-            authorPic: "images/red.png", 
+            authorPic: pic, 
             authorRole: title
         }
         return author_to_add;

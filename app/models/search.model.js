@@ -21,7 +21,7 @@ Search.findByKeyword = (keyword, offset, result) => {
 // search by author name
 Search.findByAuthor = (authorName, result) => {
   authorName = '%' + authorName + '%';
-  sql.query("SELECT authorid, author, title, isRetired from authors WHERE author LIKE ? ORDER BY isRetired, author", authorName, (err, res) => {
+  sql.query("SELECT authorid, author, title, isRetired, authorImage FROM authors WHERE author LIKE ? ORDER BY isRetired, author", authorName, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

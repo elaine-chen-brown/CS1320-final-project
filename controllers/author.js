@@ -27,7 +27,7 @@ function findAuthor(req, res) {
         let first_name = (data.author).split(" ")[0];
         let title = data.title.toLowerCase();
         let authorName = data.author; 
-        let authorPicture = (data.authorImage) ? data.authorImage : "/images/author-default.png";
+        let authorPicture = (data.authorImage) ? "/images/authors/" + data.authorImage : "/images/author-default.png";
         let authorBlurb = (data.authorBio) ? data.authorBio : `${first_name} is an ${title} at The Noser.`;
         let instaLinkname = (data.authorInsta) ? data.authorInsta.replace("@", "") : "";
         let twitterLinkname = (data.authorTwitter) ? data.authorTwitter.replace("@", "") : "";
