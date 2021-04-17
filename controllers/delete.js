@@ -3,81 +3,85 @@ const Article = require("../app/models/article.model.js");
 
 const { response } = require("express");
 
-function display(req, res) {
-    if (req.session.loggedin) {
 
-        var getDrafts = function getDrafts() {
-            return new Promise((resolve, reject) => {
-                Draft.getAll((err, data) => {
-                    if (err) {
-                        if (err.kind == 'no_drafts') {
-                            reject('error');
-                        }
-                        else {
-                            console.log("error: ", err);
-                        }
-                    }
-                    else {
-                        resolve(data);
-                    }
-                })
-            })
-        }
-
-        var getPublished = function getPublished() {
-            return new Promise((resolve, reject) => {
-                Article.getAll((err, data) => {
-                    if (err) {
-                        reject('error');
-                    }
-                    else {
-                        resolve(data);
-                    }
-                })
-            })
-        }
-
-        var buildDraftsList = function buildDraftsList(result) {
-            draft_to_add = {
-                articleid: result.articleid,
-                headline: result.headline,
-                db: 'drafts'
+var getDrafts = function getDrafts() {
+    return new Promise((resolve, reject) => {
+        Draft.getAll((err, data) => {
+            if (err) {
+                if (err.kind == 'no_drafts') {
+                    reject('error');
+                }
+                else {
+                    console.log("error: ", err);
+                }
             }
-            return draft_to_add;
-        }
-
-        var buildArticlesList = function buildArticlesList(result) {
-            article_to_add = {
-                articleid: result.articleid,
-                headline: result.headline,
-                db: 'articles'
+            else {
+                resolve(data);
             }
-            return article_to_add;
-        }
+        })
+    })
+}
 
-        getPublished().then(published => {
-            let articlesList = published.map(buildArticlesList);
-            getDrafts().then(drafts => {
-                let draftsList = drafts.map(buildDraftsList);
-                let all = draftsList.concat(articlesList);
-                res.render('delete', {
-                    title: 'Delete',
-                    articles: all,
-                    message: ''
-                })
-            }).catch(error => {
-                res.render('delete', {
-                    title: 'Delete',
-                    articles: articlesList,
-                    message: ''
-                })
+var getPublished = function getPublished() {
+    return new Promise((resolve, reject) => {
+        Article.getAll((err, data) => {
+            if (err) {
+                reject('error');
+            }
+            else {
+                resolve(data);
+            }
+        })
+    })
+}
+
+var buildDraftsList = function buildDraftsList(result) {
+    draft_to_add = {
+        articleid: result.articleid,
+        headline: result.headline,
+        db: 'drafts'
+    }
+    return draft_to_add;
+}
+
+var buildArticlesList = function buildArticlesList(result) {
+    article_to_add = {
+        articleid: result.articleid,
+        headline: result.headline,
+        db: 'articles'
+    }
+    return article_to_add;
+}
+
+function render(req, res, message) {
+    getPublished().then(published => {
+        let articlesList = published.map(buildArticlesList);
+        getDrafts().then(drafts => {
+            let draftsList = drafts.map(buildDraftsList);
+            let all = draftsList.concat(articlesList);
+            res.render('delete', {
+                title: 'Delete',
+                articles: all,
+                message: message
             })
         }).catch(error => {
             res.render('delete', {
                 title: 'Delete',
-                message: 'error getting list of articles'
+                articles: articlesList,
+                message: message
             })
         })
+    }).catch(error => {
+        res.render('delete', {
+            title: 'Delete',
+            message: 'error getting list of articles'
+        })
+    })
+}
+
+function display(req, res) {
+    if (req.session.loggedin) {
+        render(req, res, '');
     }
     else {
 		res.send('Please login to view this page!');
@@ -106,10 +110,7 @@ function deleteArticle(req, res) {
                 Article.deletePublished(articleid, (err, data) => {
                     if (err) {
                         if (err.kind == "cannot_delete_featured") {
-                            res.render('delete', {
-                                title: 'Delete',
-                                message: 'Cannot delete featured article.'
-                            })
+                            render(req, res, 'Cannot delete featured article');
                         }
                         else {
                             reject("error deleting");
@@ -125,31 +126,27 @@ function deleteArticle(req, res) {
         deleteInfo = req.body.toDelete.split(',');
         articleid = deleteInfo[0];
         db = deleteInfo[1];
-        console.log(articleid);
-        console.log(db);
+        //console.log(articleid);
+        //console.log(db);
         if (db == "drafts") {
             deleteDraft(articleid).then(success => {
-                res.render('delete', {
-                    title: 'Delete',
-                    message: 'Successfully deleted article!'
-                })
+                render(req, res, 'Successfully deleted draft article!');
             }).catch(error => {
                 res.render('delete', {
                     title: 'Delete',
-                    message: 'Could not delete from drafts, please try again.'
+                    message: 'Could not delete from drafts, please try again.',
+                    articles: canDelete
                 })
             })
         }
         else {
             deletePublished(articleid).then(success => {
-                res.render('delete', {
-                    title: 'Delete',
-                    message: 'Successfully deleted article!'
-                })
+                render(req, res, 'Successfully deleted published article');
             }).catch(error => {
                 res.render('delete', {
                     title: 'Delete',
-                    message: 'Could not delete from articles, please try again.'
+                    message: 'Could not delete from articles, please try again.',
+                    articles: canDelete
                 })
             })
         }
