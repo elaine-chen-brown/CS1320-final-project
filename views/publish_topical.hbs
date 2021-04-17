@@ -33,7 +33,7 @@
     <div class="main" role="main">
         <div class="select">
             <form method="post">
-                <h3 style="padding-top:2%;">Select articles to publish</h3>
+                <div style="padding-top:2%;">Select articles to publish:</div>
                 {{#drafts}}
                     <input type="checkbox" id="draft" name="draft" value="{{articleid}}">
                     <label for="{{articleid}}">{{headline}}</label> <br>

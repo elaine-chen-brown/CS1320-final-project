@@ -24,7 +24,6 @@ const issueHandler = require('./controllers/issue.js');
 // CMS handlers
 const loginHandler = require('./controllers/login.js');
 const dashboardHandler = require('./controllers/dashboard.js');
-const editHandler = require('./controllers/edit.js');
 const editAuthorHandler = require('./controllers/edit_author.js');
 const Author = require("./app/models/author.model.js");
 

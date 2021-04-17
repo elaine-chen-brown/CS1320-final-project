@@ -48,7 +48,8 @@
 #### 4/17
 - fixed navbar display
 - added navbar to author portal
-- 
+- made portal styling more consistent
+- deleted old edit page and handler
 
 #### 4/15
 - remove default image for articles from article and home pages
