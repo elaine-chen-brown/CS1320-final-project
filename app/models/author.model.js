@@ -119,6 +119,7 @@ Author.editAuthor = (info, result) => {
         fs.rename(oldPath, newPath, function(err) {
           if (err) {
             console.log(err);
+            result(err, null);
             return;
           }
           else {
@@ -136,6 +137,10 @@ Author.editAuthor = (info, result) => {
             })
           }
         })
+      }
+      else {
+        result(null, res);
+        return;
       }
     }
   })

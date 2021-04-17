@@ -37,9 +37,7 @@ function display(req, res) {
     })
 }
 
-function editAuthor(req, res) {
-    var authorid = req.body.editAuthor;
-
+function displayAuthor(req, res, authorid, message) {
     var getDetails = function getDetails(authorid) {
         return new Promise((resolve, reject) => {
             Author.findById(authorid, (err, data) => {
@@ -63,11 +61,17 @@ function editAuthor(req, res) {
             insta: result.authorInsta,
             twitter: result.authorTwitter,
             found: true,
-            search: false
+            search: false,
+            message: message
         })
     }).catch(error => {
         console.log(error);
     })
+}
+
+function editAuthor(req, res) {
+    var authorid = req.body.editAuthor;
+    displayAuthor(req, res, authorid, '');
 }
 
 function saveChanges(req, res) {
@@ -75,7 +79,7 @@ function saveChanges(req, res) {
         return new Promise((resolve, reject) => {
             Author.editAuthor(req.body, (err, data) => {
                 if (err) {
-                    reject('error updating');
+                    reject('error saving changes');
                 }
                 else {
                     resolve(data);
@@ -84,10 +88,15 @@ function saveChanges(req, res) {
         })
     }
 
-    saveDetails().then(result => {
+    saveDetails().then(saved => {
+        let authorid = req.body.id;
+        displayAuthor(req, res, authorid, 'Successfully saved changes!');
+    }).catch(error => {
+        console.log(error);
         res.render('edit_author', {
             title: 'Edit Author',
-            message: 'Saved!'
+            message: 'Error saving changes',
+            found: true
         })
     })
 }
