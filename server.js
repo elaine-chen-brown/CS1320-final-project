@@ -24,7 +24,6 @@ const issueHandler = require('./controllers/issue.js');
 // CMS handlers
 const loginHandler = require('./controllers/login.js');
 const dashboardHandler = require('./controllers/dashboard.js');
-const editHandler = require('./controllers/edit.js');
 const editAuthorHandler = require('./controllers/edit_author.js');
 const Author = require("./app/models/author.model.js");
 
@@ -115,8 +114,6 @@ app.post('/logout', function(request, response) {
 
 // CMS endpoints
 app.get('/dashboard', dashboardHandler.getDashboard);
-app.get('/edit', editHandler.getEdit);
-
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
 app.get('/publish_issue', publishIssueHandler.display);
