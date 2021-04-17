@@ -3,35 +3,35 @@
     <div class="banner" role="banner">
         <div class="title-wrapper">
             <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image" tabindex="1">
-            <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+            <div class="title-text"><a href="/" style="text-decoration: none;color:black" tabindex="2">THE BROWN NOSER</a></div>
         </div>
         <div class="extras-wrapper">
             <div class="centering-wrapper">
             <div class="extras-options">
-                <a href="/about" class="extras-text" tabindex="2">About</a>
-                <a href="/archive" class="extras-text" tabindex="3">Archive</a>
-                <a href="/join" class="extras-text" tabindex="4">Join Us</a>
+                <a href="/about" class="extras-text" tabindex="3">About</a>
+                <a href="/archive" class="extras-text" tabindex="4">Archive</a>
+                <a href="/join" class="extras-text" tabindex="5">Join Us</a>
             </div>
-            <div class="search" role="search">
+            <div class="search" role="search" >
                 <form action="/search">
-                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey" tabindex="5">
+                    <input type="text" placeholder="Search..." name="search" class="search-input search-light-grey" tabindex="6">
                 </form>
             </div>
             </div>
         </div>
     </div>
     <hr>
-    <div class="navbar" role="navigation">
+    <div class="navbar" role="navigation" >
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="7">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category" tabindex="8">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="9">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="10">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="11">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="12">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category" tabindex="13">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="14">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="15">SPORTS</a></li>
         </ul>
     </div>
     <hr>
@@ -43,23 +43,23 @@
         Previous / <span class="underline">About Us</span>
     </div> --}}
     <!--Sub-banner-->
-    <div class="sub-banner brown">
+    <div class="sub-banner brown" tabindex="16">
         ABOUT US
     </div>
     <hr>
     <!--Banner Image-->
-    <div class="splash-wrapper about-image">
-        <div class="about-text">{{ aboutBlurb }}</div>
+    <div class="splash-wrapper about-image" tabindex="17">
+        <div class="about-text" tabindex="18">{{ aboutBlurb }}</div>
     </div>
     <!--Bottom Content Section-->
     <div class="bottom-wrapper">
-        <div class="bottom-title">STAFF</div>
+        <div class="bottom-title" tabindex="19">STAFF</div>
         <hr>
         <div class="staff-cols-wrapper" id="authorContainer">
             {{#staffMembers}}
             <!--One Staff Member-->
-            <div class="staff-member-wrapper">
-                <div class="staff-image-wrapper"><img src={{ staffPhoto }} alt="staff photo" class="staff-image"></div>
+            <div class="staff-member-wrapper" tabindex="20">
+                <div class="staff-image-wrapper"><img src={{ staffPhoto }} alt="staff photo" class="staff-image" ></div>
                 <div class="staff-text-wrapper">
                     <div class="staff-name"><a href={{authorLink}} style="text-decoration:none;color:#392520">{{ staffName }}</a></div>
                     <div class="staff-role">{{ staffRole }}</div>
@@ -74,7 +74,7 @@
 
 <!--Footer-->
 <div class="footer" id="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="21">© The Brown Noser</div>
 </div>
 
 <script>

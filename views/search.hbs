@@ -23,15 +23,15 @@
     <hr class="line-light-grey">
     <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="6">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category" tabindex="7">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="8">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="9">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="10">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="11">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category" tabindex="12">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="13">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="14">SPORTS</a></li>
         </ul>
     </div>
     <hr class="line-light-grey">
@@ -43,12 +43,12 @@
     <div class="main-content-wrapper">
     <div class="large-search-wrapper">
         <form action="/search">
-            <input type="text" name="search" class="large-search-input" placeholder="Search for...">
-           <button type="submit" class="large-search-button"><i class="fa fa-search"></i></button>
+            <input type="text" name="search" class="large-search-input" placeholder="Search for..." tabindex="15">
+           <button type="submit" class="large-search-button"><i class="fa fa-search" tabindex="16"></i></button>
         </form>
     </div>
     <!--Listed articles-->
-        <div class="list-articles-wrapper" id="article-container">
+        <div class="list-articles-wrapper" id="article-container" tabindex="17">
             <p class="search-term-description brown" style="font-size:30px;margin-left:30px;">{{ searchTerm }}</p>
             
             {{#if authorsExist}}
@@ -107,7 +107,7 @@
 
 <!--Footer-->
 <div class="footer" id="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="18">© The Brown Noser</div>
 </div>
 
 <input type = "hidden" id = "keyword" value = {{keyword}} />

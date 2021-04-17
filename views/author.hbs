@@ -23,22 +23,22 @@
     <hr>
     <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="6">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category" tabindex="7">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="8">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="9">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="10">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="11">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category" tabindex="12">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="13">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="14">SPORTS</a></li>
         </ul>
     </div>
     <hr>
 </div>
 
  <!--Sub-banner-->
-<div class="author-banner">
+<div class="author-banner" tabindex="15">
     {{ authorName }}
 </div>
 <hr>
@@ -47,7 +47,7 @@
 <div class="author-page-wrapper" role="main">
     <!--Author Articles Section-->
     <div class="author-articles-wrapper">
-        <div class="author-articles-title">
+        <div class="author-articles-title" tabindex="21">
             ARTICLES BY {{ authorName }}
         </div>
          <!--Listed articles-->
@@ -55,7 +55,7 @@
             {{#authorArticles}}
             <!--One article-->
             <a href={{ articleLink }} style="text-decoration: none;color:black">
-            <div class="list-article-wrapper">
+            <div class="list-article-wrapper" tabindex="22">
                 {{#if hasPhoto}}
                 <div class="list-article">
                     <div class="list-image-wrapper">
@@ -68,7 +68,7 @@
                 </div>
                 {{else}}
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover"> {{ articleTitle }} </div>
+                        <div class="list-title bold hover" > {{ articleTitle }} </div>
                         <div class="list-blurb">{{ articleBlurb }}</div>
                     </div>
                 {{/if}}
@@ -85,21 +85,21 @@
     <!--Author Info-->
     <div class="author-info-wrapper">
         <div class="author-image-wrapper">
-            <img src={{ authorPicture }} alt="author image" class="author-image">
+            <img src={{ authorPicture }} alt="author image" class="author-image" tabindex="16">
         </div>
         <div class="author-text-wrapper">
-            <div class="author-info-name">
+            <div class="author-info-name" tabindex="17"> 
                 {{ authorName }}
             </div>
-            <div class="author-blurb">
+            <div class="author-blurb" tabindex="18">
                 {{ authorBlurb }}
             </div>
             <div class="author-socials-wrapper">
                 {{#if instaHandle }}
-                <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;"><a href={{ instaLink }} class="unstyled-link">{{ instaHandle}}</a></span></i></div>
+                <div class="author-social"><i class="fa fa-instagram"><span style="font-size: 18px; margin-left: 2%;"><a href={{ instaLink }} class="unstyled-link" tabindex="19">{{ instaHandle}}</a></span></i></div>
                 {{/if}}
                 {{#if twitterHandle}}
-                <div class="author-social"><i class="fa fa-twitter-square"><span style="font-size: 18px; margin-left: 2%;"><a href={{ twitterLink }} class="unstyled-link">{{ twitterHandle }}</a></span></i></div>
+                <div class="author-social"><i class="fa fa-twitter-square"><span style="font-size: 18px; margin-left: 2%;"><a href={{ twitterLink }} class="unstyled-link" tabindex="20">{{ twitterHandle }}</a></span></i></div>
                 {{/if}}
             </div>
         </div>
@@ -108,5 +108,5 @@
 
 <!--Footer-->
 <div class="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="23">© The Brown Noser</div>
 </div>

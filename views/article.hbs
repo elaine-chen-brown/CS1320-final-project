@@ -23,15 +23,15 @@
     <hr>
     <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="6">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category"tabindex="7">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="8">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="9">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="10">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="11">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category" tabindex="12">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="13">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="14">SPORTS</a></li>
         </ul>
     </div>
     <hr>
@@ -42,28 +42,28 @@
     <!--Main Content Section-->
     <div class="main-content-wrapper">
         <!--Breadcrumbs-->
-        <div class="breadcrumbs-wrapper brown">
+        <div class="breadcrumbs-wrapper brown" tabindex="15">
             <a class="brown" href="/">Home</a> / <a class="brown" href={{ categoryLink }}>{{articleCategoryName}}</a> / Article
         </div>
         <!--Article-->
         <div class="article-wrapper">
             <!--Article top text-->
             <div class="article-top-text-wrapper">
-                <div class="article-title"> {{ articleTitle }} </div>
+                <div class="article-title" tabindex="16"> {{ articleTitle }} </div>
                 <div class="top-text-wrapper">
-                    <div class="article-author brown"><a href={{ authorLink }} style="text-decoration:none;color:#573B03">{{ articleAuthor }}</a></div>
-                    <div class="article-date"> {{ articleDate }} </div>
+                    <div class="article-author brown" tabindex="17"><a href={{ authorLink }} style="text-decoration:none;color:#573B03">{{ articleAuthor }}</a></div>
+                    <div class="article-date" tabindex="18"> {{ articleDate }} </div>
                 </div>
             </div>
             <!--Article image-->
             {{#if hasPhoto}}
             <div class="featured-image-wrapper">
-                <img src={{ articleImage }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
+                <img src={{ articleImage }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'" tabindex="18">
             </div>
-            <div class="article-caption"> {{ photoCaption }} </div>
+            <div class="article-caption" tabindex="19"> {{ photoCaption }} </div>
             {{/if}}
             <!--Article text-->
-            <div class="article-text">
+            <div class="article-text" tabindex="20">
                 {{#if isHTML}}
                 {{{ articleText }}}
 
@@ -80,15 +80,15 @@
                 <button class="btn"><a href="#"><i class="fa fa-envelope-square unstyled-link"></a></i></button>
             </div> --}}
             <div class="share-btn" data-url={{shareUrl}} data-title="{{shareTitle}}">
-                <a class="btn" data-id="fb"><i class="fa fa-facebook-square unstyled-link"></i></a>
-                <a class="btn" data-id="tw"><i class="fa fa-twitter-square unstyled-link"></i></a>
-                <a class="btn" data-id="print"><i class="fa fa-print unstyled-link"></i></a>
-                <a class="btn" data-id="mail"><i class="fa fa-envelope-square unstyled-link"></i></a>
+                <a class="btn" data-id="fb" tabindex="21"><i class="fa fa-facebook-square unstyled-link"></i></a>
+                <a class="btn" data-id="tw" tabindex="22"><i class="fa fa-twitter-square unstyled-link"></i></a>
+                <a class="btn" data-id="print" tabindex="23"><i class="fa fa-print unstyled-link"></i></a>
+                <a class="btn" data-id="mail" tabindex="24"><i class="fa fa-envelope-square unstyled-link"></i></a>
             </div>
         </div>
     </div>
     <!--Sidebar Section-->
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" tabindex="25">
         <div class="sidebar-title">SUGGESTED</div>
         {{#suggestedArticles}}
         <!--Sidebar article-->
@@ -110,7 +110,7 @@
 
 <!--Footer-->
 <div class="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="26">© The Brown Noser</div>
 </div>
 
 <script src="/share-buttons.js"></script>

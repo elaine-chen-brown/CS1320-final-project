@@ -23,15 +23,15 @@
     <hr>
     <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category" tabindex="7">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="6">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category" tabindex="7">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="8">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="9">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="10">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="11">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category" tabindex="12">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="13">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="14">SPORTS</a></li>
         </ul>
     </div>
     <hr style="margin-bottom:0px">
@@ -46,23 +46,23 @@
         <div class="featured-article">
             {{#if hasFeaturedPic}}
             <div class="featured-image-wrapper">
-                <img src={{ featuredPic }} alt="Featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/featured.png'">
+                <img src={{ featuredPic }} alt="Featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/featured.png'" tabindex="15">
             </div>
             {{/if}}
 
             <div class="featured-text-wrapper">
                 <div class="featured-title-wrapper">
-                    <div class="featured-title bold hover">{{ featuredTitle }}</div>
+                    <div class="featured-title bold hover" tabindex="16">{{ featuredTitle }}</div>
                 </div>
-                <div class="featured-category brown">
+                <div class="featured-category brown" tabindex="17">
                     {{ featuredCategory }}
                 </div>
-                <div class="featured-blurb">
+                <div class="featured-blurb" tabindex="18">
                     {{ featuredBlurb }}
                 </div>
             </div>
             <div class="read-more-wrapper">
-                <p class="read-more brown">Read more</p>
+                <p class="read-more brown" tabindex="19">Read more</p>
             </div>
             <hr>
         </div>
@@ -73,7 +73,7 @@
             {{#listArticles}}
             <!--One article-->
             <a href={{ articleLink }} style="text-decoration: none;color:black">
-            <div class="list-article-wrapper">
+            <div class="list-article-wrapper" tabindex="20">
                 {{#if hasPhoto}}
                 <div class="list-article">
                     <div class="list-image-wrapper">
@@ -104,7 +104,7 @@
 
     <!--Sidebar Section-->
     <div class="sidebar-wrapper">
-        <div class="sidebar-title">MOST VIEWED</div>
+        <div class="sidebar-title" tabindex="21">MOST VIEWED</div>
         {{#mostViewedArticles}}
         <!--Sidebar article-->
         <a href={{ articleLink }} style="text-decoration:none;color:black">
@@ -125,7 +125,7 @@
 
 <!--Footer-->
 <div class="footer" id="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="22">© The Brown Noser</div>
 </div>
 
 <input type = "hidden" id = "featuredLink" value = {{featuredLink}} />
