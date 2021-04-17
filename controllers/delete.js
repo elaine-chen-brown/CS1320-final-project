@@ -132,22 +132,24 @@ function deleteArticle(req, res) {
             deleteDraft(articleid).then(success => {
                 render(req, res, 'Successfully deleted draft article!');
             }).catch(error => {
-                res.render('delete', {
-                    title: 'Delete',
-                    message: 'Could not delete from drafts, please try again.',
-                    articles: canDelete
-                })
+                render(req, res, 'Could not delete from drafts, pleas try again.');
+                // res.render('delete', {
+                //     title: 'Delete',
+                //     message: 'Could not delete from drafts, please try again.',
+                //     articles: canDelete
+                // })
             })
         }
         else {
             deletePublished(articleid).then(success => {
                 render(req, res, 'Successfully deleted published article');
             }).catch(error => {
-                res.render('delete', {
-                    title: 'Delete',
-                    message: 'Could not delete from articles, please try again.',
-                    articles: canDelete
-                })
+                render(req, res, 'Could not delete from articles, please try again.');
+                // res.render('delete', {
+                //     title: 'Delete',
+                //     message: 'Could not delete from articles, please try again.',
+                //     articles: canDelete
+                // })
             })
         }
         
