@@ -115,8 +115,6 @@ app.post('/logout', function(request, response) {
 
 // CMS endpoints
 app.get('/dashboard', dashboardHandler.getDashboard);
-app.get('/edit', editHandler.getEdit);
-
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
 app.get('/publish_issue', publishIssueHandler.display);
