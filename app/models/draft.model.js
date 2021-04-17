@@ -38,8 +38,8 @@ Draft.save = (articleInfo, result) => {
     var photoCaption = articleInfo.photoCaption;
 
     if (photoName) {
-        var extension = photoName.split(".");
-        extension = extension[extension.length - 1];
+        var extension = photoName.split(".").pop();
+        //extension = extension[extension.length - 1];
         
         sql.query("SELECT MAX(photoUploadId) AS photoId FROM drafts", (err, res) => {
             if (err) {

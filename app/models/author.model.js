@@ -163,8 +163,8 @@ Author.newAuthor = (info, result) => {
     else {
       var authorid = res.insertId;
       if (photoName) {
-        var extension = photoName.split(".");
-        extension = extension[extension.length - 1];
+        var extension = photoName.split(".").pop();
+        //extension = extension[extension.length - 1];
         var newPhotoName = authorid + "." + extension;
         var oldPath = __dirname + '/../../public/images/authors/' + photoName;
         var newPath = __dirname + '/../../public/images/authors/' + newPhotoName;
