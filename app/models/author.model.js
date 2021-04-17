@@ -141,4 +141,56 @@ Author.editAuthor = (info, result) => {
   })
 }
 
+Author.newAuthor = (info, result) => {
+  var authorname = info.name;
+  var role = info.role;
+  var insta = info.insta;
+  var twitter = info.twitter;
+  var bio = info.bio;
+  var photoName = info.authorPhoto;
+  
+  sql.query("INSERT INTO authors (author, title, authorInsta, authorTwitter, authorBio) VALUES (?, ?, ?, ?, ?)", [authorname, role, insta, twitter, bio], (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    else {
+      var authorid = res.insertId;
+      if (photoName) {
+        var extension = photoName.split(".");
+        extension = extension[extension.length - 1];
+        var newPhotoName = authorid + "." + extension;
+        var oldPath = __dirname + '/../../public/images/authors/' + photoName;
+        var newPath = __dirname + '/../../public/images/authors/' + newPhotoName;
+        fs.rename(oldPath, newPath, function(err) {
+          if (err) {
+            console.log(err);
+            result(err, null);
+            return;
+          }
+          else {
+            sql.query("UPDATE authors SET authorImage = ? WHERE authorid = ?", [newPhotoName, authorid], (err, res) => {
+              if (err){
+                console.log("error: ", err);
+                result(err, null);
+                return;
+              }
+              else {
+                result(null, res);
+                return;
+              }
+            })
+          }
+        })
+      }
+      else {
+        result(null, res);
+        return;
+      }
+    }
+
+  })
+}
+
 module.exports = Author;

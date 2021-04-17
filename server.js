@@ -25,6 +25,7 @@ const issueHandler = require('./controllers/issue.js');
 const loginHandler = require('./controllers/login.js');
 const dashboardHandler = require('./controllers/dashboard.js');
 const editAuthorHandler = require('./controllers/edit_author.js');
+const newAuthorHandler = require('./controllers/new_author.js');
 const Author = require("./app/models/author.model.js");
 
 
@@ -83,15 +84,18 @@ app.use(session({
 }));
 
 
-app.get('/login', loginHandler.getLogin)
+app.get('/login', loginHandler.getLogin);
 
 app.post('/auth', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
 	var hashPwd = crypto.createHash('sha1').update(password).digest('hex');
 	if (username && password) {
-		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, hashPwd], function(error, results, fields) {
-			if (results.length > 0) {
+		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, hashPwd], (error, results) => {
+            if (error) {
+                console.log("error: ", error);
+            }
+			if (results.length) {
 				request.session.loggedin = true;
 				request.session.username = username;
 				response.redirect('/dashboard');
@@ -125,6 +129,8 @@ app.post('/delete', deleteHandler.deleteArticle);
 app.get('/edit_author', editAuthorHandler.display);
 app.post('/edit_author', editAuthorHandler.editAuthor);
 app.post('/save_author', editAuthorHandler.saveChanges);
+app.get('/new_author', newAuthorHandler.display);
+app.post('/new_author', newAuthorHandler.newAuthor);
 
 app.post('/saveImage', async (req, res) => {
     try {
