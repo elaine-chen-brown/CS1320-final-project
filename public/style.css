@@ -209,15 +209,16 @@ body, html{
 /* Nav bar */
 .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .navlist {
     list-style-type: none;
-    margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: white;
+    width: 90%;
+    margin: auto;
 }
   
 .navitem {
@@ -227,7 +228,7 @@ body, html{
   
 .navitem a {
     display: block;
-    color: black;
+    color: rgb(68, 67, 67);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -976,9 +977,7 @@ body, html{
 
 /* Dashboard Options */
 .dashboard-content-wrapper{
-    padding: 4%;
-    padding-left: 2%;
-    padding-right: 2%;
+    padding: 2%;
 }
 
 .dashboard-option-title {
