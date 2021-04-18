@@ -46,6 +46,10 @@
 - password: thebrowndailynoser19
 
 #### 4/17
+- author page can load if author has no written articles
+- fixed custom author image loading on about page
+
+#### 4/17
 - fixed navbar display
 - added navbar to author portal
 - made portal styling more consistent

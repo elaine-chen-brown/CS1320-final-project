@@ -35,81 +35,160 @@ function findAuthor(req, res) {
         let instaLink = (data.authorInsta) ? `instagram.com/${instaLinkname}` : "#";
         let twitterHandle = (data.authorTwitter) ? data.authorTwitter : "";
         let twitterLink = (data.authorTwitter) ? `twitter.com/${twitterLinkname}` : "#";
-        let authorArticles = getAuthorArticleIds(req,res, (articles) => {
+        
+        var findArticle = function getArticleById(entry) {
+            return new Promise((resolve, reject) => {
+                Article.findById(entry.articleid, (err, data) => {
+                    if (err) {
+                        if (err.kind === "not_found") {
+                            reject(`Not found Article with id ${entry.articleid}.`);
+                        } else {
+                            reject("Error retrieving Article with id " + entry.articleid);
+                        }
+                    }
+                    else {
+                        // TODO add images
+                        let hasPhoto = (data.photoFilename) ? true : false;
+                        article_to_add = {
+                            articleImage: `/images/images/${data.photoFilename}`,
+                            articleTitle: data.headline,
+                            articleBlurb: data.teaser,
+                            articleLink: `/article/${entry.articleid}`,
+                            publishDate: data.publishDate,
+                            hasPhoto: hasPhoto,
+                        }
+                        resolve(article_to_add);
+                    }
+                })
+            })
+        }
+
+        var getArticles = function getArticles(authorId) {
+            return new Promise((resolve,reject) => {
+                Author.findArticles(authorId, (err,data) => {
+                    if (err) {
+                        if (err.kind === "not_found") {
+                            reject(`Not found articles for author with id ${authorId}.`);
+                        } else {
+                            reject("Error finding article for author with id " + authorId);
+                        }
+                    }
+                    else {
+                        resolve(data);
+                    }
+                })
+            })
+        }
+        getArticles(req.params.authorId).then(articleIds => {
+            //get all the articles from database
+            var actions = articleIds.map(findArticle);
+            var results = Promise.all(actions);
+            results.then(articles => {
+                articles.sort(function(a, b){
+                    // sort articles so they display with the newest dates at the top
+                    return b.publishDate - a.publishDate;
+                });
+                // displayfunc(data);
+                res.render('author', {
+                    title: 'Author',
+                    authorName: authorName,
+                    authorPicture: authorPicture,
+                    authorBlurb: authorBlurb,
+                    instaHandle: instaHandle,
+                    instaLink: instaLink,
+                    twitterHandle: twitterHandle,
+                    twitterLink: twitterLink,
+                    authorArticles: articles
+                });
+            })
+        }).catch(error => {
             res.render('author', {
-              title: 'Author',
-              authorName: authorName,
-              authorPicture: authorPicture,
-              authorBlurb: authorBlurb,
-              instaHandle: instaHandle,
-              instaLink: instaLink,
-              twitterHandle: twitterHandle,
-              twitterLink: twitterLink,
-              authorArticles: articles
-            });  
-          });
+                title: 'Author',
+                authorName: authorName,
+                authorPicture: authorPicture,
+                authorBlurb: authorBlurb,
+                instaHandle: instaHandle,
+                instaLink: instaLink,
+                twitterHandle: twitterHandle,
+                twitterLink: twitterLink,
+                authorArticles: []
+            });
+        })
+        
+        // let authorArticles = getAuthorArticleIds(req,res, (articles) => {
+        //     res.render('author', {
+        //       title: 'Author',
+        //       authorName: authorName,
+        //       authorPicture: authorPicture,
+        //       authorBlurb: authorBlurb,
+        //       instaHandle: instaHandle,
+        //       instaLink: instaLink,
+        //       twitterHandle: twitterHandle,
+        //       twitterLink: twitterLink,
+        //       authorArticles: articles
+        //     });  
+        //   });
       }
     });
   };
 
 
 
-function getAuthorArticleIds(req, res, displayfunc ) {
-    Author.findArticles(req.params.authorId, (err, data) => {
-        if (err) {
-          if (err.kind === "not_found") {
-            res.status(404).send({
-              message: `Not found articles for Author with id ${req.params.authorId}.`
-            });
-          } else {
-            res.status(500).send({
-              message: "Error retrieving articles for Author with id " + req.params.authorId
-            });
-          }
-        }
-        else {
-            var findArticle = function getArticleById(entry) {
-                return new Promise((resolve, reject) => {
-                    Article.findById(entry.articleid, (err, data) => {
-                        if (err) {
-                            if (err.kind === "not_found") {
-                                reject(`Not found Article with id ${entry.articleid}.`);
-                            } else {
-                                reject("Error retrieving Article with id " + entry.articleid);
-                            }
-                        }
-                        else {
-                            // TODO add images
-                            let hasPhoto = (data.photoFilename) ? true : false;
-                            article_to_add = {
-                                articleImage: `/images/images/${data.photoFilename}`,
-                                articleTitle: data.headline,
-                                articleBlurb: data.teaser,
-                                articleLink: `/article/${entry.articleid}`,
-                                publishDate: data.publishDate,
-                                hasPhoto: hasPhoto,
-                            }
-                            resolve(article_to_add);
-                        }
-                    })
-                })
-            }
-            //get all the articles from database
-            var actions = data.map(findArticle);
-            var results = Promise.all(actions);
-            results.then(data => {
-                data.sort(function(a, b){
-                    // sort articles so they display with the newest dates at the top
-                    return b.publishDate - a.publishDate;
-                });
-                displayfunc(data);
-            })
-        }
-    })
-}
+// function getAuthorArticleIds(req, res, displayfunc ) {
+//     Author.findArticles(req.params.authorId, (err, data) => {
+//         if (err) {
+//           if (err.kind === "not_found") {
+//             res.status(404).send({
+//               message: `Not found articles for Author with id ${req.params.authorId}.`
+//             });
+//           } else {
+//             res.status(500).send({
+//               message: "Error retrieving articles for Author with id " + req.params.authorId
+//             });
+//           }
+//         }
+//         else {
+//             var findArticle = function getArticleById(entry) {
+//                 return new Promise((resolve, reject) => {
+//                     Article.findById(entry.articleid, (err, data) => {
+//                         if (err) {
+//                             if (err.kind === "not_found") {
+//                                 reject(`Not found Article with id ${entry.articleid}.`);
+//                             } else {
+//                                 reject("Error retrieving Article with id " + entry.articleid);
+//                             }
+//                         }
+//                         else {
+//                             // TODO add images
+//                             let hasPhoto = (data.photoFilename) ? true : false;
+//                             article_to_add = {
+//                                 articleImage: `/images/images/${data.photoFilename}`,
+//                                 articleTitle: data.headline,
+//                                 articleBlurb: data.teaser,
+//                                 articleLink: `/article/${entry.articleid}`,
+//                                 publishDate: data.publishDate,
+//                                 hasPhoto: hasPhoto,
+//                             }
+//                             resolve(article_to_add);
+//                         }
+//                     })
+//                 })
+//             }
+//             //get all the articles from database
+//             var actions = data.map(findArticle);
+//             var results = Promise.all(actions);
+//             results.then(data => {
+//                 data.sort(function(a, b){
+//                     // sort articles so they display with the newest dates at the top
+//                     return b.publishDate - a.publishDate;
+//                 });
+//                 displayfunc(data);
+//             })
+//         }
+//     })
+// }
 
 
 module.exports = {
-    getAuthorArticleIds,
     findAuthor
 };
