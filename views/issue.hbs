@@ -3,7 +3,7 @@
     <div class="banner" role="banner">
         <div class="title-wrapper">
             <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
-            <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+            <div class="title-text"><a href="/" style="text-decoration: none;color:black" tabindex="1">THE BROWN NOSER</a></div>
         </div>
         <div class="extras-wrapper">
             <div class="centering-wrapper">
@@ -23,15 +23,15 @@
     <hr class="line-light-grey">
     <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="6">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category" tabindex="7">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="8">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="9">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="10">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="11">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category" tabindex="12">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="13">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="14">SPORTS</a></li>
         </ul>
     </div>
     <hr class="line-light-grey">
@@ -42,7 +42,7 @@
     <!--Main Content Section-->
     <div class="main-content-wrapper">
         <!--Breadcrumbs-->
-        <div class="breadcrumbs-wrapper brown">
+        <div class="breadcrumbs-wrapper brown" tabindex="15">
             {{#if isNonTopical}}
             <a class="brown" href={{lastArchiveLink}}>Archive</a> / Issue {{issueNum}}
             {{else}}
@@ -51,25 +51,25 @@
         </div>
         <!--Featured article-->
         {{#if isNonTopical}}
-        <a href={{ featuredLink }} style="text-decoration:none">
+        <a href={{ featuredLink }} style="text-decoration:none" tabindex="16">
         <div class="featured-article">
             <div class="featured-image-wrapper">
-                <img src={{ featuredPic }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
+                <img src={{ featuredPic }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'" tabindex="17">
             </div>
 
             <div class="featured-text-wrapper">
                 <div class="featured-title-wrapper">
-                    <div class="featured-title bold hover">{{ featuredTitle }}</div>
+                    <div class="featured-title bold hover" tabindex="18">{{ featuredTitle }}</div>
                 </div>
-                <div class="featured-category brown">
+                <div class="featured-category brown" tabindex="19">
                     {{ featuredCategory }}
                 </div>
-                <div class="featured-blurb">
+                <div class="featured-blurb" tabindex="20">
                     {{ featuredBlurb }}
                 </div>
             </div>
             <div class="read-more-wrapper">
-                <div class="read-more brown">Read more</div>
+                <div class="read-more brown" tabindex="21">Read more</div>
             </div>
             <hr>
         </div>
@@ -80,26 +80,26 @@
         <div class="list-articles-wrapper">
             {{#issueArticles}}
             <!--One article-->
-            <a href={{ articleLink }} style="text-decoration: none;color:black">
+            <a href={{ articleLink }} style="text-decoration: none;color:black" tabindex="22">
             <div class="list-article-wrapper">
                 {{#if hasPhoto}}
                 <div class="list-article">
                     <div class="list-image-wrapper">
-                        <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'">
+                        <img src={{ articleImage }} alt="article picture" class="list-image" onerror="this.onerror=null; this.src='/images/article-pic.png'" tabindex="23">
                     </div>
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover"> {{ articleTitle }} </div>
-                        <div class="list-blurb">{{ articleBlurb }}</div>
+                        <div class="list-title bold hover" tabindex="24"> {{ articleTitle }} </div>
+                        <div class="list-blurb" tabindex="25">{{ articleBlurb }}</div>
                     </div>
                 </div>
                 {{else}}
                     <div class="list-text-wrapper">
-                        <div class="list-title bold hover"> {{ articleTitle }} </div>
-                        <div class="list-blurb">{{ articleBlurb }}</div>
+                        <div class="list-title bold hover" tabindex="26"> {{ articleTitle }} </div>
+                        <div class="list-blurb" tabindex="27">{{ articleBlurb }}</div>
                     </div>
                 {{/if}}
                 <div class="read-more-wrapper">
-                    <div class="read-more brown">Read more</div>
+                    <div class="read-more brown" tabindex="28">Read more</div>
                 </div>
                 <hr>
             </div>
@@ -111,7 +111,7 @@
     </div>
 
     <!--Side Bar-->
-    <div class="sidebar-wrapper">
+    <div class="sidebar-wrapper" tabindex="29">
         {{#if isNonTopical}}
         <div class="smaller-sidebar-title popular-title"> Issue Number: {{issueNum}} </div>
         <div class="smaller-sidebar-title popular-title"> Published: {{issueDate}} </div>
@@ -130,5 +130,5 @@
 
 <!--Footer-->
 <div class="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="30">© The Brown Noser</div>
 </div>

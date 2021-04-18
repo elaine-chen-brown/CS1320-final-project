@@ -3,7 +3,7 @@
     <div class="banner" role="banner">
         <div class="title-wrapper">
             <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
-            <div class="title-text"><a href="/" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+            <div class="title-text"><a href="/" style="text-decoration: none;color:black" tabindex="1">THE BROWN NOSER</a></div>
         </div>
         <div class="extras-wrapper">
             <div class="centering-wrapper">
@@ -23,15 +23,15 @@
     <hr>
     <div class="navbar" role="navigation">
         <ul class="navlist">
-            <li class="navitem"><a href="/category/15" class="hover category">BUSINESS</a></li>
-            <li class="navitem"><a href="/category/14" class="hover category">CAMPUS LIFE</a></li>
-            <li class="navitem"><a href="/category/50" class="hover category">CINEMA CORNER</a></li>
-            <li class="navitem"><a href="/category/17" class="hover category">OFF CAMPUS</a></li>
-            <li class="navitem"><a href="/category/45" class="hover category">NEWS IN PICTURES</a></li>
-            <li class="navitem"><a href="/category/18" class="hover category">OPINION</a></li>
-            <li class="navitem"><a href="/category/48" class="hover category">POLITICS</a></li>
-            <li class="navitem"><a href="/category/19" class="hover category">SCIENCE &amp; TECHNOLOGY</a></li>
-            <li class="navitem"><a href="/category/20" class="hover category">SPORTS</a></li>
+            <li class="navitem"><a href="/category/15" class="hover category" tabindex="6">BUSINESS</a></li>
+            <li class="navitem"><a href="/category/14" class="hover category" tabindex="7">CAMPUS LIFE</a></li>
+            <li class="navitem"><a href="/category/50" class="hover category" tabindex="8">CINEMA CORNER</a></li>
+            <li class="navitem"><a href="/category/17" class="hover category" tabindex="9">OFF CAMPUS</a></li>
+            <li class="navitem"><a href="/category/45" class="hover category" tabindex="10">NEWS IN PICTURES</a></li>
+            <li class="navitem"><a href="/category/18" class="hover category" tabindex="11">OPINION</a></li>
+            <li class="navitem"><a href="/category/48" class="hover category"tabindex="12">POLITICS</a></li>
+            <li class="navitem"><a href="/category/19" class="hover category" tabindex="13">SCIENCE &amp; TECHNOLOGY</a></li>
+            <li class="navitem"><a href="/category/20" class="hover category" tabindex="14">SPORTS</a></li>
         </ul>
     </div>
     <hr>
@@ -43,7 +43,7 @@
         Previous / <span class="underline">Archive</span>
     </div> --}}
     <!--Sub-banner-->
-    <div class="sub-banner brown">
+    <div class="sub-banner brown" tabindex="15">
         ARCHIVE
     </div>
     <hr>
@@ -51,30 +51,30 @@
     <div class="timeline-wrapper">
         <ul class="navlist">
             {{#timelineYears}}
-            <li class="timeline-button"><a href= {{ year }} class="hover" style={{ yearStyle }}>{{ year }}</a></li>
+            <li class="timeline-button" tabindex="16"><a href= {{ year }} class="hover" style={{ yearStyle }}>{{ year }}</a></li>
             {{/timelineYears}}
         </ul>
     </div>
     <!--Bottom Content Section-->
     <div class="bottom-wrapper">
-        <div class="bottom-title">ISSUES: {{year}}</div>
+        <div class="bottom-title" tabindex="17">ISSUES: {{year}}</div>
         <hr>
         <div class="issues-wrapper">
             <div class="issue-lists-wrapper">
                 <ul class="issue-list">
                     {{#archiveList1}}
-                    <li class="archive-item"><a href={{ issueLink }} style="color:#573B03">{{ issueDate }}</a></li>
+                    <li class="archive-item" tabindex="18"><a href={{ issueLink }} style="color:#573B03">{{ issueDate }}</a></li>
                     {{/archiveList1}}
                 </ul>
                 <ul class="issue-list">
                     {{#archiveList2}}
-                    <li class="archive-item"><a href={{ issueLink }} style="color:#573B03">{{ issueDate }}</a></li>
+                    <li class="archive-item" ><a href={{ issueLink }} style="color:#573B03">{{ issueDate }}</a></li>
                     {{/archiveList2}}
                 </ul>
             </div>
             <div class="archive-image-wrapper">
                 {{#if hasIssuu}}
-                <div class="car2">
+                <div class="car2" tabindex="19">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -110,7 +110,7 @@
 
 <!--Footer-->
 <div class="footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="20">© The Brown Noser</div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>  
