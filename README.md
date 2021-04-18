@@ -45,6 +45,10 @@
 - username: thenoser
 - password: thebrowndailynoser19
 
+#### 4/18
+- navbar reverted
+- write new button removed
+
 #### 4/17
 - author page can load if author has no written articles
 - fixed custom author image loading on about page

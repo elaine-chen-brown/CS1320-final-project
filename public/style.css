@@ -217,8 +217,7 @@ body, html{
     padding: 0;
     overflow: hidden;
     background-color: white;
-    width: 90%;
-    margin: auto;
+    margin: 0;
 }
   
 .navitem {
