@@ -105,12 +105,9 @@
         const formData = new FormData();
         formData.append('myFile', files[0]);
 
-        //const data = {formdata: formData, where: 'edit_author'};
-        //console.log(data);
         fetch('/saveAuthorImage', {
             method: 'POST',
             body: formData
-            //body: JSON.stringify(data);
         })
         .then(response => response.json())
         .then(data => {

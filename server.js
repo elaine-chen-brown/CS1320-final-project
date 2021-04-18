@@ -30,6 +30,7 @@ const Author = require("./app/models/author.model.js");
 
 
 const newHandler = require('./controllers/write_new.js');
+const editHandler = require('./controllers/edit_article.js');
 const publishTopicalHandler = require('./controllers/publish_topical.js');
 const publishIssueHandler = require('./controllers/publish_issue.js');
 const deleteHandler = require('./controllers/delete.js');
@@ -126,6 +127,9 @@ app.post('/publish_issue', publishIssueHandler.publishIssue);
 app.post('/publish_topical', publishTopicalHandler.publishTopical);
 app.get('/delete', deleteHandler.display);
 app.post('/delete', deleteHandler.deleteArticle);
+app.get('/edit_article', editHandler.display);
+app.post('/edit_article', editHandler.editDraft);
+app.post('/save_edits', editHandler.saveChanges);
 app.get('/edit_author', editAuthorHandler.display);
 app.post('/edit_author', editAuthorHandler.editAuthor);
 app.post('/save_author', editAuthorHandler.saveChanges);
