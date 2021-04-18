@@ -24,12 +24,13 @@ const issueHandler = require('./controllers/issue.js');
 // CMS handlers
 const loginHandler = require('./controllers/login.js');
 const dashboardHandler = require('./controllers/dashboard.js');
-const editHandler = require('./controllers/edit.js');
 const editAuthorHandler = require('./controllers/edit_author.js');
+const newAuthorHandler = require('./controllers/new_author.js');
 const Author = require("./app/models/author.model.js");
 
 
 const newHandler = require('./controllers/write_new.js');
+const editHandler = require('./controllers/edit_article.js');
 const publishTopicalHandler = require('./controllers/publish_topical.js');
 const publishIssueHandler = require('./controllers/publish_issue.js');
 const deleteHandler = require('./controllers/delete.js');
@@ -84,15 +85,18 @@ app.use(session({
 }));
 
 
-app.get('/login', loginHandler.getLogin)
+app.get('/login', loginHandler.getLogin);
 
 app.post('/auth', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
 	var hashPwd = crypto.createHash('sha1').update(password).digest('hex');
 	if (username && password) {
-		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, hashPwd], function(error, results, fields) {
-			if (results.length > 0) {
+		sql.query('SELECT * FROM login WHERE username = ? AND password = ?', [username, hashPwd], (error, results) => {
+            if (error) {
+                console.log("error: ", error);
+            }
+			if (results.length) {
 				request.session.loggedin = true;
 				request.session.username = username;
 				response.redirect('/dashboard');
@@ -115,8 +119,6 @@ app.post('/logout', function(request, response) {
 
 // CMS endpoints
 app.get('/dashboard', dashboardHandler.getDashboard);
-app.get('/edit', editHandler.getEdit);
-
 app.get('/write_new', newHandler.display);
 app.post('/write_new', newHandler.handleNew);
 app.get('/publish_issue', publishIssueHandler.display);
@@ -125,9 +127,14 @@ app.post('/publish_issue', publishIssueHandler.publishIssue);
 app.post('/publish_topical', publishTopicalHandler.publishTopical);
 app.get('/delete', deleteHandler.display);
 app.post('/delete', deleteHandler.deleteArticle);
+app.get('/edit_article', editHandler.display);
+app.post('/edit_article', editHandler.editDraft);
+app.post('/save_edits', editHandler.saveChanges);
 app.get('/edit_author', editAuthorHandler.display);
 app.post('/edit_author', editAuthorHandler.editAuthor);
 app.post('/save_author', editAuthorHandler.saveChanges);
+app.get('/new_author', newAuthorHandler.display);
+app.post('/new_author', newAuthorHandler.newAuthor);
 
 app.post('/saveImage', async (req, res) => {
     try {

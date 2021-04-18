@@ -5,6 +5,9 @@ const Author = require("../app/models/author.model.js");
 const { response } = require("express");
 const { fileupload } = require("express-fileupload");
 
+var categories;
+var authors; 
+
 function display(req, res) {
     if (req.session.loggedin) {
         var getCategories = function getCategories(req, res) {
@@ -51,8 +54,8 @@ function display(req, res) {
         }
         getCategories().then(results => {
             getAuthors().then(authorResults => {
-                let categories = results.map(buildCategoryList);
-                let authors = authorResults.map(buildAuthorList);
+                categories = results.map(buildCategoryList);
+                authors = authorResults.map(buildAuthorList);
                 res.render('write_new', {
                     title: 'New article',
                     message: '',
@@ -88,12 +91,16 @@ function handleNew(req, res) {
         saveDraft().then(results => {
             res.render('write_new', {
                 title: 'New article',
-                message: 'Draft saved successfully!'
+                message: 'Draft saved successfully!',
+                categories: categories,
+                authors: authors
             })
         }).catch(error => {
             res.render('write_new', {
                 title: 'New article',
-                message: 'Unable to save, please try again.'
+                message: 'Unable to save, please try again.',
+                categories: categories,
+                authors: authors
             })
         })
     } else {

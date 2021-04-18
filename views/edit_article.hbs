@@ -1,0 +1,169 @@
+<head>
+    <script src="https://cdn.tiny.cloud/1/qhohdrvi143m3q1dgso5pgxfpc2ituos6a22xy8kpcgwdqxa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
+    <script>
+    $(document).ready(function () {
+        $('.limited').selectize({
+            sortField: 'text'
+        });
+    });
+
+    tinymce.init({
+        selector: '#content',
+        height: 400,
+        //images_upload_handler: handleImageUpload
+        plugins: 'lists, link, image, media',
+        toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist forecolor backcolor | link image media | removeformat help',
+        menubar: false,
+    });
+
+    </script>
+</head>
+
+<body>
+<!--Dashboard Banner-->
+<div class="dashboard-banner">
+    <div class="dashboard-logo">
+        <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
+        <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+    </div>
+    <div class="dashboard-buttons">
+        <div class="logout-button-wrapper">
+                <form action="logout" method="post">
+                    <input class="logout-button" type="submit" value="Logout">
+               </form>
+        </div>
+        <div class="dashboard-profile">
+            <img src="/images/red.png" alt="profile pic icon" class="dashboard-propic">
+        </div>
+    </div>
+</div>
+
+ <!--Navbar-->
+    <div class="portal-navbar" role="navigation" style="padding-bottom:1.5%;">
+        <ul class="portal-navlist">
+            <li class="portal-navitem"><a href="/write_new" class="hover">NEW ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/delete" class="hover">DELETE ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/new_author" class="hover">NEW AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/edit_author" class="hover">EDIT AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/publish_topical" class="hover">PUBLISH ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/publish_issue" class="hover">PUBLISH ISSUE</a></li>
+        </ul>
+    </div>
+    <hr style="height: 4px;margin:0;">
+
+<!--Write New Button-->
+<div class="new-buttons-wrapper" style="padding-left:2%;padding-top:2%;">
+    <button class="new-button"><a href="/write_new" style="text-decoration:none;color:black;">+ Write New</a></button>
+</div>
+
+<div style="padding:2%;">
+    {{#if search}}
+    <form method="post">
+        <label for="editDrafts">Select draft: </label>
+        <select class="limited" id="editDraft" name="editDraft" required>
+        <option value="">Select a draft...</option>
+        {{#drafts}}
+            <option value={{draftid}}>{{headline}} by {{author}}</option>
+        {{/drafts}}
+        </select> <br/> 
+
+        <input id="selectArticle" type="submit" value="Go">
+    </form>
+    {{/if}}
+
+    {{#if found}}
+    <form action="/save_edits" method="post">
+        <label for="headline">Headline: </label>
+        <input type="hidden" id="id" name="id" value='{{draftid}}'>
+        <input type="text" id="headline" name="headline" value='{{headline}}'><br/>
+
+        {{!-- <label for="category">Category: </label>
+        <select class="limited" name="category" id="category" required>
+            <option value="">Select a category...</option>
+            {{#categories}}
+                <option value='{{categoryid}},{{category}}'>{{category}}</option>
+            {{/categories}}
+        </select> <br/> --}}
+
+        <label for="type">Publish as: </label>
+        <select name="type" id="type">
+            <option value="topical">a topical article</option>
+            <option value="issue">part of the next issue</option>
+        </select> <br/>
+
+        <label for="teaser">Article teaser: </label>
+        <input type="text" id="teaser" name="teaser" value={{teaser}} required> <br/>
+
+        <label for="photoFile">Upload photo: </label>
+        <input type="file" id="photoFile" name="photoFile" accept="image/*"> <br/>
+        
+        <label for="photoCaption">Photo caption: </label>
+        <input type="text" id="photoCaption" name="photoCaption"> <br/>
+
+        <label for="content">Article body: </label><br/>
+        <textarea id="content" name="content"></textarea> <br/>
+
+        <label for="textUpload">Upload a text file (.htm recommended) </label>
+        <input type="file" id="textFile" name="textFile" accept=".htm, text/plain"><br>
+
+        <input type="submit" value="Save">
+        
+    </form>
+    {{/if}}
+
+    <div class="result">
+        {{message}}
+    </div>
+</div>
+</body>
+
+<script>
+
+    document.querySelector('#selectArticle').addEventListener('click', event => {
+        tinymce.get("content").setContent({{draftBody}});
+    });
+
+    const handleImageUpload = event => {
+        const files = event.target.files;
+        const formData = new FormData();
+        formData.append('myFile', files[0]);
+
+        fetch('/saveImage', {
+            method: 'POST',
+            body: formData,
+            params: 'write_new'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.path)
+        })
+        .catch(error => {
+            console.error(error)
+        })
+    }
+
+    document.querySelector('#photoFile').addEventListener('change', event => {
+        handleImageUpload(event);
+    });
+
+    const loadFile = event => {
+        var file = event.target.files[0];
+
+        var reader = new FileReader();
+        reader.onloadend = function(fileLoaded) {
+            var fileContent = fileLoaded.target.result;
+            //console.log(fileContent);
+            tinymce.get("content").setContent(fileContent);
+        }
+        reader.readAsText(file);
+    }
+
+    document.querySelector('#textFile').addEventListener('change', event => {
+        loadFile(event);
+    });
+
+</script>

@@ -1,5 +1,5 @@
 <head>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/qhohdrvi143m3q1dgso5pgxfpc2ituos6a22xy8kpcgwdqxa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/style.css">
@@ -10,6 +10,16 @@
             sortField: 'text'
         });
     });
+
+    tinymce.init({
+        selector: '#content',
+        height: 400,
+        //images_upload_handler: handleImageUpload
+        plugins: 'lists, link, image, media',
+        toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist forecolor backcolor | link image media | removeformat help',
+        menubar: false
+    });
+
     </script>
 </head>
 
@@ -32,7 +42,20 @@
         </div>
     </div>
 
-    <div class="main" role="main">
+    <!--Navbar-->
+    <div class="portal-navbar" role="navigation" style="padding-bottom: 2%;">
+        <ul class="portal-navlist">
+            <li class="portal-navitem"><a href="/write_new" class="hover">NEW ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/delete" class="hover">DELETE ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/new_author" class="hover">NEW AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/edit_author" class="hover">EDIT AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/publish_topical" class="hover">PUBLISH ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/publish_issue" class="hover">PUBLISH ISSUE</a></li>
+        </ul>
+    </div>
+    <hr style="height: 4px;margin:0;">
+
+    <div class="main" role="main" style="padding:2%">
         <form role="form" method="post">
             <label for="headline">Headline: </label>
             <input type="text" id="headline" name="headline" required> <br/>
@@ -59,7 +82,7 @@
             <select name="type" id="type">
                 <option value="topical">a topical article</option>
                 <option value="issue">part of the next issue</option>
-            </select>
+            </select> <br/>
 
             <label for="teaser">Article teaser: </label>
             <input type="text" id="teaser" name="teaser" required> <br/>
@@ -72,6 +95,9 @@
 
             <label for="content">Article body: </label><br/>
             <textarea id="content" name="content"></textarea> <br/>
+
+            <label for="textUpload">Upload a text file (.htm recommended) </label>
+            <input type="file" id="textFile" name="textFile" accept=".htm, text/plain"><br>
 
             <input type="submit" value="Save">
         </form>
@@ -106,55 +132,20 @@
         handleImageUpload(event);
     });
 
-    tinymce.init({
-        selector: '#content',
-        plugins: 'image',
-        //images_upload_handler: handleImageUpload
+    const loadFile = event => {
+        var file = event.target.files[0];
+
+        var reader = new FileReader();
+        reader.onloadend = function(fileLoaded) {
+            var fileContent = fileLoaded.target.result;
+            //console.log(fileContent);
+            tinymce.get("content").setContent(fileContent);
+        }
+        reader.readAsText(file);
+    }
+
+    document.querySelector('#textFile').addEventListener('change', event => {
+        loadFile(event);
     });
 
 </script>
-
-<style>
-    /*
-    body {
-        display: flex;
-        flex-direction: row;
-    }
-    */
-
-    .main {
-        padding: 2%;
-    }
-    
-    .navigation {
-        display: flex;
-        flex-direction: column;
-        background-color: cornflowerblue;
-        width: 30vw;
-        height: 100vh;
-        color: white;
-        position: relative;
-        top: -10px;
-        left: -10px;
-    }
-
-    .navlist {
-        display: flex;
-        flex-direction: column;
-        background-color: cornflowerblue;
-        color: white; 
-    }
-
-    li {
-        list-style-type: none;
-        margin-bottom: 20px;
-    }
-    a {
-        text-decoration: none;
-        color: white;
-    }
-
-    input {
-        margin-bottom: 15px;
-    }
-</style>

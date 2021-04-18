@@ -22,7 +22,9 @@
     </div>
     <div class="dashboard-buttons">
         <div class="logout-button-wrapper">
-            <button class="logout-button">Logout</button>
+                <form action="logout" method="post">
+                    <input class="logout-button" type="submit" value="Logout">
+               </form>
         </div>
         <div class="dashboard-profile">
             <img src="/images/red.png" alt="profile pic icon" class="dashboard-propic">
@@ -30,12 +32,20 @@
     </div>
 </div>
 
-<!--Write New Button-->
-<div class="new-buttons-wrapper">
-    <button class="new-button"><a href="/write_new" style="text-decoration:none;color:black;">+ Write New</a></button>
-</div>
+ <!--Navbar-->
+    <div class="portal-navbar" role="navigation" style="padding-bottom:1.5%;">
+        <ul class="portal-navlist">
+            <li class="portal-navitem"><a href="/write_new" class="hover">NEW ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/delete" class="hover">DELETE ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/new_author" class="hover">NEW AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/edit_author" class="hover">EDIT AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/publish_topical" class="hover">PUBLISH ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/publish_issue" class="hover">PUBLISH ISSUE</a></li>
+        </ul>
+    </div>
+    <hr style="height: 4px;margin:0;">
 
-<div>
+<div style="padding:2%;">
     {{#if search}}
     <form method="post">
         <label for="editAuthor">Select author: </label>
@@ -53,7 +63,7 @@
     {{#if found}}
     <form action="/save_author" method="post">
         <label for="name">Author name: </label>
-        <input type="hidden" id= "id" name="id" value='{{authorid}}'>
+        <input type="hidden" id="id" name="id" value='{{authorid}}'>
         <input type="text" id="name" name="name" value='{{authorname}}'><br/>
 
         <label for="retired">Status: </label>
@@ -84,12 +94,6 @@
         {{message}}
     </div>
 </div>
-
-
-<!--Footer-->
-<div class="dashboard-footer">
-    <div class="footer-text">© The Brown Noser</div>
-</div>
 </body>
 
 <script>
@@ -98,12 +102,9 @@
         const formData = new FormData();
         formData.append('myFile', files[0]);
 
-        //const data = {formdata: formData, where: 'edit_author'};
-        //console.log(data);
         fetch('/saveAuthorImage', {
             method: 'POST',
             body: formData
-            //body: JSON.stringify(data);
         })
         .then(response => response.json())
         .then(data => {

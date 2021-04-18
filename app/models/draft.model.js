@@ -38,8 +38,8 @@ Draft.save = (articleInfo, result) => {
     var photoCaption = articleInfo.photoCaption;
 
     if (photoName) {
-        var extension = photoName.split(".");
-        extension = extension[extension.length - 1];
+        var extension = photoName.split(".").pop();
+        //extension = extension[extension.length - 1];
         
         sql.query("SELECT MAX(photoUploadId) AS photoId FROM drafts", (err, res) => {
             if (err) {
@@ -185,6 +185,21 @@ Draft.getIssue = (result) => {
     })
 }
 
+Draft.findById = (articleid, result) => {
+    sql.query("SELECT * FROM drafts WHERE articleid = ?", articleid, (err, res) => {
+        if (err) {
+            console.log(err);
+            result(err, null);
+            return;
+        }
+        if (res.length) {
+            result(null, res);
+            return;
+        }
+        result({kind: "not_found"}, null);
+    })
+}
+
 Draft.publish = (articleid, issueid, date, result) => {
     sql.query("SELECT * FROM drafts WHERE articleid = ?", articleid, (err, res) => {
         if (err) {
@@ -289,6 +304,120 @@ Draft.newIssue = (issueid, leadid, date, result) => {
             result(null, res);
         }
     })
+}
+
+Draft.editDraft = (info, result) => {
+    var articleid = info.id;
+    var headline = info.headline;
+    var teaser = info.teaser;
+    var type = info.type;
+    var body = info.content;
+
+    var photoUploadId = 0;
+    var photoName = info.photoFile;
+    var photoCaption = info.photoCaption;
+
+    if (photoName) {
+        var extension = photoName.split(".").pop();
+        //extension = extension[extension.length - 1];
+        
+        sql.query("SELECT MAX(photoUploadId) AS photoId FROM drafts", (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+            else {
+                let parsedRes = JSON.parse(JSON.stringify(res))[0];
+                if (parseInt(parsedRes.photoId) == 0) {
+                    console.log("res from drafts");
+                    photoUploadId = parseInt(parsedRes.photoId) + 1;
+                    var newPhotoName = photoUploadId + "." + extension;
+                    var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
+                    var newPath = __dirname + '/../../public/images/drafts/' + newPhotoName;
+                    fs.rename(oldPath, newPath, function(err) {
+                        if (err) {
+                            console.log(err);
+                            return;
+                        }
+                        else {
+                            console.log("Successfully renamed photo to ", newPhotoName);
+                            photoName = newPhotoName;
+                            sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ?, photoUploadId = ?, photoFilename = ?, photoCaption = ? WHERE articleid = ?", [headline, teaser, body, type, photoUploadId, photoName, photoCaption, articleid], (err, res) => {
+                                if (err) {
+                                    console.log("error: ", err);
+                                    result(err, null);
+                                    return;
+                                }
+                                else {
+                                    console.log(res);
+                                    result(null, res);
+                                    return;
+                                }
+                            });
+                        }
+                    })
+                }
+                else {
+                    sql.query("SELECT MAX(photoUploadId) AS photoId FROM articles", (err, res) => {
+                        if (err) {
+                            console.log("error: ", err);
+                            result(err, null);
+                            return;
+                        }
+                        else {
+                            console.log("res from articles");
+                            let photoRes = JSON.parse(JSON.stringify(res))[0];
+                            photoUploadId = parseInt(photoRes.photoId) + 1;
+                            var newPhotoName = photoUploadId + "." + extension;
+                            var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
+                            var newPath = __dirname + '/../../public/images/drafts/' + newPhotoName;
+                            console.log("oldpath: ", oldPath);
+                            console.log("newpath: ", newPath);
+                            fs.rename(oldPath, newPath, function(err) {
+                                if (err) {
+                                    console.log(err);
+                                    return;
+                                }
+                                else {
+                                    console.log("Successfully renamed photo to ", newPhotoName);
+                                    photoName = newPhotoName;
+                                    sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ?, photoUploadId = ?, photoFilename = ?, photoCaption = ? WHERE articleid = ?", [headline, teaser, body, type, photoUploadId, photoName, photoCaption, articleid], (err, res) => {
+                                        if (err) {
+                                            console.log("error: ", err);
+                                            result(err, null);
+                                            return;
+                                        }
+                                        else {
+                                            console.log(res);
+                                            result(null, res);
+                                            return;
+                                        }
+                                    });
+                                }
+                            })
+                        }
+                    })
+                }
+
+            }
+        })    
+    }
+    else {
+        sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ?, photoUploadId = ?, photoFilename = ?, photoCaption = ? WHERE articleid = ?", [headline, teaser, body, type, photoUploadId, photoName, photoCaption, articleid], (err, res) => {
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+                return;
+            }
+            else {
+                console.log(res);
+                result(null, res);
+                return;
+            }
+        });
+    }
+
 }
 
 Draft.deleteDraft = (articleid, result) => {

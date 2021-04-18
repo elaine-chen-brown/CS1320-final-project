@@ -45,6 +45,20 @@
 - username: thenoser
 - password: thebrowndailynoser19
 
+#### 4/18
+- navbar reverted
+- write new button removed
+
+#### 4/17
+- author page can load if author has no written articles
+- fixed custom author image loading on about page
+
+#### 4/17
+- fixed navbar display
+- added navbar to author portal
+- made portal styling more consistent
+- deleted old edit page and handler
+
 #### 4/15
 - remove default image for articles from article and home pages
 - remove default image for most viewed (home and category) and category page

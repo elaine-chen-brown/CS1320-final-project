@@ -44,8 +44,10 @@ function getAbout(request, response){
             var buildAuthor = function buildAuthor(authorEntry){
                 let first_name = (authorEntry.author).split(" ")[0];
                 let title = authorEntry.title.toLowerCase();
-                let staffPhoto = (authorEntry.authorImage) ? authorEntry.authorImage : "/images/author-default.png";
+                let staffPhoto = (authorEntry.authorImage) ? `/images/authors/${authorEntry.authorImage}` : "/images/author-default.png";
                 let staffBlurb = (authorEntry.authorBio) ? authorEntry.authorBio : `${first_name} is a ${title} at The Noser.`;
+                console.log(staffPhoto);
+                console.log(staffPhoto);
                 author_to_add = {
                     staffPhoto: staffPhoto,
                     staffName: authorEntry.author,
