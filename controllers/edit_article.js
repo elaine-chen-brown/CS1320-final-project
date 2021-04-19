@@ -10,7 +10,15 @@ function display(req, res) {
             return new Promise((resolve, reject) => {
                 Draft.getAll((err, data) => {
                     if (err) {
-                        reject("error");
+                        if (err.kind == "no_drafts") {
+                            res.render('edit_article', {
+                                title: 'Edit Article',
+                                message: 'No drafts'
+                            });
+                        }
+                        else {
+                            reject("error");
+                        }
                     }
                     else {
                         resolve(data);

@@ -404,7 +404,7 @@ Draft.editDraft = (info, result) => {
         })    
     }
     else {
-        sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ?, photoUploadId = ?, photoFilename = ?, photoCaption = ? WHERE articleid = ?", [headline, teaser, body, type, photoUploadId, photoName, photoCaption, articleid], (err, res) => {
+        sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ? WHERE articleid = ?", [headline, teaser, body, type, articleid], (err, res) => {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
