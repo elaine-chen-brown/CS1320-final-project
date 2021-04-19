@@ -3,7 +3,7 @@ body, html{
     padding:0;
   }
 
-/* Fonts */
+/* FONTS */
 /* Their fonts */
 
 /* for banner name and about, archive, and join us headers */
@@ -44,21 +44,6 @@ body, html{
 
 /* Our fonts */
 @font-face {
-    font-family: road-race;
-    src: url(road-race/Road\ Race\ Rough.otf);
-}
-
-@font-face {
-    font-family: pt-serif;
-    src: url(PT_Serif/PTSerif-Regular.ttf)
-}
-
-@font-face {
-    font-family: pt-serif-bold;
-    src: url(PT_Serif/PTSerif-Bold.ttf);
-}
-
-@font-face {
     font-family: roboto-bold;
     src: url(Roboto/Roboto-Bold.ttf)
 }
@@ -97,7 +82,6 @@ body, html{
 /* HEADER */
 .header {
     background-color: white;
-    font-family: pt-serif;
 }
 
 /* Top banner */
@@ -124,7 +108,6 @@ body, html{
 .title-text {
     font-size: 48px;
     font-family: 'abril';
-    /*font-family: road-race;*/
     color: rgb(57,37,32);
 }
 
@@ -249,14 +232,13 @@ body, html{
 }
 
 .footer-text {
-    font-family: pt-serif-bold;
+    font-family: 'nimbus-reg';
     font-size: 16px;
     color: white;
 }
 
 /* HOME PAGE */
 .page-content-wrapper {
-    /*font-family: pt-serif;*/
     font-family: 'adobe';
     margin: 2%;
     display: grid;
@@ -468,7 +450,6 @@ body, html{
 
 .article-title {
     font-size: 34px;
-    /*font-weight: bold;*/
     font-family: 'utopiaa';
     margin-bottom: 1%;
 }
@@ -477,7 +458,6 @@ body, html{
     display: flex;
     justify-content: space-between;
     margin-bottom: 1%;
-    /* font-size: 25px; */
     font-family: 'nimbus-bold';
     font-size: 22px;
 }
@@ -486,14 +466,7 @@ body, html{
     color: #626262;
 }
 
-.article-author {
-    /*font-weight: bold;*/
-}
-
-/* add white-space to make line breaks render */
 .article-text {
-    /*font-family: 'pt-serif';
-    font-size: 18px;*/
     font-family: 'adobe';
     font-size: 20px;
     line-height: 2;
@@ -583,7 +556,6 @@ body, html{
     margin: 4%;
 }
 
-/* TO DO: Replace this with the actual background photo the Noser wants to use */
 .about-image {
     background-image: 
     linear-gradient(
@@ -596,8 +568,7 @@ body, html{
 
 .about-text {
     color: white;
-    font-family: 'pt-serif';
-    /*font-size: 24px;*/
+    font-family: 'adobe';
     text-align: center;
     vertical-align: middle;
     padding: 10%;
@@ -636,7 +607,6 @@ body, html{
 
 .staff-text-wrapper {
     margin-left: 8%;
-    /* font-family: 'pt-serif';*/
     font-family: 'adobe';
     padding-top: 4%;
 }
@@ -655,25 +625,17 @@ body, html{
 }
 
 .staff-blurb {
-    /*font-size: 14px;*/
     font-size: 18px;
 }
 
 /* JOIN US PAGE */
-/* TO DO: Replace this with the actual background photo the Noser wants to use */
 .join-image {
     background-image: url("/images/paxson-dance.gif");
-    /* background-image: 
-    linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
-    url(/images/about-pic.jpg);*/
     background-size: cover; 
 }
 
 .join-text {
-    font-family: 'pt-serif';
+    font-family: 'adobe';
     font-size: 22px;
     text-align: center;
     line-height: 2;
@@ -687,8 +649,6 @@ body, html{
 .author-banner {
     font-size: 40px;
     padding: 2%;
-    /*font-family: 'pt-serif';
-    font-weight: bold;*/
     font-family: 'abril';
     margin-left: 4%;
 }
@@ -718,6 +678,7 @@ body, html{
 
 .author-image {
     height: 160px;
+    width: 160px;
     border-radius: 50%;
     display: block;
     margin-left: auto;
@@ -725,14 +686,14 @@ body, html{
 }
 
 .author-text-wrapper {
-    font-family: 'pt-serif';
+    font-family: 'nimbus-reg';
     padding: 10%;
     padding-top: 2%;
     text-align: center;
 }
 
 .author-info-name {
-    font-family: 'pt-serif-bold';
+    font-family: 'nimbus-bold';
     font-size: 24px;
 }
 
@@ -747,7 +708,7 @@ body, html{
 }
 
 .author-social {
-    font-family: 'pt-serif-bold';
+    font-family: 'nimbus-bold';
     font-size: 30px;
     padding: 8px 12px;
     color: 392520;
@@ -771,8 +732,8 @@ body, html{
 .timeline-button {
     float: left;
     color: #333333;
-    font-family: 'pt-serif';
-    font-size: 18px;
+    font-family: 'adobe';
+    font-size: 20px;
 }
   
 .timeline-button a {
@@ -796,7 +757,7 @@ body, html{
 }
 
 .archive-item {
-    font-family: 'pt-serif-bold';
+    font-family: 'nimbus-bold';
     font-size: 22px;
     color: #573B03;
     text-decoration: underline;
@@ -811,16 +772,6 @@ body, html{
     height: 200px;
 }
 
-/* .share-btn > a {
-    border: 1px solid #ccc;
-    padding: 5px;
-    font-size: 12px;
-    font-family: Verdana, Arial;
-}
-.share-btn > a:hover {
-    cursor: pointer;
-} */
-
 .share-btn > a {
     border: solid black 1px;
     padding: 8px 12px;
@@ -834,22 +785,7 @@ body, html{
     cursor: pointer;
     background-color: RoyalBlue;
 }
-/* 
-.btn {
-    background-color: white;
-    border: solid black 1px;
-    border-radius: 5px;
-    color: black;
-    font-size: 24px;
-    padding: 8px 12px;
-    cursor: pointer;
-  } */
-  
-  /* Darker background on mouse-over */
-  /* .btn:hover {
-    background-color: RoyalBlue;
-  } */
-  
+
 /* CMS STYLING */
 /* LOGIN PAGE */
 .login-banner {
@@ -951,37 +887,19 @@ body, html{
     font-size: 40px;
 }
 
-/* Dashboard buttons */
-.dashboard-buttons {
-    display: flex;
-    flex-direction: row;
-}
-
-.logout-button-wrapper {
-    display: flex;
-    align-items: center;
-    padding: 5%;
-    margin-right: 4%;
-}
-
+/* Logout button */
 .logout-button {
     font-size: 16px;
-    height: 50%;
-    width: 100%;
     background: transparent;
     color:#573B03;
     border-color: #C4C4C4;
     border-style: solid;
     border-width: 2px;
     border-radius: 5%;
-    padding: 20%;
-    padding-right: 35%;
-}
-
-.dashboard-propic {
-    max-height: 80px;
-    border-radius: 50%;
-    margin-top: 15%;
+    padding: 5%;
+    margin-left: 40%;
+    margin-top: 10%;
+    margin-bottom: 5%;
 }
 
 /* Dashboard Options */
