@@ -32,9 +32,9 @@ function findAuthor(req, res) {
         let instaLinkname = (data.authorInsta) ? data.authorInsta.replace("@", "") : "";
         let twitterLinkname = (data.authorTwitter) ? data.authorTwitter.replace("@", "") : "";
         let instaHandle = (data.authorInsta) ? data.authorInsta : ""; 
-        let instaLink = (data.authorInsta) ? `instagram.com/${instaLinkname}` : "#";
+        let instaLink = (data.authorInsta) ? `/instagram.com/${instaLinkname}` : "#";
         let twitterHandle = (data.authorTwitter) ? data.authorTwitter : "";
-        let twitterLink = (data.authorTwitter) ? `twitter.com/${twitterLinkname}` : "#";
+        let twitterLink = (data.authorTwitter) ? `/twitter.com/${twitterLinkname}` : "#";
         
         var findArticle = function getArticleById(entry) {
             return new Promise((resolve, reject) => {
@@ -102,6 +102,7 @@ function findAuthor(req, res) {
                 });
             })
         }).catch(error => {
+            console.log(instaLink);
             res.render('author', {
                 title: 'Author',
                 authorName: authorName,

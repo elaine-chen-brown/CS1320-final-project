@@ -77,6 +77,13 @@ app.get('/loadCategoryArticles/:categoryId/:offset', categoryHandler.loadArticle
 app.get('/loadAboutAuthors/:offset', aboutHandler.loadAuthors);
 app.get('/loadSearchArticles/:keyword/:offset', searchHandler.loadArticles);
 
+app.get("/instagram.com/:handle", (req, res) => {
+    res.status(301).redirect(`https://www.instagram.com/${req.params.handle}`)
+});
+app.get("/twitter.com/:handle", (req, res) => {
+    res.status(301).redirect(`https://www.twitter.com/${req.params.handle}`)
+});
+
 // Login Handling
 app.use(session({
 	secret: 'secret',

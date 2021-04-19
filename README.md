@@ -45,6 +45,10 @@
 - username: thenoser
 - password: thebrowndailynoser19
 
+#### 4/19 
+- made routing for author instagram and twitter links (open in new tabs)
+- changed margin on navlist to auto for centering on large screens
+
 #### 4/18
 - navbar reverted
 - write new button removed
