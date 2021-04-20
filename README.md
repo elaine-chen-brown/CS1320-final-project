@@ -9,12 +9,12 @@
 5. Open a browser window and go to "localhost:8080" to see the site
 6. Author portal is accessible at "localhost:8080/login", with username 'thenoser' and password 'thebrowndailynoser19'
 
-##Individual contributions
+## Individual contributions
 
-####Angela
+#### Angela
 
-####Ariana
+#### Ariana
 
-####Elaine
+#### Elaine
 
-####Teresa
+#### Teresa
