@@ -46,8 +46,6 @@ function getAbout(request, response){
                 let title = authorEntry.title.toLowerCase();
                 let staffPhoto = (authorEntry.authorImage) ? `/images/authors/${authorEntry.authorImage}` : "/images/author-default.png";
                 let staffBlurb = (authorEntry.authorBio) ? authorEntry.authorBio : `${first_name} is a ${title} at The Noser.`;
-                console.log(staffPhoto);
-                console.log(staffPhoto);
                 author_to_add = {
                     staffPhoto: staffPhoto,
                     staffName: authorEntry.author,
@@ -73,7 +71,6 @@ function loadAuthors(request, response) {
     var nextAuthors = function getNextAuthors(offset) {
         return new Promise((resolve, reject) => {
             About.getActiveStaff(offset, (err, data) => {
-                console.log(offset);
                 if (err) {
                     if (err.kind === "not_found") {
                         resolve([]);

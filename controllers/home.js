@@ -100,7 +100,6 @@ function loadArticles(request, response) {
     var nextArticles = function getNextArticles(featuredId, offset) {
         return new Promise((resolve, reject) => {
             Home.findNextArticleSet(featuredId, offset, (err, data) => {
-                console.log(featuredId, offset);
                 if (err) {
                     if (err.kind === "not_found") {
                         resolve([]);

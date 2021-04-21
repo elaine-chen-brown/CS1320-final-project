@@ -34,7 +34,6 @@ Article.findById = (articleId, result) => {
       }
   
       if (res.length) {
-        //console.log("found article: ", res[0]);
         result(null, res[0]);
         return;
       }
@@ -54,7 +53,6 @@ Article.getAuthorByArticleId = (articleId, result) => {
         }
 
         if (res.length) {
-            //console.log("found article: ", res[0]);
             result(null, res);
             return;
         }

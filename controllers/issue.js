@@ -20,7 +20,6 @@ function getIssue(req, res){
             }
         }
         else {
-            console.log(data);
             let realIssueNumber = data.number;
             let issuuLink = data.issuuLink;
             let hasIssuu = (data.issuuLink) ? true : false;
@@ -141,7 +140,6 @@ function getTopicalYear(req, res){
     })
 }
 
-// TO DO: write an event handler for the search form (in search.hbs)
 
 
 

@@ -15,7 +15,6 @@ About.getBlurb = (accountId, result) => {
       }
   
       if (res.length) {
-        console.log("found account blurb: ", res[0]);
         result(null, res[0]);
         return;
       }

@@ -54,30 +54,15 @@ function getArchive(request, response){
                     issueNum: issue.issueid
                 }
             }
-            //console.log(issues);
             let issuesWithPreviewLinks = issues.filter(issue => (issue.issuuLink) ? true : false);
-            //console.log("previews");
-            //console.log(issuesWithPreviewLinks);
             // put all topical articles in one section at the end
             let archiveList = issues.map(getIssueLabel);
             let archiveTopicalFiltered = archiveList.filter(issue => issue.issueNum != 0);
-            //console.log(archiveTopicalFiltered);
             // if topical articles were filtered, add topical article entry
             if (archiveTopicalFiltered.length < archiveList.length){
                 archiveTopicalFiltered.push({issueDate:"Topical Articles", issueLink: `/topical/${request.params.year}`, issueNum: 0})
                 archiveList = archiveTopicalFiltered;
             }
-            // TODO: not sure what the best way to handle columns is
-            let archiveList1 = [];
-            let archiveList2 = [];
-            // if (archiveList.length > 4){
-            //     archiveList1 = archiveList.slice(0,4);
-            //     archiveList2 = archiveList.slice(4,);
-            // }
-            // else {
-            //     archiveList1 = archiveList;
-            // }
-            // let archiveList1 = archiveList;
             if (issuesWithPreviewLinks.length >= 1) {
                 firstIssuu = (issuesWithPreviewLinks[0]).issuuLink;
                 issuesWithPreviewLinks = issuesWithPreviewLinks.slice(1,);
@@ -130,8 +115,6 @@ function getRecentYear(request, response){
         })
     }
     findTimeLineYears().then(years => {
-        console.log(years);
-        console.log(years.length)
         let recentYear = years[0].year;
         response.redirect(`/archive/${recentYear}`);
     })

@@ -106,7 +106,6 @@ function loadArticles(request, response) {
             // spaces removed to pass through in link
             let keywordWithSpaces = (keyword.split("+").join(" "));
             Search.findByKeyword(keywordWithSpaces, offset, (err, data) => {
-                console.log(offset);
                 if (err) {
                     if (err.kind === "not_found") {
                         resolve([]);

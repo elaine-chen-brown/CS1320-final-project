@@ -49,7 +49,6 @@ Author.findById = (authorId, result) => {
       }
   
       if (res.length) {
-        console.log("found author: ", res);
         result(null, res);
         return;
       }
@@ -68,7 +67,6 @@ Author.findArticles = (authorId, result) => {
       }
   
       if (res.length) {
-        console.log("found author articles: ", res);
         result(null, res);
         return;
       }
@@ -94,14 +92,12 @@ Author.getAll = (result) => {
 }
 
 Author.editAuthor = (info, result) => {
-  //console.log(info);
   var authorid = info.id;
   var authorname = info.name;
   var retired = info.retired;
   var insta = info.insta;
   var twitter = info.twitter;
   var bio = info.bio;
-  //var title = info.title;
   var photoName = info.authorPhoto;
   sql.query("UPDATE authors SET author = ?, isRetired = ?, authorInsta = ?, authorTwitter = ?, authorBio = ? WHERE authorid = ?", [authorname, retired, insta, twitter, bio, authorid], (err, res) => {
     if (err) {

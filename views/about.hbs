@@ -87,7 +87,6 @@
         };
     let observer = new IntersectionObserver(function (entries, self) {
         if (entries[0].isIntersecting) {
-            console.log("intersecting");
             loadData();
         }
     }, config);
@@ -95,18 +94,12 @@
 
     // fetch new data
     async function loadData() {
-        let container = document.getElementById("authorContainer");
-        console.log("fetching more data");
-        
+        let container = document.getElementById("authorContainer");     
         let url = `/loadAboutAuthors/${offset}`;
-        console.log(url);
-        console.log(offset);
         await fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.length == 0) {
-                    console.log("getting 0");
                     observer.unobserve(document.getElementById("footer"));
                 }
                 data.forEach(author => {
@@ -115,7 +108,6 @@
                 });
             });
         // increment offset after each call to fetch more data
-        console.log(offset);
         offset = offset + 16;
     }
     function createElementByClass(elemName, clss){
@@ -159,6 +151,7 @@
         staffName.appendChild(authorLink);
         return staffWrapper;
     }
+    // html model:
     //<div class="staff-member-wrapper">
         //<div class="staff-image-wrapper">
             //<img src={{ staffPhoto }} alt="staff photo" class="staff-image">

@@ -87,7 +87,6 @@ function getArticle(request, response){
         let hasPhoto = (data.photoFilename) ? true : false;
         let isHTML = (data.inputType == 'html') ? true : false;
         let shareUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
-        // let shareTitle = articleTitle.replace(/ /g, "-");
         let shareTitle = articleTitle;
         let fullPhotoUrl = request.protocol + '://' + request.get('host') + articleImage;
         // meta tags for social media preview card
@@ -96,7 +95,6 @@ function getArticle(request, response){
             `<meta property=\"og:image\" content=${fullPhotoUrl}></meta>` + 
             `<meta property=\"og:url\" content=${shareUrl}></meta>` + 
             "<meta name=\"twitter:card\" content=\"summary_large_image\"></meta>"
-        console.log(shareTitle);
         updateViews(request.params.articleId).then(updated => {
             console.log("views updated: "+ updated);
             findRelated(request.params.articleId, articleCategoryName).then(related => {

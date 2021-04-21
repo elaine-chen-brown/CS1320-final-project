@@ -6,7 +6,6 @@ const Home = require("../app/models/home.model.js");
 const { response } = require("express");
 
 function getCategory(req, res){
-    console.log(req.params.categoryId);
     Category.findById(req.params.categoryId, (err,data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -20,8 +19,6 @@ function getCategory(req, res){
             }
           }
         else {
-            console.log("found category");
-            //console.log(data);
             
             // gets article from category
             var findArticles = function getArticles(entry) {
@@ -75,7 +72,6 @@ function getCategory(req, res){
                     let mostViewedArticles = popularArticles.map(buildArticle);
                     let articleData = mainarticles.map(buildArticle);
                     // for now fill in featured as first article
-                    // let featuredPic = "/images/sports.png";
                     let featuredPic = articleData[0].articleImage;
                     let hasFeaturedPic = articleData[0].hasPhoto;
                     let featuredTitle = articleData[0].articleTitle;
@@ -84,7 +80,6 @@ function getCategory(req, res){
                     let featuredLink = articleData[0].articleLink;
                     let featuredCategoryId = req.params.categoryId;
                     // styling for each category
-                    let business = "text-decoration:underline"; // TO DO: change back to "", this is for visualization purposes
                     let sectionNames = ["Business", "Campus Life", "Cinema Corner", "Off Campus", "News In Pictures", "Opinion", "Politics", "Science & Technology", "Sports"];
                     // set underline for the entry with the correct section name
                     let sectionStyle = sectionNames.map(name => (name == data.section) ? "text-decoration:underline" : "");
@@ -129,7 +124,6 @@ function loadArticles(request, response) {
     var nextArticles = function getNextArticles(categoryId, offset) {
         return new Promise((resolve, reject) => {
             Category.findArticles(categoryId, offset, (err, data) => {
-                console.log(offset);
                 if (err) {
                     if (err.kind === "not_found") {
                         resolve([]);

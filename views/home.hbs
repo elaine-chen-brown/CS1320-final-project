@@ -140,7 +140,6 @@
         };
     let observer = new IntersectionObserver(function (entries, self) {
         if (entries[0].isIntersecting) {
-            console.log("intersecting");
             loadData();
         }
     }, config);
@@ -148,15 +147,11 @@
     let offset = 15;
     async function loadData() {
         let container = document.getElementById("article-container");
-        console.log("fetching more data");
-        
         let url = `/loadNew/${featuredId}/${offset}`;
         let areArticlesLeft = await fetch(url)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 if (data.length == 0) {
-                    console.log("getting 0");
                     observer.unobserve(document.getElementById("footer"));
                 }
                 data.forEach(article => {
