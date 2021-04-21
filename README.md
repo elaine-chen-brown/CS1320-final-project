@@ -13,7 +13,7 @@
 
 #### Angela
 - UI/UX Designer
-- Created wireframes/mockups and the final prototype for interface
+- Designed wireframes/mockups and the final prototype for interface
 - Run usability tests and iterated on designs based on client feedback and critiques
 - Assisted with accessibility improvements on main site
 
