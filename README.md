@@ -29,3 +29,12 @@
 - Implemented login authentication
 
 #### Teresa
+- Back end/full stack developer
+- Implemented backend for reader/article-viewing part of website including database communication, data cleaning, and some routing/page structure setup
+- Implemented infinite scroll
+- Set up SQL full text search for the keyword search
+- Set up social media sharing as well as embeddings and database capacity for 'Issuu' previews
+
+
+### Notes
+- Facebook sharing is not supported until project is no longer hosted locally 
