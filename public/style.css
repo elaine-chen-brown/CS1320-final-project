@@ -43,10 +43,6 @@ body, html{
 }
 
 /* Our fonts */
-@font-face {
-    font-family: roboto-bold;
-    src: url(Roboto/Roboto-Bold.ttf)
-}
 
 @font-face {
     font-family: roboto;
@@ -140,7 +136,7 @@ body, html{
     border-color: #D4D4D4;
     border-style: solid;
     height: 100%;
-    font-family: roboto;
+    font-family: 'nimbus-reg';
     font-size: 14px;
     padding: 2%;
     margin-right: 0;
@@ -149,44 +145,6 @@ body, html{
 
 .search-term-description {
     font-family: 'adobe';
-}
-
-.email {
-    margin: 2%;
-    width: 250px;
-}
-
-.email-form {
-    display: flex;
-    flex-direction: row;
-}
-
-.email-input {
-    border-radius: 6px 0px 0px 6px;
-    border-width: 1px;
-    border-color: #D4D4D4;
-    border-style: solid;
-    font-family: roboto;
-    font-size: 14px;
-    padding: 2%;
-    margin-right: 0;
-    width: 250px;
-}
-
-.subscribe-button {
-    border-radius: 0px 6px 6px 0px;
-    border-width: 1px;
-    border-color: #3A0803;
-    border-style: solid;
-    background-color: #3A0803;
-    color: white;
-    font-family: roboto;
-    font-size: 12px;
-    font-weight: medium;
-    margin-left: 0;
-    height: 10px;
-    padding-top: 4%;
-    padding-bottom: 7.5%;
 }
 
 /* Nav bar */
@@ -294,7 +252,7 @@ body, html{
 
 .read-more {
     text-decoration: underline;
-    font-family: roboto-bold;
+    font-family: 'nimbus-bold';
 }
 
 /* List article */
@@ -381,7 +339,7 @@ body, html{
 
 .large-search-input {
     width: 85%;
-    font-family: roboto;
+    font-family: 'nimbus-reg';
     font-size: 24px;
     border: none;
     padding-top: 2%;
@@ -404,7 +362,8 @@ body, html{
 }
 
 .result-image {
-    max-height: 100px;
+    height: 100px;
+    width: 100px;
     border-radius: 50%;
 }
 
@@ -436,7 +395,7 @@ body, html{
 /* ARTICLE PAGE */
 /* Breadcrumbs */
 .breadcrumbs-wrapper {
-    font-family: roboto;
+    font-family: 'nimbus-reg';
     font-weight: bold;
     font-size: 16px;
 }
