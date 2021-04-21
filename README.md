@@ -12,6 +12,10 @@
 ## Individual contributions
 
 #### Angela
+- UI/UX Designer
+- Created wireframes/mockups and the final prototype for interface
+- Run usability tests and iterated on designs based on client feedback and critiques
+- Assisted with accessibility improvements on main site
 
 #### Ariana
 - Team leader; organized group and client meetings
