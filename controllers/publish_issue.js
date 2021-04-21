@@ -120,9 +120,7 @@ function publishIssue(req, res) {
                     articleid = draft.articleid;
                     promises.push(
                         publish(articleid, issueid, date).then(insertid => {
-                            //console.log("article published");
                             if (draft.articleid == leadid) {
-                                console.log("insertid: ", insertid)
                                 featuredid = insertid;
                             }
                         }).catch(error => {
@@ -142,8 +140,6 @@ function publishIssue(req, res) {
 
             getIssue().then(drafts => {
                 publishAll(drafts, issueid, date).then(featuredid => {
-                    //console.log("published all");
-                    console.log("result: ", result);
                     pushIssue(issueid, featuredid, date).then(success => {
                         res.render('publish_issue', {
                             title: 'Publish',

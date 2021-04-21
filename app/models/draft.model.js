@@ -12,9 +12,6 @@ const Draft = function(article) {
     this.photoUploadId = article.photoUploadId;
     this.photoFilename = article.photoFilename;
     this.photoCaption = article.photoCaption;
-    /*this.photoCredit = article.photoCredit;
-    this.photoPosition = article.photoPosition;
-    */
 };
 
 Draft.save = (articleInfo, result) => {
@@ -39,7 +36,6 @@ Draft.save = (articleInfo, result) => {
 
     if (photoName) {
         var extension = photoName.split(".").pop();
-        //extension = extension[extension.length - 1];
         
         sql.query("SELECT MAX(photoUploadId) AS photoId FROM drafts", (err, res) => {
             if (err) {
@@ -50,7 +46,6 @@ Draft.save = (articleInfo, result) => {
             else {
                 let parsedRes = JSON.parse(JSON.stringify(res))[0];
                 if (parseInt(parsedRes.photoId) == 0) {
-                    console.log("res from drafts");
                     photoUploadId = parseInt(parsedRes.photoId) + 1;
                     var newPhotoName = photoUploadId + "." + extension;
                     var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
@@ -61,7 +56,6 @@ Draft.save = (articleInfo, result) => {
                             return;
                         }
                         else {
-                            console.log("Successfully renamed photo to ", newPhotoName);
                             photoName = newPhotoName;
                             sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoFilename, photoCaption) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoName, photoCaption], (err, res) => {
                                 if (err) {
@@ -86,21 +80,17 @@ Draft.save = (articleInfo, result) => {
                             return;
                         }
                         else {
-                            console.log("res from articles");
                             let photoRes = JSON.parse(JSON.stringify(res))[0];
                             photoUploadId = parseInt(photoRes.photoId) + 1;
                             var newPhotoName = photoUploadId + "." + extension;
                             var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
                             var newPath = __dirname + '/../../public/images/drafts/' + newPhotoName;
-                            console.log("oldpath: ", oldPath);
-                            console.log("newpath: ", newPath);
                             fs.rename(oldPath, newPath, function(err) {
                                 if (err) {
                                     console.log(err);
                                     return;
                                 }
                                 else {
-                                    console.log("Successfully renamed photo to ", newPhotoName);
                                     photoName = newPhotoName;
                                     sql.query("INSERT INTO drafts (headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoFilename, photoCaption) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [headline, teaser, body, author, authorid, section, sectionid, type, photoUploadId, photoName, photoCaption], (err, res) => {
                                         if (err) {
@@ -208,8 +198,6 @@ Draft.publish = (articleid, issueid, date, result) => {
             return;
         }
         if (res.length) {
-            //insert general info into articles and delete
-            //https://stackoverflow.com/questions/1612267/move-sql-data-from-one-table-to-another 
             let queryBody = "INSERT INTO articles (headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption) SELECT headline, sectionid, section, body, teaser, photoUploadId, photoFilename, photoCaption FROM drafts WHERE articleid = ?"
             sql.query(queryBody, [articleid, articleid], (err, res) => {
                 if (err) {
@@ -230,8 +218,6 @@ Draft.publish = (articleid, issueid, date, result) => {
                             let photoFilename = JSON.parse(JSON.stringify(res))[0].photoName;
                             var oldPath = __dirname + '/../../public/images/drafts/' + photoFilename;
                             var newPath = __dirname + '/../../public/images/images/' + photoFilename;
-                            console.log("oldpath: ", oldPath);
-                            console.log("newpath: ", newPath);
                             fs.rename(oldPath, newPath, function(err) {
                                 if (err) {
                                     console.log(err);

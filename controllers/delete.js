@@ -126,18 +126,11 @@ function deleteArticle(req, res) {
         deleteInfo = req.body.toDelete.split(',');
         articleid = deleteInfo[0];
         db = deleteInfo[1];
-        //console.log(articleid);
-        //console.log(db);
         if (db == "drafts") {
             deleteDraft(articleid).then(success => {
                 render(req, res, 'Successfully deleted draft article!');
             }).catch(error => {
-                render(req, res, 'Could not delete from drafts, pleas try again.');
-                // res.render('delete', {
-                //     title: 'Delete',
-                //     message: 'Could not delete from drafts, please try again.',
-                //     articles: canDelete
-                // })
+                render(req, res, 'Could not delete from drafts, please try again.');
             })
         }
         else {
@@ -145,11 +138,6 @@ function deleteArticle(req, res) {
                 render(req, res, 'Successfully deleted published article');
             }).catch(error => {
                 render(req, res, 'Could not delete from articles, please try again.');
-                // res.render('delete', {
-                //     title: 'Delete',
-                //     message: 'Could not delete from articles, please try again.',
-                //     articles: canDelete
-                // })
             })
         }
         

@@ -73,7 +73,6 @@ Article.findRelated = (articleId, section, result) => {
         }
 
         if (res.length) {
-            //console.log("found article: ", res[0]);
             result(null, res);
             return;
         }
@@ -84,17 +83,17 @@ Article.findRelated = (articleId, section, result) => {
 }
 
 Article.updateViews = (articleId, result) => {
-    // sql.query("UPDATE articles SET views = views + 1 WHERE articleid = ?", articleId, (err, res) => {
-    //     if (err) {
-    //         console.log("error: ", err);
-    //     }
-    //     if (res.affectedRows == 0) {
-    //         result({ kind: "not_found" }, null);
-    //     }
-    //     console.log("updated customer: ");
-    //     result(null, true);
-    // })
-    result(null, false); // remove this line when putting query back in 
+    sql.query("UPDATE articles SET views = views + 1 WHERE articleid = ?", articleId, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            return;
+        }
+        if (res.affectedRows == 0) {
+            result({ kind: "not_found" }, null);
+            return;
+        }
+        result(null, true);
+    })
 }
 
 Article.getAll = (result) => {

@@ -14,6 +14,9 @@
 #### Angela
 
 #### Ariana
+- Team lead; organized group and client meetings
+- Implemented most of the search functionality and appropriate database queries
+- Implemented frontend and backend components of the CMS, including the drafts table, writing/publishing/deleting articles, editing author information, image uploads, and all associated hbs pages.
 
 #### Elaine
 

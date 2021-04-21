@@ -96,27 +96,8 @@ function getSearch(req, res){
                 authorResults: authorResults,
                 keyword: linkSearchTerm
             });
-            // }).catch(error => {
-            //     console.log(error);
-            //     res.render('search', {
-            //         title: 'Search',
-            //         searchTerm: resultPhrase,
-            //         authorsExist: false,
-            //         articlesExist: true,
-            //         searchResults: searchResults,
-            //         authorResults: ""
-            //     });
-            // });
         })
     })
-    // .catch(error => {
-    //     res.render('search', {
-    //         title: 'Search', 
-    //         searchTerm: 'No search results found for "' + searchTerm + '"',
-    //         authorsExist: false,
-    //         articlesExist: false
-    //     });
-    // })
 }
 
 function loadArticles(request, response) {

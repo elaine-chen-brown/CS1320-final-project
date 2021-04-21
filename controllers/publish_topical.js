@@ -60,7 +60,6 @@ function publishTopical(req, res) {
         if (typeof drafts == 'string') {
             drafts = [parseInt(drafts)];
         }
-        //console.log(drafts);
         var publish = function publish(articleid, issueid, date) {
             return new Promise((resolve, reject) => {
                 Draft.publish(articleid, issueid, date, (err, data) => {

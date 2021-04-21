@@ -12,7 +12,6 @@ function display(req, res) {
     if (req.session.loggedin) {
         var getCategories = function getCategories(req, res) {
             return new Promise((resolve, reject) => {
-                //should ideally get account id from req -- do we even need different accounts?
                 Category.getAll(3, (err, data) => {
                     if (err) {
                         reject("unable to get categories");

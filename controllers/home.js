@@ -60,7 +60,6 @@ function getHome(request, response){
                 var buildArticle = function buildArticle(articleEntry){
                     let hasPhoto = (articleEntry.photoFilename) ? true : false;
                     article_to_add = {
-                        // articleImage: "/images/list-test.png",
                         articleImage: `/images/images/${articleEntry.photoFilename}`,
                         articleTitle: articleEntry.headline,
                         articleLink: `/article/${articleEntry.articleid}`,
@@ -72,8 +71,6 @@ function getHome(request, response){
                 }
                 let mostViewedArticles = popularArticles.map(buildArticle);
                 let listArticles = otherArticles.map(buildArticle);
-                // TO DO: replace with values gotten from database queries
-                // let featuredPic = "/images/featured.png";
                 let featuredPic = `/images/images/${featuredArticle.photoFilename}`;
                 let hasFeaturedPic = (featuredArticle.photoFilename) ? true : false;
                 let featuredTitle = featuredArticle.headline;
@@ -122,39 +119,6 @@ function loadArticles(request, response) {
         response.send(articles);
     })
 }
-
-// TO DO: replace with values gotten from database queries
-// let listArticles = [
-//   {
-//     articleImage: "/images/list-test.png",
-//     articleTitle: "This is the title of the first article shown!",
-//     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-//     articleLink: "/article",
-//   },
-//   {
-//     articleImage: "/images/list-test.png",
-//     articleTitle: "This is the title of the second article shown!",
-//     articleBlurb: "Here is the blurb about this article. Wow I wonder what it's about, it must be so so so so cool",
-//     articleLink: "/article",
-//   },
-// ]
-
-// TO DO: replace with values gotten from database queries
-// Note: you might want to limit the number of characters shown for mostViewedArticle blurbs, as Angela's mockups showed them being shorter than listArticles
-// let mostViewedArticles = [
-//   {
-//     articleImage: "/images/sidebar.png",
-//     articleCategory: "COOL CATEGORY",
-//     articleTitle: "This is the title of a most viewed article",
-//     articleLink: "/article"
-//   },
-//   {
-//     articleImage: "/images/sidebar.png",
-//     articleCategory: "COOL CATEGORY",
-//     articleTitle: "This is also the title of a most viewed article",
-//     articleLink: "/article"
-//   }
-// ]
 
 module.exports = {
     getHome,
