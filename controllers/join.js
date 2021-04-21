@@ -10,7 +10,6 @@ function getJoin(request, response){
   });
 }
 
-// TO DO: replace with values gotten from database queries
 let joinOpportunities = [
   {
     joinOp: "Writer"
