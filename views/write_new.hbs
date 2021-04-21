@@ -14,7 +14,6 @@
     tinymce.init({
         selector: '#content',
         height: 400,
-        //images_upload_handler: handleImageUpload
         plugins: 'lists, link, image, media',
         toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist forecolor backcolor | link image media | removeformat help',
         menubar: false
@@ -134,7 +133,6 @@
         var reader = new FileReader();
         reader.onloadend = function(fileLoaded) {
             var fileContent = fileLoaded.target.result;
-            //console.log(fileContent);
             tinymce.get("content").setContent(fileContent);
         }
         reader.readAsText(file);
