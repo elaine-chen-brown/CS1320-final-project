@@ -1,17 +1,17 @@
 <div class="login-banner">
     <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
-    <div class="login-banner-text">THE BROWN NOSER</div>
+    <div class="login-banner-text" tabindex="1">THE BROWN NOSER</div>
 </div>
 
 <div class="login-wrapper">
     <div class="second-wrapper">
-    <div class="login-text">Log In</div>
+    <div class="login-text" tabindex="2">Log In</div>
     <div class="login-form-wrapper">
         <form action="auth" method="POST">
-            <input type="text" class="login-username" name="username" placeholder="Username" required><br>
-            <input type="password" class="login-password" name="password" placeholder="Password" required><br>
+            <input type="text" class="login-username" name="username" placeholder="Username" required tabindex="3"><br>
+            <input type="password" class="login-password" name="password" placeholder="Password" required tabindex="4"><br>
             <div class="login-wrapper">
-                <input type="submit" value="Log In" class="login-button">
+                <input type="submit" value="Log In" class="login-button" tabindex="5">
             </div>
         </form>
     </div>
@@ -20,5 +20,5 @@
 
 <!--Footer-->
 <div class="dashboard-footer">
-    <div class="footer-text">© The Brown Noser</div>
+    <div class="footer-text" tabindex="6">© The Brown Noser</div>
 </div>

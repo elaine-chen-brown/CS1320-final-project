@@ -27,11 +27,11 @@
 <div class="dashboard-banner">
     <div class="dashboard-logo">
         <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
-        <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+        <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black" tabindex="1">THE BROWN NOSER</a></div>
     </div>
     <div class="logout-button-wrapper">
         <form action="logout" method="post">
-            <input class="logout-button" type="submit" value="Logout">
+            <input class="logout-button" type="submit" value="Logout" tabindex="2">
         </form>
     </div>
 </div>
@@ -39,13 +39,13 @@
  <!--Navbar-->
     <div class="portal-navbar" role="navigation" style="padding-bottom:1.5%;">
         <ul class="portal-navlist">
-            <li class="portal-navitem"><a href="/write_new" class="hover">NEW ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/edit_article" class="hover">EDIT ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/delete" class="hover">DELETE ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/new_author" class="hover">NEW AUTHOR</a></li>
-            <li class="portal-navitem"><a href="/edit_author" class="hover">EDIT AUTHOR</a></li>
-            <li class="portal-navitem"><a href="/publish_topical" class="hover">PUBLISH ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/publish_issue" class="hover">PUBLISH ISSUE</a></li>
+            <li class="portal-navitem"><a href="/write_new" class="hover" tabindex="3">NEW ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/edit_article" class="hover" tabindex="4">EDIT ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/delete" class="hover" tabindex="5">DELETE ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/new_author" class="hover" tabindex="6">NEW AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/edit_author" class="hover" tabindex="7">EDIT AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/publish_topical" class="hover" tabindex="8">PUBLISH ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/publish_issue" class="hover" tabindex="9">PUBLISH ISSUE</a></li>
         </ul>
     </div>
     <hr style="height: 4px;margin:0;">
@@ -53,20 +53,20 @@
 <div style="padding:2%;">
     {{#if search}}
     <form method="post">
-        <label for="editDrafts">Select draft: </label>
-        <select class="limited" id="editDraft" name="editDraft" required>
+        <label for="editDrafts" tabindex="10">Select draft: </label>
+        <select class="limited" id="editDraft" name="editDraft" required tabindex="11">
         <option value="">Select a draft...</option>
         {{#drafts}}
             <option value={{draftid}}>{{headline}} by {{author}}</option>
         {{/drafts}}
         </select> <br/> 
 
-        <input id="selectArticle" type="submit" value="Go">
+        <input id="selectArticle" type="submit" value="Go" tabindex="12">
     </form>
     {{/if}}
 
     {{#if found}}
-    <form action="/save_edits" method="post">
+    <form action="/save_edits" method="post" tabindex="13">
         <label for="headline">Headline: </label>
         <input type="hidden" id="id" name="id" value='{{draftid}}'>
         <input type="text" id="headline" name="headline" value='{{headline}}'><br/>
