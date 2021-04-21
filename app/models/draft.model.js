@@ -14,6 +14,7 @@ const Draft = function(article) {
     this.photoCaption = article.photoCaption;
 };
 
+//inserts draft information into draft table
 Draft.save = (articleInfo, result) => {
     var headline = articleInfo.headline;
     var body = articleInfo.content;
@@ -34,9 +35,12 @@ Draft.save = (articleInfo, result) => {
     var photoName = articleInfo.photoFile;
     var photoCaption = articleInfo.photoCaption;
 
+    //if there is a photo upload, photo should be assigned a unique id and renamed accordingly in order to prevent
+    //the file from being overwritten by an upload with the same name
     if (photoName) {
         var extension = photoName.split(".").pop();
         
+        //So that we don't have to recalcuate the photoId later when publishing it, we get the max photoId
         sql.query("SELECT MAX(photoUploadId) AS photoId FROM drafts", (err, res) => {
             if (err) {
                 console.log("error: ", err);
@@ -45,7 +49,8 @@ Draft.save = (articleInfo, result) => {
             }
             else {
                 let parsedRes = JSON.parse(JSON.stringify(res))[0];
-                if (parseInt(parsedRes.photoId) == 0) {
+                //if we've previously set photo upload IDs
+                if (parseInt(parsedRes.photoId)) {
                     photoUploadId = parseInt(parsedRes.photoId) + 1;
                     var newPhotoName = photoUploadId + "." + extension;
                     var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
@@ -64,7 +69,6 @@ Draft.save = (articleInfo, result) => {
                                     return;
                                 }
                                 else {
-                                    console.log(res);
                                     result(null, res);
                                     return;
                                 }
@@ -72,6 +76,7 @@ Draft.save = (articleInfo, result) => {
                         }
                     })
                 }
+                //if this is the first draft with a photo, should get the max id from articles
                 else {
                     sql.query("SELECT MAX(photoUploadId) AS photoId FROM articles", (err, res) => {
                         if (err) {
@@ -99,7 +104,6 @@ Draft.save = (articleInfo, result) => {
                                             return;
                                         }
                                         else {
-                                            console.log(res);
                                             result(null, res);
                                             return;
                                         }
@@ -190,6 +194,7 @@ Draft.findById = (articleid, result) => {
     })
 }
 
+//move information from drafts table to articles table
 Draft.publish = (articleid, issueid, date, result) => {
     sql.query("SELECT * FROM drafts WHERE articleid = ?", articleid, (err, res) => {
         if (err) {
@@ -208,6 +213,7 @@ Draft.publish = (articleid, issueid, date, result) => {
                 else {
                     var newid = res.insertId;
 
+                    //if there is a photo, move it into the proper images folder
                     sql.query("SELECT photoFilename AS photoName FROM drafts WHERE articleid = ?", articleid, (err, res) => {
                         if (err) {
                             console.log(err);
@@ -225,6 +231,7 @@ Draft.publish = (articleid, issueid, date, result) => {
                             })
                         }
                     })
+                    //update other information that is not held in drafts table entry
                     sql.query("UPDATE articles set issueid = ?, inputType = ?, publishDate = ? WHERE articleid = ?", [issueid, 'html', date, newid], (err, data) => {
                         if (err) {
                             console.log(err);
@@ -232,7 +239,7 @@ Draft.publish = (articleid, issueid, date, result) => {
                             return;
                         }
                         else {
-                            //console.log("Successfully updated");
+                            //insert into authorassociations and delete from drafts
                             sql.query("SELECT authorid FROM DRAFTS WHERE articleid = ?", articleid, (err, res3) => {
                                 if (err) {
                                     console.log(err);
@@ -248,7 +255,6 @@ Draft.publish = (articleid, issueid, date, result) => {
                                             return;
                                         }
                                         else {
-                                            //console.log("Successfully inserted into authorassociations");
                                             result(null, newid);
                                             sql.query("DELETE FROM drafts WHERE articleid = ?", articleid, (err, res) => {
                                                 if (err) {
@@ -257,7 +263,6 @@ Draft.publish = (articleid, issueid, date, result) => {
                                                     return;
                                                 }
                                                 else {
-                                                    console.log("Successfully deleted from drafts");
                                                     result(null, 'success');
                                                 }
                                             })
@@ -275,7 +280,7 @@ Draft.publish = (articleid, issueid, date, result) => {
 
 //so that it's only called once for an issue
 Draft.newIssue = (issueid, leadid, date, result) => {
-    var number = issueid - 42; //might need to change this
+    var number = issueid - 42;
     console.log(leadid);
     sql.query("INSERT INTO issues (issueid, accountid, number, publishDate, leadStory) VALUES (?, ?, ?, ?, ?)", [issueid, 3, number, date, leadid], (err, res) => {
         if (err) {
@@ -284,7 +289,6 @@ Draft.newIssue = (issueid, leadid, date, result) => {
             return;
         }
         else {
-            console.log("Successfully inserted new issue");
             result(null, res);
         }
     })
@@ -301,6 +305,7 @@ Draft.editDraft = (info, result) => {
     var photoName = info.photoFile;
     var photoCaption = info.photoCaption;
 
+    //update photo information if new photo is uploaded 
     if (photoName) {
         var extension = photoName.split(".").pop();
         
@@ -312,8 +317,7 @@ Draft.editDraft = (info, result) => {
             }
             else {
                 let parsedRes = JSON.parse(JSON.stringify(res))[0];
-                if (parseInt(parsedRes.photoId) == 0) {
-                    console.log("res from drafts");
+                if (parseInt(parsedRes.photoId)) {
                     photoUploadId = parseInt(parsedRes.photoId) + 1;
                     var newPhotoName = photoUploadId + "." + extension;
                     var oldPath = __dirname + '/../../public/images/drafts/' + photoName;
@@ -324,7 +328,6 @@ Draft.editDraft = (info, result) => {
                             return;
                         }
                         else {
-                            console.log("Successfully renamed photo to ", newPhotoName);
                             photoName = newPhotoName;
                             sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ?, photoUploadId = ?, photoFilename = ?, photoCaption = ? WHERE articleid = ?", [headline, teaser, body, type, photoUploadId, photoName, photoCaption, articleid], (err, res) => {
                                 if (err) {
@@ -333,7 +336,6 @@ Draft.editDraft = (info, result) => {
                                     return;
                                 }
                                 else {
-                                    console.log(res);
                                     result(null, res);
                                     return;
                                 }
@@ -349,7 +351,6 @@ Draft.editDraft = (info, result) => {
                             return;
                         }
                         else {
-                            console.log("res from articles");
                             let photoRes = JSON.parse(JSON.stringify(res))[0];
                             photoUploadId = parseInt(photoRes.photoId) + 1;
                             var newPhotoName = photoUploadId + "." + extension;
@@ -363,7 +364,6 @@ Draft.editDraft = (info, result) => {
                                     return;
                                 }
                                 else {
-                                    console.log("Successfully renamed photo to ", newPhotoName);
                                     photoName = newPhotoName;
                                     sql.query("UPDATE drafts SET headline = ?, teaser = ?, body = ?, type = ?, photoUploadId = ?, photoFilename = ?, photoCaption = ? WHERE articleid = ?", [headline, teaser, body, type, photoUploadId, photoName, photoCaption, articleid], (err, res) => {
                                         if (err) {
@@ -372,7 +372,6 @@ Draft.editDraft = (info, result) => {
                                             return;
                                         }
                                         else {
-                                            console.log(res);
                                             result(null, res);
                                             return;
                                         }
@@ -394,7 +393,6 @@ Draft.editDraft = (info, result) => {
                 return;
             }
             else {
-                console.log(res);
                 result(null, res);
                 return;
             }
