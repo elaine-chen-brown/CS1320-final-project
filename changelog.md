@@ -4,6 +4,9 @@
 - username: thenoser
 - password: thebrowndailynoser19
 
+#### 4/20 
+- remove default image from issue page
+
 #### 4/19 
 - made routing for author instagram and twitter links (open in new tabs)
 - changed margin on navlist to auto for centering on large screens

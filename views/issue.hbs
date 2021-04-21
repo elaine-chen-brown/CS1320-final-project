@@ -53,10 +53,11 @@
         {{#if isNonTopical}}
         <a href={{ featuredLink }} style="text-decoration:none" tabindex="16">
         <div class="featured-article">
+            {{#if hasFeaturedPhoto}}
             <div class="featured-image-wrapper">
                 <img src={{ featuredPic }} alt="featured article picture" class="featured-image" onerror="this.onerror=null; this.src='/images/article-pic.png'" tabindex="17">
             </div>
-
+            {{/if}}
             <div class="featured-text-wrapper">
                 <div class="featured-title-wrapper">
                     <div class="featured-title bold hover" tabindex="18">{{ featuredTitle }}</div>

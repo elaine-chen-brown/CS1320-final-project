@@ -80,9 +80,11 @@ function getIssue(req, res){
                     let articles = otherArticles.map(buildArticle);
                     let date = processDate(leadArticle.publishDate);
                     let year = (date.split(',')[2]).trim();
+                    let hasFeaturedPhoto = (leadArticle.photoFilename) ? true : false;
                     res.render('issue', {
                         title: 'Issue',
                         featuredPic: `/images/images/${leadArticle.photoFilename}`,
+                        hasFeaturedPhoto: hasFeaturedPhoto,
                         featuredTitle: leadArticle.headline,
                         featuredCategory: leadArticle.section,
                         featuredBlurb: leadArticle.teaser,
