@@ -27,11 +27,11 @@
     <div class="dashboard-banner">
         <div class="dashboard-logo">
             <img src="/images/logo.png" alt="The Brown Noser logo" class="logo-image">
-            <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black">THE BROWN NOSER</a></div>
+            <div class="dashboard-logo-text"><a href="/dashboard" style="text-decoration: none;color:black" tabindex="1">THE BROWN NOSER</a></div>
         </div>
         <div class="logout-button-wrapper">
             <form action="logout" method="post">
-                <input class="logout-button" type="submit" value="Logout">
+                <input class="logout-button" type="submit" value="Logout" tabindex="2">
             </form>
         </div>
     </div>
@@ -39,62 +39,62 @@
     <!--Navbar-->
     <div class="portal-navbar" role="navigation" style="padding-bottom: 2%;">
         <ul class="portal-navlist">
-            <li class="portal-navitem"><a href="/write_new" class="hover">NEW ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/edit_article" class="hover">EDIT ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/delete" class="hover">DELETE ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/new_author" class="hover">NEW AUTHOR</a></li>
-            <li class="portal-navitem"><a href="/edit_author" class="hover">EDIT AUTHOR</a></li>
-            <li class="portal-navitem"><a href="/publish_topical" class="hover">PUBLISH ARTICLE</a></li>
-            <li class="portal-navitem"><a href="/publish_issue" class="hover">PUBLISH ISSUE</a></li>
+            <li class="portal-navitem"><a href="/write_new" class="hover" tabindex="3">NEW ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/edit_article" class="hover" tabindex="4">EDIT ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/delete" class="hover" tabindex="5">DELETE ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/new_author" class="hover" tabindex="6">NEW AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/edit_author" class="hover" tabindex="7">EDIT AUTHOR</a></li>
+            <li class="portal-navitem"><a href="/publish_topical" class="hover" tabindex="8">PUBLISH ARTICLE</a></li>
+            <li class="portal-navitem"><a href="/publish_issue" class="hover" tabindex="9">PUBLISH ISSUE</a></li>
         </ul>
     </div>
     <hr style="height: 4px;margin:0;">
 
     <div class="main" role="main" style="padding:2%">
         <form role="form" method="post">
-            <label for="headline">Headline: </label>
-            <input type="text" id="headline" name="headline" required> <br/>
+            <label for="headline" tabindex="10">Headline: </label>
+            <input type="text" id="headline" name="headline" required tabindex="11"> <br/>
 
-            <label for="author">Author name: </label>
+            <label for="author" tabindex="12">Author name: </label>
             {{!-- <input type="text" id="author" name="author"><br/> --}}
 
-            <select class="limited" id="author" name="author" required>
+            <select class="limited" id="author" name="author" required tabindex="13">
                 <option value="">Select a name...</option>
                 {{#authors}}
                 <option value='{{authorid}},{{authorname}}'>{{authorname}}</option>
                 {{/authors}}
             </select> <br/> 
 
-            <label for="category">Category: </label>
-            <select class="limited" name="category" id="category" required>
+            <label for="category" tabindex="14">Category: </label>
+            <select class="limited" name="category" id="category" required tabindex="15">
                 <option value="">Select a category...</option>
                 {{#categories}}
                 <option value='{{categoryid}},{{category}}'>{{category}}</option>
                 {{/categories}}
             </select> <br/>
 
-            <label for="type">Publish as: </label>
-            <select name="type" id="type">
+            <label for="type" tabindex="16">Publish as: </label>
+            <select name="type" id="type" tabindex="17">
                 <option value="topical">a topical article</option>
                 <option value="issue">part of the next issue</option>
             </select> <br/>
 
-            <label for="teaser">Article teaser: </label>
-            <input type="text" id="teaser" name="teaser" required> <br/>
+            <label for="teaser" tabindex="18">Article teaser: </label>
+            <input type="text" id="teaser" name="teaser" required tabindex="19"> <br/>
 
-            <label for="photoFile">Upload photo: </label>
-            <input type="file" id="photoFile" name="photoFile" accept="image/*"> <br/>
+            <label for="photoFile" tabindex="20">Upload photo: </label>
+            <input type="file" id="photoFile" name="photoFile" accept="image/*" tabindex="21"> <br/>
         
-            <label for="photoCaption">Photo caption: </label>
-            <input type="text" id="photoCaption" name="photoCaption"> <br/>
+            <label for="photoCaption" tabindex="22">Photo caption: </label>
+            <input type="text" id="photoCaption" name="photoCaption" tabindex="23"> <br/>
 
-            <label for="content">Article body: </label><br/>
-            <textarea id="content" name="content"></textarea> <br/>
+            <label for="content" tabindex="24">Article body: </label><br/>
+            <textarea id="content" name="content" tabindex="25"></textarea> <br/>
 
-            <label for="textUpload">Upload a text file </label>
-            <input type="file" id="textFile" name="textFile" accept=".htm, text/plain"><br>
+            <label for="textUpload" tabindex="26">Upload a text file </label>
+            <input type="file" id="textFile" name="textFile" accept=".htm, text/plain" tabindex="27"><br>
 
-            <input type="submit" value="Save">
+            <input type="submit" value="Save" tabindex="28">
         </form>
     </div>
 
