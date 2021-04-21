@@ -275,8 +275,6 @@ Draft.publish = (articleid, issueid, date, result) => {
 
 //so that it's only called once for an issue
 Draft.newIssue = (issueid, leadid, date, result) => {
-    //console.log(issueid);
-    //console.log(leadid);
     var number = issueid - 42; //might need to change this
     console.log(leadid);
     sql.query("INSERT INTO issues (issueid, accountid, number, publishDate, leadStory) VALUES (?, ?, ?, ?, ?)", [issueid, 3, number, date, leadid], (err, res) => {
@@ -305,7 +303,6 @@ Draft.editDraft = (info, result) => {
 
     if (photoName) {
         var extension = photoName.split(".").pop();
-        //extension = extension[extension.length - 1];
         
         sql.query("SELECT MAX(photoUploadId) AS photoId FROM drafts", (err, res) => {
             if (err) {
