@@ -19,5 +19,9 @@
 - Implemented frontend and backend components of the CMS, including the drafts table, writing/publishing/deleting articles, editing author information, image uploads, and all associated hbs pages.
 
 #### Elaine
+- Front end/full stack developer
+- Set up Node/Express project with basic routing
+- Implemented handlebars templates and CSS styling
+- Implemented login authentication
 
 #### Teresa
