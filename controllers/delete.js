@@ -106,7 +106,7 @@ function deleteArticle(req, res) {
         }
 
         var deletePublished = function deletePublished(articleid) {
-            return new Promise((resolve, rejeect) => {
+            return new Promise((resolve, reject) => {
                 Article.deletePublished(articleid, (err, data) => {
                     if (err) {
                         if (err.kind == "cannot_delete_featured") {
