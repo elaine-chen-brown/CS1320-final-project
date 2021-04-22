@@ -5,7 +5,7 @@
 1. In terminal, navigate into this directory
 2. Run "npm install" to install dependencies
 3. Create new database named 'noser_edited' and use editnoser.sql to load the database
-4. Unzip public/images/images.zip (folder size was too large for gradescope handin)
+4. Download images from https://thenosertmp.s3.amazonaws.com/uploads-20210214.tar.gz into public/images/images
 5. Run "npm run start" to start server
 6. Open a browser window and go to "localhost:8080" to see the site
 7. Author portal is accessible at "localhost:8080/login", with username 'thenoser' and password 'thebrowndailynoser19'
